@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import axiosRetry from 'axios-retry';
+// import axiosRetry from 'axios-retry';
 
 
 const axiosInstance = axios.create({
