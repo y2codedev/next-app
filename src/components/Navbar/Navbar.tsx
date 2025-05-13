@@ -12,12 +12,6 @@ export default function NavbarMain() {
     return (
         <>
             <NavbarHeader onMenuClick={() => setIsDrawerOpen(true)} />
-            {isDrawerOpen && (
-                <div
-                    onClick={() => setIsDrawerOpen(false)}
-                    className="fixed inset-0 bg-black/30 z-40 sm:hidden"
-                />
-            )}
             <DrawerMenu
                 isOpen={isDrawerOpen}
                 onClose={() => setIsDrawerOpen(false)}

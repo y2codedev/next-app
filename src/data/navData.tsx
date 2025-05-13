@@ -1,4 +1,4 @@
-import { NavItem, SocialLink } from '@/types/type'
+import { NavItem, SocialLink, Options } from '@/types/type'
 import {
     FiFacebook,
     FiInstagram,
@@ -51,5 +51,55 @@ export const socialLinks: SocialLink[] = [
         label: 'LinkedIn',
         href: 'https://linkedin.com',
         icon: <FiLinkedin size={20} />,
+    },
+]
+
+
+export const fixtureOptions: Options[] = [
+    {
+        src: 'https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp',
+        alt: 'Handheld Chrome',
+    },
+    {
+        src: 'https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp',
+        alt: 'Wallmount Chrome',
+    },
+    {
+        src: 'https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp',
+        alt: 'Rain Chrome',
+    },
+]
+
+export const colorOptions: Options[] = [
+    {
+        src: 'https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Chrome.svg',
+        alt: 'Chrome',
+    },
+    {
+        src: 'https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Nickel.svg',
+        alt: 'Nickel',
+    },
+    {
+        src: 'https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Champagne.svg',
+        alt: 'Champagne',
+    },
+    {
+        src: 'https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Black.svg',
+        alt: 'Black',
+    },
+]
+
+export const paymentMethod: Options[] = [
+    {
+        src: "https://cdn.keepconverting.ai/Blu/Icons/Paymentsaccepted/visa.png",
+        alt: 'Visa',
+    },
+    {
+        src: "https://cdn.keepconverting.ai/Blu/Icons/Paymentsaccepted/mc-logo-52.svg",
+        alt: 'Mastercard',
+    },
+    {
+        src: "https://cdn.keepconverting.ai/Blu/Icons/Paymentsaccepted/tabby.png",
+        alt: "Tabby"
     },
 ]

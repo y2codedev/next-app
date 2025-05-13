@@ -23,3 +23,8 @@ export interface DrawerMenuProps {
     isSupportOpen: boolean
     toggleSupport: () => void
 }
+
+export interface Options {
+    src: string
+    alt: string
+}
