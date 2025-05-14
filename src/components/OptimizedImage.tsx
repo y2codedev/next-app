@@ -32,7 +32,7 @@ const OptimizedImage = ({
       priority={priority}
       loading={priority ? undefined : loading ?? 'lazy'}
       quality={85}
-      style={{ objectFit: 'cover' }}
+      style={{ objectFit: 'contain' }}
       {...rest}
     />
   )

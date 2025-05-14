@@ -19,7 +19,7 @@ const SliderArrow: React.FC<SliderArrowProps> = ({ onClick, direction }) => {
       bottom-4 md:bottom-auto`}
       aria-label={isLeft ? 'Previous Slide' : 'Next Slide'}
     >
-      {isLeft ? <FaArrowLeftLong size={20}  /> : <FaArrowRight size={20}  />}
+      {isLeft ? <FaArrowLeftLong size={20} color="black"  /> : <FaArrowRight size={20} color="black"  />}
     </button>
   )
 }

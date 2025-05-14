@@ -49,13 +49,12 @@ const HeroSections: React.FC<Props> = ({ selectedFixture, selectedColor }) => {
           <div key={index} className="w-full min-h-screen relative">
             <OptimizedImage
               src={photo}
-              alt={`Variant Image ${index}`}
+              alt={`Variant Image`}
               fill
-              className="brightness-75 object-cover"
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-              <h2 className="text-2xl md:text-4xl font-bold">Swissblu</h2>
-              <p className="mt-2 md:mt-4 text-base md:text-lg max-w-2xl">Experience the power of clean water</p>
+            <div className="absolute inset-0 flex flex-col items-center justify-center  text-center px-4">
+              <h2 className="text-2xl md:text-4xl text-gray-800 font-bold">Swissblu</h2>
+              <p className="mt-2 md:mt-4 text-base text-gray-800 md:text-lg max-w-2xl">Experience the power of clean water</p>
             </div>
           </div>
         ))}

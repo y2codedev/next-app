@@ -14,9 +14,9 @@ export default function DrawerMenu({
 }: DrawerMenuProps) {
     return (
         <div  className={`
-            fixed top-0 left-0 h-full z-50 bg-white
+            fixed top-0 left-0 h-full z-50 bg-white border-r border-gray-200
             transition-transform duration-300 ease-in-out
-            w-full sm:w-[30%]
+            w-full sm:w-[24%]
             ${isOpen ? 'translate-x-0' : '-translate-x-full'}
           `}>
             <div className="flex justify-end p-4 sticky top-0  bg-white z-50">
