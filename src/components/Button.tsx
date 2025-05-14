@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
     className = ''
 }) => {
     const baseStyle =
-        'w-full flex items-center gap-2 justify-center rounded-md py-2.5 px-4 text-md font-semibold transition-colors duration-200'
+        'w-full flex items-center gap-2 justify-center cursor-pointer rounded-md py-2.5 px-4 text-md font-semibold transition-colors duration-200'
 
     const variants: Record<typeof variant, string> = {
         primary: 'bg-[#d7e2da] text-black hover:bg-[#c9d8ce]',
