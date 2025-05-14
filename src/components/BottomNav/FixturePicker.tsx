@@ -3,6 +3,7 @@
 import React from 'react';
 import OptimizedImage from '../OptimizedImage';
 import { MockJsonData } from '@/data/navData';
+import { ProductType } from '@/types/home';
 
 interface Props {
   onSelect: (fixture: string) => void;
@@ -14,7 +15,7 @@ const FixturePicker: React.FC<Props> = ({ onSelect, selectedFixture }) => {
     <div className="w-full">
       <p className="text-white text-sm mb-1">Fixture</p>
       <div className="flex items-center gap-2 overflow-x-auto">
-        {MockJsonData.map((item: any, index) => (
+        {MockJsonData.map((item:ProductType, index) => (
           <button
             key={index}
             onClick={() => onSelect(item.thumbnail)}
