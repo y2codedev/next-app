@@ -5,12 +5,12 @@ import NavbarHeader from './NavbarHeader'
 import DrawerMenu from './DrawerMenu'
 import { navLinks, socialLinks, supportLinks } from '@/data/navData'
 
-export default function NavbarMain() {
+export default function Navbar() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const [isSupportOpen, setIsSupportOpen] = useState(false)
 
     return (
-        <>
+        <div>
             <NavbarHeader onMenuClick={() => setIsDrawerOpen(true)} />
             <DrawerMenu
                 isOpen={isDrawerOpen}
@@ -21,6 +21,6 @@ export default function NavbarMain() {
                 isSupportOpen={isSupportOpen}
                 toggleSupport={() => setIsSupportOpen(!isSupportOpen)}
             />
-        </>
+        </div>
     )
 }

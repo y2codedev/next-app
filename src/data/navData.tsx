@@ -1,3 +1,4 @@
+import { BannerSlide, ProductType } from '@/types/home'
 import { NavItem, SocialLink, Options } from '@/types/type'
 import {
     FiFacebook,
@@ -55,35 +56,24 @@ export const socialLinks: SocialLink[] = [
 ]
 
 
-export const fixtureOptions: Options[] = [
-    {
-        src: 'https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp',
-        alt: 'Handheld Chrome',
-    },
-    {
-        src: 'https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp',
-        alt: 'Wallmount Chrome',
-    },
-    {
-        src: 'https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp',
-        alt: 'Rain Chrome',
-    },
-]
-
 export const colorOptions: Options[] = [
     {
+        id: 1,
         src: 'https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Chrome.svg',
         alt: 'Chrome',
     },
     {
+        id: 2,
         src: 'https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Nickel.svg',
         alt: 'Nickel',
     },
     {
+        id: 3,
         src: 'https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Champagne.svg',
         alt: 'Champagne',
     },
     {
+        id: 4,
         src: 'https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Black.svg',
         alt: 'Black',
     },
@@ -91,15 +81,220 @@ export const colorOptions: Options[] = [
 
 export const paymentMethod: Options[] = [
     {
+        id: 1,
         src: "https://cdn.keepconverting.ai/Blu/Icons/Paymentsaccepted/visa.png",
         alt: 'Visa',
     },
     {
+        id: 2,
         src: "https://cdn.keepconverting.ai/Blu/Icons/Paymentsaccepted/mc-logo-52.svg",
         alt: 'Mastercard',
     },
     {
+        id: 3,
         src: "https://cdn.keepconverting.ai/Blu/Icons/Paymentsaccepted/tabby.png",
         alt: "Tabby"
     },
 ]
+
+export const slides: BannerSlide[] = [
+    {
+        id: 1,
+        title: "Welcome to Swissblu",
+        description: "Experience the power of clean water with our filters.",
+        fixtures: {
+            handheld: {
+                defaultImage: "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+                colors: {
+                    chrome: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR1.png",
+                    black: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR2.png",
+                    roseGold: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR3.png"
+                }
+            },
+            wallmount: {
+                defaultImage: "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp",
+                colors: {
+                    chrome: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR1.png",
+                    black: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR2.png",
+                    roseGold: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR3.png"
+                }
+            },
+            rain: {
+                defaultImage: "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                colors: {
+                    chrome: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR1.png",
+                    black: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR2.png",
+                    roseGold: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR3.png"
+                }
+            }
+        }
+    },
+
+    {
+        id: 2,
+        title: "Welcome to Swissblu",
+        description: "Experience the power of clean water with our filters.",
+        fixtures: {
+            handheld: {
+                defaultImage: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR1.png",
+                colors: {
+                    chrome: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR1.png",
+                    black: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR2.png",
+                    roseGold: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR3.png"
+                }
+            },
+            wallmount: {
+                defaultImage: "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp",
+                colors: {
+                    chrome: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR1.png",
+                    black: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR2.png",
+                    roseGold: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR3.png"
+                }
+            },
+            rain: {
+                defaultImage: "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                colors: {
+                    chrome: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR1.png",
+                    black: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR2.png",
+                    roseGold: "https://cdn.keepconverting.ai/Blu/Images/TKP/MR3.png"
+                }
+            }
+        }
+    },
+
+];
+
+export const MockJsonData: ProductType[] = [
+    {
+        id: 1,
+        thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+        title: "Swissblu - Handheld",
+        description: "Experience the power of clean water with our handheld filters.",
+        photos: [
+            "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+            "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+            "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp"
+        ],
+        item_variants: [
+            {
+                id: 1,
+                thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+                color: ["https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Chrome.svg"],
+                photos: [
+                    "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
+                ],
+            },
+            {
+                id: 2,
+                color: ["https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Nickel.svg"],
+                photos: [
+                    "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
+                ],
+            },
+            {
+                id: 3,
+                thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+                color: ["https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Champagne.svg", "https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Nickel.svg"],
+                photos: [
+                    "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
+                ],
+            }
+        ]
+    },
+    {
+        id: 2,
+        thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp",
+        title: "Swissblu - Wallmount",
+        description: "Experience the power of clean water with our wall-mounted filters.",
+        photos: [
+            "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+            "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+            "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
+        ],
+        item_variants: [
+            {
+                id: 1,
+                thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp",
+                color: ["https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Champagne.svg", "https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Nickel.svg"],
+
+                photos: [
+                    "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
+                ],
+            },
+            {
+                id: 2,
+                thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp",
+                color: ["https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Nickel.svg"],
+
+                photos: [
+                    "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
+                ],
+            },
+            {
+                id: 3,
+                thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp",
+                color: ["https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Champagne.svg", "https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Nickel.svg"],
+                photos: [
+                    "https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
+                ],
+            }
+        ]
+    },
+    {
+        id: 3,
+        thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+        title: "Swissblu - Rain",
+        description: "Experience the power of clean water with our rain shower filters.",
+        photos: [
+            "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+            "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+            "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp"
+        ],
+        item_variants: [
+            {
+                id: 1,
+                thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                color: ["https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Black.svg", "https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Nickel.svg"],
+                photos: [
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp"
+                ],
+            },
+            {
+                id: 2,
+                thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                color: ["https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Black.svg", "https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Black.svg"],
+
+                photos: [
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp"
+                ],
+            },
+            {
+                id: 3,
+                thumbnail: "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                color: ["https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Champagne.svg", "https://cdn.keepconverting.ai/Blu/Icons/Other/Colors/Nickel.svg"],
+                photos: [
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+                    "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp"
+                ],
+            }
+        ]
+    },
+
+];

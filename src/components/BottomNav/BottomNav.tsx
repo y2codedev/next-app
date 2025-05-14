@@ -1,28 +1,31 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import FixturePicker from '@/components/BottomNav/FixturePicker'
-import ColorPicker from '@/components/BottomNav/ColorPicker'
-import AddToCart from '@/components/BottomNav/AddToCart'
-import PaymentMethods from '@/components/BottomNav/PaymentMethods'
+import React from 'react';
+import FixturePicker from './FixturePicker';
+import ColorPicker from './ColorPicker';
+import AddToCart from './AddToCart';
+import PaymentMethods from './PaymentMethods';
 
-const BottomNav: React.FC = () => {
-    const [selectedFixture, setSelectedFixture] = useState(0)
-    const [selectedColor, setSelectedColor] = useState(0)
-
-    return (
-        <div className="fixed bottom-0 sm:hidden left-0 w-full z-[3] bg-[rgba(55,57,55,0.2)] overflow-hidden px-2 py-4">
-            <div className="flex gap-3 justify-center items-center">
-                <FixturePicker selected={selectedFixture} onSelect={setSelectedFixture} />
-                <ColorPicker selected={selectedColor} onSelect={setSelectedColor} />
-            </div>
-
-            <div className="mt-4">
-                <AddToCart />
-                <PaymentMethods />
-            </div>
-        </div>
-    )
+interface Props {
+  onFixtureChange: (fixture: string) => void;
+  onColorChange: (color: string) => void;
+  selectedColor: string;
+  selectedFixture: string;
 }
 
-export default BottomNav
+const BottomNav: React.FC<Props> = ({ onFixtureChange, onColorChange ,selectedColor,selectedFixture}) => {
+  return (
+    <nav className="fixed bottom-0 sm:bottom-4 left-0 w-full sm:rounded-md sm:w-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2  z-30 bg-black/20 px-2 py-4 backdrop-blur-sm">
+      <div className="flex gap-3 justify-center items-center">
+        <FixturePicker onSelect={onFixtureChange} selectedFixture={selectedFixture} />
+        <ColorPicker selectedColor={selectedColor} onSelect={onColorChange} />
+      </div>
+      <div className="mt-4">
+        <AddToCart />
+        <PaymentMethods />
+      </div>
+    </nav>
+  );
+};
+
+export default BottomNav;

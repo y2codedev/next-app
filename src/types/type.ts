@@ -25,6 +25,7 @@ export interface DrawerMenuProps {
 }
 
 export interface Options {
+    id: number
     src: string
     alt: string
 }

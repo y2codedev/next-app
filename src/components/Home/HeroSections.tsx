@@ -1,17 +1,34 @@
-'use client'
+'use client';
+
+import React, { useMemo } from 'react';
+import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React from 'react'
-import Slider from "react-slick";
-import { BannerSlide } from '@/types/home'
-import OptimizedImage from "@/components/OptimizedImage";
-import SliderArrow from "@/components/SliderArrow";
+import OptimizedImage from '@/components/OptimizedImage';
+import SliderArrow from '@/components/SliderArrow';
+import { MockJsonData } from '@/data/navData';
 
-interface BannerSliderProps {
-  slides: BannerSlide[]
+interface Props {
+  selectedFixture: string;
+  selectedColor: string;
 }
 
-const HeroSections: React.FC<BannerSliderProps> = ({ slides }) => {
+const HeroSections: React.FC<Props> = ({ selectedFixture, selectedColor }) => {
+
+  const variantPhotos = useMemo(() => {
+    const product = MockJsonData.find(item =>
+      item.item_variants.some(variant => variant.thumbnail === selectedFixture)
+    );
+
+    if (!product) return [];
+
+    const variant = product.item_variants.find(v =>
+      v.color.includes(selectedColor) && v.thumbnail === selectedFixture
+    ) || product.item_variants.find(v => v.thumbnail === selectedFixture);
+
+    return variant?.photos || product.photos;
+  }, [selectedFixture, selectedColor]);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -23,30 +40,28 @@ const HeroSections: React.FC<BannerSliderProps> = ({ slides }) => {
     arrows: true,
     nextArrow: <SliderArrow direction="right" />,
     prevArrow: <SliderArrow direction="left" />,
-  }
+  };
 
   return (
-    <div className="w-full">
+    <div className="w-full h-screen">
       <Slider {...settings}>
-        {slides.map((slide) => (
-          <div key={slide.id} className="relative min-h-screen w-full">
+        {variantPhotos?.map((photo, index) => (
+          <div key={index} className="w-full min-h-screen relative">
             <OptimizedImage
-              src={slide.imageUrl}
-              alt={slide.title}
-              fill={true}
-              className="brightness-75"
+              src={photo}
+              alt={`Variant Image ${index}`}
+              fill
+              className="brightness-75 object-cover"
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-              <h2 className="text-2xl md:text-4xl font-bold">{slide.title}</h2>
-              <p className="mt-2 md:mt-4 text-base md:text-lg max-w-2xl px-4">
-                {slide.description}
-              </p>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+              <h2 className="text-2xl md:text-4xl font-bold">Swissblu</h2>
+              <p className="mt-2 md:mt-4 text-base md:text-lg max-w-2xl">Experience the power of clean water</p>
             </div>
           </div>
         ))}
       </Slider>
     </div>
-  )
-}
+  );
+};
 
-export default HeroSections
+export default HeroSections;

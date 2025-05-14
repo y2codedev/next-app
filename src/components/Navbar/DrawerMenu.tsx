@@ -13,10 +13,15 @@ export default function DrawerMenu({
     toggleSupport,
 }: DrawerMenuProps) {
     return (
-        <div className={`fixed top-0 left-0 h-full w-full bg-white z-50 transition-transform duration-300 ease-in-out sm:hidden ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-            <div className="flex justify-end p-4 sticky top-0 bg-white z-50">
-                <button onClick={onClose} aria-label="Close menu">
-                    <IoClose size={28} className="text-gray-700" />
+        <div  className={`
+            fixed top-0 left-0 h-full z-50 bg-white
+            transition-transform duration-300 ease-in-out
+            w-full sm:w-[30%]
+            ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+          `}>
+            <div className="flex justify-end p-4 sticky top-0  bg-white z-50">
+                <button onClick={onClose} aria-label="Close menu" >
+                    <IoClose size={28} className="text-gray-700 cursor-pointer" />
                 </button>
             </div>
 
@@ -28,7 +33,7 @@ export default function DrawerMenu({
                                 <div key={index}>
                                     <button
                                         onClick={toggleSupport}
-                                        className="w-full border-b items-center border-gray-200 py-3 text-lg font-bold text-left text-[#666] flex items-left gap-2"
+                                        className="w-full border-b items-center  border-gray-200 py-3 text-lg font-bold text-left text-[#666] flex items-left gap-2"
                                     >
                                         {item.label}
                                         {isSupportOpen ? <FiChevronUp /> : <FiChevronDown />}

@@ -12,7 +12,7 @@ export default function NavbarHeader({ onMenuClick }: NavbarHeaderProps) {
             <div className="container">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center gap-4">
-                        <button onClick={onMenuClick} className="text-2xl text-black" aria-label="Toggle menu">
+                        <button onClick={onMenuClick} className="text-2xl cursor-pointer  text-black" aria-label="Toggle menu">
                             <FiMenu />
                         </button>
                         <button className="text-xl font-arabic">ع</button>

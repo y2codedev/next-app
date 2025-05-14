@@ -81,3 +81,22 @@
     padding-right: 1rem;
   }
 }
+
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
+}
+
+.scroll-section {
+  scroll-snap-align: start;
+  height: 100vh;
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
