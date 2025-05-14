@@ -52,7 +52,7 @@ const HeroSections: React.FC<Props> = ({ selectedFixture, selectedColor }) => {
               alt={`Variant Image`}
               fill
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center  text-center px-4">
+            <div className="absolute inset-0  flex flex-col items-center justify-center  text-center px-4">
               <h2 className="text-2xl md:text-4xl text-gray-800 font-bold">Swissblu</h2>
               <p className="mt-2 md:mt-4 text-base text-gray-800 md:text-lg max-w-2xl">Experience the power of clean water</p>
             </div>
