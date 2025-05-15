@@ -20,7 +20,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
 
     return (
         <div
-            className={`fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-lg transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'
+            className={`fixed top-0 right-0 h-full w-full sm:w-[24%] bg-white z-50 shadow-lg transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}
         >
             <div className="flex justify-between items-center p-4 border-b-[1px] border-b-gray-200">
@@ -30,7 +30,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
                 </button>
             </div>
 
-            <div className="p-4 flex flex-col gap-4 overflow-y-auto max-h-[calc(100vh-260px)]">
+            <div className="p-4 flex flex-col gap-4 overflow-y-auto max-h-[calc(100vh-250px)]">
                 {cartItems?.map((item, index) => (
                     <div key={index} className="flex gap-4 items-start">
                         <OptimizedImage

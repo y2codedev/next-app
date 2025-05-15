@@ -41,7 +41,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="scroll-container relative">
+      <div className="scroll-container ">
         <div className="scroll-section">
           <HeroSections selectedFixture={selectedFixture} selectedColor={selectedColor} title={title} description={description} />
         </div>
