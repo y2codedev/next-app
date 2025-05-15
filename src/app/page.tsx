@@ -4,9 +4,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import HeroSections from '@/components/Home/HeroSections';
 import BottomNav from '@/components/BottomNav/BottomNav';
 import { MockJsonData } from '@/data/navData';
-import { ProductType } from '@/types/home';
 
-const Home: React.FC<ProductType> = () => {
+const Home = () => {
   const firstFixture = MockJsonData[0];
   const defaultFixture = firstFixture.thumbnail;
   const defaultColor = firstFixture.item_variants[0]?.color[0] || '';
