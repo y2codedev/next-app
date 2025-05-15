@@ -6,7 +6,7 @@ import BottomNav from '@/components/BottomNav/BottomNav';
 import { MockJsonData } from '@/data/navData';
 import { ProductType } from '@/types/home';
 
-const Page: React.FC<ProductType> = () => {
+const Home: React.FC<ProductType> = () => {
   const firstFixture = MockJsonData[0];
   const defaultFixture = firstFixture.thumbnail;
   const defaultColor = firstFixture.item_variants[0]?.color[0] || '';
@@ -62,4 +62,4 @@ const Page: React.FC<ProductType> = () => {
   );
 };
 
-export default Page;
+export default Home;

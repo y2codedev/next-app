@@ -326,8 +326,6 @@ export const MockJsonData: ProductType[] = [
 
 ];
 
-
-
 export const product = [
     {
         title: 'Swissblu - Handheld This is a test product  Swissblu - Handheld This is a test product description',
