@@ -29,3 +29,27 @@ export interface Options {
     src: string
     alt: string
 }
+
+interface Product {
+    title: string;
+    image: string;
+    price: number;
+    color: string;
+    fixture: string;
+}
+
+interface CartItem {
+    product: Product;
+    quantity: number;
+}
+
+export interface CartDrawerProps {
+    isOpen: boolean;
+    onClose: () => void;
+    cartItems: CartItem[];
+    onIncrement: (index: number) => void;
+    onDecrement: (index: number) => void;
+    note: string;
+    setNote: (note: string) => void;
+    onCheckout: () => void;
+}

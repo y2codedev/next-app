@@ -11,7 +11,8 @@
   /* Colors */
   --color-primary: #ff3e00;
   --color-black: #000;
-  --color-secondary: #0ea5e9;
+  --color-btn: #d7e2da;
+  --color-secondary: #212529;
   --color-accent: #9333ea;
 
 
@@ -28,6 +29,12 @@
   --gap-md: 1rem;
   --gap-lg: 2rem;
   --gap-xl: 4rem;
+
+  /* Tracking */
+  --tracking-1: 0em;
+  --tracking-2: 0.15em;
+  --tracking-3: 0.20em;
+  --tracking-4: 0.25em;
 
   /* Container */
   --container-max-width: 1280px;
@@ -99,4 +106,3 @@
   align-items: center;
   justify-content: center;
 }
-

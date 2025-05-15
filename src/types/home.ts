@@ -12,11 +12,21 @@ export type BannerSlide = {
   };
 };
 
+export interface AddToCartProps {
+  productTitle: string;
+  variantId: number;
+  price: number;
+}
+
+
 export interface ItemVariant {
   id: number;
   thumbnail?: string;
   color: string[];
   photos: string[];
+  title?: string;
+  description?: string;
+  price?: number;
 }
 
 export interface ProductType {
@@ -25,5 +35,8 @@ export interface ProductType {
   title: string;
   description: string;
   photos: string[];
+  price?: number;
   item_variants: ItemVariant[];
 }
+
+

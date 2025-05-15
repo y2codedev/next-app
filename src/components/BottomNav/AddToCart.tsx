@@ -3,16 +3,17 @@
 import React from 'react'
 import Button from '@/components/Button'
 
-const AddToCart: React.FC = () => {
-  const handleClick = () => {
-    console.log('Added to cart!')
-  }
+
+interface Props {
+  price: number;
+}
+
+const AddToCart: React.FC<Props> = ({ price }) => {
 
   return (
     <Button
-      label="Add to Cart"
-      price="399"
-      onClick={handleClick}
+      label={'Add to Cart'}
+      price={price}
       variant="primary"
     />
   )

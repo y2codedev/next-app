@@ -185,6 +185,9 @@ export const MockJsonData: ProductType[] = [
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
                     "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
                 ],
+                title: "Handheld - Chrome Finish",
+                description: "Elegant chrome finish handheld filter.",
+                price: 79.99,
             },
             {
                 id: 2,
@@ -194,6 +197,9 @@ export const MockJsonData: ProductType[] = [
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
                     "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
                 ],
+                title: "Handheld - Nickel",
+                description: "Stylish nickel variant of our handheld filter.",
+                price: 89.99,
             },
             {
                 id: 3,
@@ -204,6 +210,9 @@ export const MockJsonData: ProductType[] = [
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
                     "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
                 ],
+                title: "Handheld - Champagne",
+                description: "Luxurious champagne finish.",
+                price: 99.99,
             }
         ]
     },
@@ -228,6 +237,9 @@ export const MockJsonData: ProductType[] = [
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
                     "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
                 ],
+                title: "Wallmount - Champagne",
+                description: "Stylish champagne wallmount filter.",
+                price: 109.99,
             },
             {
                 id: 2,
@@ -239,6 +251,9 @@ export const MockJsonData: ProductType[] = [
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
                     "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
                 ],
+                title: "Rain - Black Nickel",
+                description: "Matte black and nickel combination.",
+                price: 119.99,
             },
             {
                 id: 3,
@@ -249,6 +264,9 @@ export const MockJsonData: ProductType[] = [
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
                     "https://cdn.keepconverting.ai/Blu/Images/Wallmount/wallmount%20orginial%20chrome%20ionic-shower-filter-camera-accessory-lens-274.webp"
                 ],
+                title: " Red Nickel",
+                description: "Matte black and nickel .",
+                price: 299.00,
             }
         ]
     },
@@ -272,6 +290,9 @@ export const MockJsonData: ProductType[] = [
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp"
                 ],
+                title: " Black Nickel",
+                description: "Matte black and nickel .",
+                price: 1919.99,
             },
             {
                 id: 2,
@@ -283,6 +304,9 @@ export const MockJsonData: ProductType[] = [
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp"
                 ],
+                title: " Black Nickel",
+                description: "Matte black and nickel .",
+                price: 1019.99,
             },
             {
                 id: 3,
@@ -293,8 +317,48 @@ export const MockJsonData: ProductType[] = [
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp"
                 ],
+                title: " Gray Nickel ",
+                description: "Matte black and nickel .",
+                price: 299.99,
             }
         ]
     },
 
+];
+
+
+
+export const product = [
+    {
+        title: 'Swissblu - Handheld This is a test product  Swissblu - Handheld This is a test product description',
+        image: 'https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp',
+        price: 69.99,
+        color: 'Black',
+        fixture: 'Handheld',
+        quantity: 1,
+    },
+    {
+        title: 'Blue - Handheld',
+        image: 'https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp',
+        price: 99.99,
+        color: 'Blue',
+        fixture: 'Handheld',
+        quantity: 1,
+    },
+    {
+        title: 'Swissblu - Handheld',
+        image: 'https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp',
+        price: 69.99,
+        color: 'Black',
+        fixture: 'Handheld',
+        quantity: 1,
+    },
+    {
+        title: 'Blue - Handheld',
+        image: 'https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp',
+        price: 99.99,
+        color: 'Blue',
+        fixture: 'Handheld',
+        quantity: 1,
+    },
 ];
