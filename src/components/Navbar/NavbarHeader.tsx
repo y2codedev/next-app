@@ -1,6 +1,6 @@
 'use client'
 
-import { FiMenu, FiSearch, FiShoppingBag, FiUser, FiX } from 'react-icons/fi'
+import { FiMenu, FiSearch, FiShoppingBag, FiUser } from 'react-icons/fi'
 import Link from 'next/link'
 import { useState } from 'react'
 import OptimizedImage from '../OptimizedImage'
