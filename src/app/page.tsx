@@ -51,7 +51,7 @@ const Home = () => {
     setSelectedFixture(sectionFixture);
     setSelectedColor(fallbackColor);
   }, [sectionFixture, fallbackColor]);
-
+  
   const { product, variant } = useMemo(() => {
     const product = MockJsonData.find((p) =>
       p.item_variants.some((v) => v.thumbnail === selectedFixture)

@@ -12,17 +12,23 @@ interface Props {
   selectedColor: string;
   selectedFixture: string;
   price: number;
-} 
+}
 
-const BottomNav: React.FC<Props> = ({ onFixtureChange, onColorChange ,selectedColor,selectedFixture,price}) => {
+const BottomNav: React.FC<Props> = ({
+  onFixtureChange,
+  onColorChange,
+  selectedColor,
+  selectedFixture,
+  price
+}) => {
   return (
-    <nav className="fixed bottom-0 sm:bottom-4 left-0 w-full sm:rounded-md sm:w-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2  z-30 bg-black/20 px-2 py-4 backdrop-blur-sm">
+    <nav className="fixed bottom-0 sm:bottom-4 left-0 w-full sm:rounded-md sm:w-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 z-30 bg-black/20 px-2 py-4 backdrop-blur-sm">
       <div className="flex gap-3 justify-center items-center">
         <FixturePicker onSelect={onFixtureChange} selectedFixture={selectedFixture} />
         <ColorPicker selectedColor={selectedColor} onSelect={onColorChange} />
       </div>
       <div className="mt-4">
-       <AddToCart price={price} />
+        <AddToCart price={price} />
         <PaymentMethods />
       </div>
     </nav>

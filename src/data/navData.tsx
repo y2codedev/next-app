@@ -1,5 +1,5 @@
 import { BannerSlide, ProductType } from '@/types/home'
-import { NavItem, SocialLink, Options } from '@/types/type'
+import { NavItem, SocialLink, Options, searchDataProps } from '@/types/type'
 import {
     FiFacebook,
     FiInstagram,
@@ -290,7 +290,7 @@ export const MockJsonData: ProductType[] = [
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
                     "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp"
                 ],
-                title: " Black Nickel",
+                title: "Black Nickel",
                 description: "Matte black and nickel .",
                 price: 1919.99,
             },
@@ -330,7 +330,7 @@ export const MockJsonData: ProductType[] = [
 export const product = [
     {
         title: 'Swissblu - Handheld This is a test product  Swissblu - Handheld This is a test product description',
-        image: 'https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp',
+        image: 'https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp',
         price: 69.99,
         color: 'Black',
         fixture: 'Handheld',
@@ -338,7 +338,7 @@ export const product = [
     },
     {
         title: 'Blue - Handheld',
-        image: 'https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp',
+        image: 'https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp',
         price: 99.99,
         color: 'Blue',
         fixture: 'Handheld',
@@ -346,7 +346,7 @@ export const product = [
     },
     {
         title: 'Swissblu - Handheld',
-        image: 'https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp',
+        image: 'https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp',
         price: 69.99,
         color: 'Black',
         fixture: 'Handheld',
@@ -354,10 +354,116 @@ export const product = [
     },
     {
         title: 'Blue - Handheld',
-        image: 'https://cdn.keepconverting.ai/Blu/Images/Handheld/Original%20Chrome%20ionic-shower-filter-office-393.webp',
+        image: 'https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp',
         price: 99.99,
         color: 'Blue',
         fixture: 'Handheld',
         quantity: 1,
     },
 ];
+
+
+export const searchData: searchDataProps[] = [
+    {
+      id: 1,
+      title: "Aquaguard Marvel NXT",
+      slug: "aquaguard-marvel-nxt",
+      description: "Advanced purifier with UV technology.",
+      price: 12999,
+      image: "https://cdn.pixabay.com/photo/2021/08/03/06/47/clock-6518632_1280.jpg",
+      color: ["#ffffff"],
+      quantity: 20
+    },
+    {
+      id: 2,
+      title: "Urban Company Native M2",
+      slug: "urban-company-native-m2",
+      description: "Compact purifier with modern design.",
+      price: 8999,
+      image: "https://cdn.pixabay.com/photo/2014/12/08/14/23/pocket-watch-560937_1280.jpg",
+      color: ["#000000"],
+      quantity: 15
+    },
+    {
+      id: 3,
+      title: "Livpure Glo Star",
+      slug: "livpure-glo-star",
+      description: "RO + UV filtration for pure water.",
+      price: 9999,
+      image: "https://cdn.pixabay.com/photo/2021/08/03/06/43/bottles-6518626_640.jpg",
+      color: ["#1E90FF"],
+      quantity: 25
+    },
+    {
+      id: 4,
+      title: "HUL Pureit Revito",
+      slug: "hul-pureit-revito",
+      description: "Powerful RO system with advanced filter.",
+      price: 11499,
+      image: "https://cdn.pixabay.com/photo/2017/07/20/09/25/businessman-2521703_640.jpg",
+      color: ["#808080"],
+      quantity: 10
+    },
+    {
+      id: 5,
+      title: "AQUA D PURE Bio Alkaline",
+      slug: "aqua-d-pure-bio-alkaline",
+      description: "Alkaline water purifier for healthy living.",
+      price: 13999,
+      image: "https://cdn.pixabay.com/photo/2021/09/18/20/50/truffles-6636081_640.jpg",
+      color: ["#964B00"],
+      quantity: 8
+    },
+    {
+      id: 6,
+      title: "Aquaguard Glory",
+      slug: "aquaguard-glory",
+      description: "Premium purifier with copper technology.",
+      price: 15999,
+      image: "https://cdn.pixabay.com/photo/2017/07/05/15/41/milk-2474993_640.jpg",
+      color: ["#b87333"],
+      quantity: 5
+    },
+    {
+      id: 7,
+      title: "KENT Elegant Copper",
+      slug: "kent-elegant-copper",
+      description: "Elegant purifier with copper infusion.",
+      price: 14499,
+      image: "https://cdn.pixabay.com/photo/2016/04/15/11/48/hotel-1330847_640.jpg",
+      color: ["#b87333"],
+      quantity: 12
+    },
+    {
+      id: 8,
+      title: "Livpure Glo Star",
+      slug: "livpure-glo-star-2",
+      description: "Compact and efficient water purification.",
+      price: 9999,
+      image: "https://cdn.pixabay.com/photo/2023/03/20/15/37/postcards-7865294_640.jpg",
+      color: ["#ffffff", "#1E90FF"],
+      quantity: 18
+    },
+    {
+      id: 9,
+      title: "Aquaguard Sure Delight NXT",
+      slug: "aquaguard-sure-delight-nxt",
+      description: "Smart purifier with LED indicators.",
+      price: 10999,
+      image: "https://cdn.pixabay.com/photo/2017/01/03/20/06/balls-1950487_640.jpg",
+      color: ["#000000", "#808080"],
+      quantity: 9
+    },
+    {
+      id: 10,
+      title: "KENT Supreme",
+      slug: "kent-supreme",
+      description: "RO + UV + UF purifier with TDS control.",
+      price: 14999,
+      image: "https://cdn.pixabay.com/photo/2020/04/16/18/22/woman-5051835_640.jpg",
+      color: ["#ffffff", "#b87333"],
+      quantity: 7
+    }
+  ];
+  
+  

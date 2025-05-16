@@ -15,7 +15,7 @@ export default function NavbarHeader({ onMenuClick, onCartClick }: NavbarHeaderP
     const [isSearchOpen, setIsSearchOpen] = useState(false)
 
     return (
-        <header className="fixed top-0 w-full z-50">
+        <header className="fixed top-0 w-full z-50 ">
             <div className="container">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center gap-4">

@@ -16,7 +16,6 @@ interface Props {
 }
 
 const HeroSections: React.FC<Props> = ({ selectedFixture, selectedColor, title, description }) => {
-
   const variantPhotos = useMemo(() => {
     const product = MockJsonData.find(item =>
       item.item_variants.some(variant => variant.thumbnail === selectedFixture)
@@ -54,7 +53,7 @@ const HeroSections: React.FC<Props> = ({ selectedFixture, selectedColor, title, 
               alt={`Variant Image`}
               fill
             />
-            <div className="absolute inset-0 bg-black/30  flex flex-col items-center justify-center  text-center px-4">
+            <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-4">
               <h2 className="text-2xl md:text-4xl text-white font-bold">{title}</h2>
               <p className="mt-2 md:mt-4 text-base text-white md:text-lg max-w-2xl">{description}</p>
             </div>

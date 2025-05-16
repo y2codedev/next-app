@@ -53,3 +53,14 @@ export interface CartDrawerProps {
     setNote: (note: string) => void;
     onCheckout: () => void;
 }
+
+export interface searchDataProps {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    image: string;
+    color: string[];
+    slug: string;
+    quantity: number;
+}

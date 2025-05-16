@@ -41,12 +41,12 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
                                 height={80}
                             />
                             <div className="flex-1">
-                                <h4 className="text-lg capitalize text-blue-500 line-clamp-2">{item.product.title}</h4>
+                                <h4 className="text-lg capitalize text-secondary line-clamp-2">{item.product.title}</h4>
                                 <p className="text-sm text-secondary font-semibold mt-1">
-                                    Color: <span className="text-gray-700 font-normal">{item.product.color}</span>
+                                    Color: <span className="text-secondary font-normal">{item.product.color}</span>
                                 </p>
                                 <p className="text-sm text-secondary font-semibold">
-                                    Fixture: <span className="text-gray-700 font-normal">{item.product.fixture}</span>
+                                    Fixture: <span className="text-secondary font-normal">{item.product.fixture}</span>
                                 </p>
                                 <div className="flex items-center gap-3 mt-2">
                                     <div className="flex items-center border border-gray-300 px-2 py-1 gap-2 rounded">
