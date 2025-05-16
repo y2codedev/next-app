@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({
     onClick,
     variant = 'primary',
     className = '',
-    type = 'button' || 'submit' || 'reset',
+    type = 'button',
 }) => {
     const baseStyle =
         'flex items-center gap-2 justify-center cursor-pointer rounded-md text-md font-semibold transition-colors duration-200';
