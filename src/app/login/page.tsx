@@ -8,7 +8,6 @@ const Login = () => {
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
-        alert(`Logging in with: ${email}`);
     };
 
     return (
@@ -16,7 +15,7 @@ const Login = () => {
             <div className="w-full max-w-md mx-auto mt-8 bg-white p-6 rounded-lg ">
                 <h1 className="text-xl font-semibold  text-[#0054a6] mb-2 ">Log in</h1>
                 <p className="text-sm text-[#000000a8]  mb-6">
-                    Enter your email and we'll send you a login code
+                    Enter your email and well send you a login code
                 </p>
 
                 <form onSubmit={handleLogin} className="space-y-4">
