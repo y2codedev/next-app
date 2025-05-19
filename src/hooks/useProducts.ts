@@ -26,3 +26,5 @@ export function useProduct(url: string) {
 
   return { product, loading, error };
 }
+
+export default useProduct;
