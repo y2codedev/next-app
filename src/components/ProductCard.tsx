@@ -14,13 +14,13 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
     return (
-        <div className="w-[300px] h-[400px] bg-white rounded-lg shadow hover:shadow-lg transition duration-300 p-4 flex flex-col">
-            <div className="w-full h-48 mb-4 overflow-hidden relative rounded-md">
+        <div className="w-[300px] h-[400px] bg-white rounded-lg shadow hover:shadow-lg transition duration-300 flex flex-col">
+            <div className="w-full h-48 mb-4 overflow-hidden relative rounded-t-md ">
                 <Link href={`/product/${product.slug}`}>
                     <OptimizedImage
                         src={product.image}
                         alt={product.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover overflow-hidden hover:scale-115 transition duration-300"
                         width={400}
                         height={500}
                     />
@@ -37,7 +37,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 />
             </div>
 
-            <h3 className="text-lg font-semibold mb-1 line-clamp-2">{product.title}</h3>
+          <div className='px-4'>
+              <h3 className="text-lg font-semibold mb-1 line-clamp-2">{product.title}</h3>
             <p className="text-sm text-gray-500 mb-2 line-clamp-4">{product.description}</p>
             <p className="text-base font-bold text-blue-600 mb-2">₹{product.price}</p>
             <div className="flex items-center gap-2 mb-3">
@@ -51,6 +52,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     className="flex items-center gap-2 cursor-pointer text-[12px] bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700"
                 />
             </div>
+          </div>
         </div>
     );
 };

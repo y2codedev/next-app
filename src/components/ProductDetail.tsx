@@ -25,7 +25,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
       <div className="sm:w-1/2 flex flex-col justify-between">
         <div>
-          <h1 className="text-2xl font-semibold mb-2">{product.title}</h1>
+          <h1 className="sm:text-2xl text-xl font-semibold mb-2">{product.title}</h1>
           <p className="text-gray-600  mb-4 line-clamp-4">{product.description}</p>
           <p className="text-lg font-bold text-blue-600 mb-4">₹{product.price}</p>
           <p className="text-sm text-gray-500 mb-2">Available Quantity: {product.quantity}</p>

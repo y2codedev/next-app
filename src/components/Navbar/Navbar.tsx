@@ -38,7 +38,7 @@ export default function Navbar() {
     };
 
     return (
-        <div>
+        <div >
             <NavbarHeader onMenuClick={() => setIsDrawerOpen(true)} onCartClick={() => setCartOpen(true)} />
             <DrawerMenu
                 isOpen={isDrawerOpen}

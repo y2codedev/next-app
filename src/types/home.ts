@@ -38,5 +38,3 @@ export interface ProductType {
   price?: number;
   item_variants: ItemVariant[];
 }
-
-

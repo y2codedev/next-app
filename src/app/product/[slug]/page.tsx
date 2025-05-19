@@ -18,7 +18,7 @@ const mockProduct: searchDataProps = {
 
 const ProductDetailPage = () => {
   return (
-    <div className="min-h-screen container mx-auto py-20">
+    <div className="min-h-screen container py-20">
       <ProductDetail product={mockProduct} />
     </div>
   );
