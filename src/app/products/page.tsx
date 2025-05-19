@@ -23,7 +23,7 @@ const ProductListingPage: React.FC<ProductDetailProps> = () => {
       <div className="">
         <h1 className="sm:text-3xl text-xl font-bold sm:mb-8 mb-4">Products</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products?.map((item: any, index: number) => (
+          {products?.map((item: ProductDetailProps, index: number) => (
             <ProductCard
               key={index}
               id={item.id}

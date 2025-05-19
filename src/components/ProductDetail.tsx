@@ -24,7 +24,7 @@ const ProductDetail = ({ title, description, price, image }: ProductDetailProps)
           <h1 className="sm:text-2xl text-xl font-semibold mb-2">
             {title}
           </h1>
-          <p className="text-gray-600  mb-4 line-clamp-4">
+          <p className="text-gray-600  mb-4 ">
             {description}
           </p>
           <p className="text-lg font-bold text-blue-600 mb-4">

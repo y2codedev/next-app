@@ -2,37 +2,27 @@
 
 import React from "react";
 import { ProductDetail } from "@/components";
-import { useProducts } from "@/hooks/useProducts";
 import Loader from "@/components/Loader";
 import { useParams } from "next/navigation";
+import { useProduct } from "@/hooks/useProducts";
+
 
 const ProductDetailPage = () => {
   const { slug: id } = useParams();
 
   if (!process.env.NEXT_PUBLIC_BASE_URL) {
-    throw new Error('NEXT_PUBLIC_BASE_URL is not defined in the environment variables.');
+    throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
   }
 
-  const { products, loading, error } = useProducts(`${process.env.NEXT_PUBLIC_BASE_URL}${id}`);
-  console.log(products, "products");
+  const { product, loading, error } = useProduct(`${process.env.NEXT_PUBLIC_BASE_URL}${id}`);
 
-
-  if (loading) return <Loader />
+  if (loading) return <Loader />;
   if (error) return <p>Error: {error}</p>;
-
-  if (!products) return <p>Product not found</p>;
+  if (!product) return <p>Product not found</p>;
 
   return (
     <div className="min-h-screen container py-20">
-      <div className="min-h-screen container py-20">
-        <ProductDetail
-          id={products.id}
-          title={products.title}
-          description={products.description}
-          price={products.price}
-          image={products.image}
-        />
-      </div>
+      <ProductDetail {...product} />
     </div>
   );
 };

@@ -1,19 +1,19 @@
-// hooks/useProducts.ts
+
 import { useEffect, useState } from "react";
 import { ProductDetailProps } from "@/types/home";
 
-export function useProducts(url: string) {
-  const [products, setProducts] = useState<ProductDetailProps[]>([]);
+export function useProduct(url: string) {
+  const [product, setProduct] = useState<ProductDetailProps | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProduct = async () => {
       try {
         const response = await fetch(url);
-        if (!response.ok) throw new Error("Failed to fetch products");
-        const data: ProductDetailProps[] = await response.json();
-        setProducts(data);
+        if (!response.ok) throw new Error("Failed to fetch product");
+        const data: ProductDetailProps = await response.json();
+        setProduct(data);
       } catch (err: any) {
         setError(err.message || "Unknown error");
       } finally {
@@ -21,8 +21,8 @@ export function useProducts(url: string) {
       }
     };
 
-    fetchProducts();
+    fetchProduct();
   }, [url]);
 
-  return { products, loading, error };
+  return { product, loading, error };
 }
