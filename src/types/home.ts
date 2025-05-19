@@ -18,7 +18,6 @@ export interface AddToCartProps {
   price: number;
 }
 
-
 export interface ItemVariant {
   id: number;
   thumbnail?: string;
@@ -37,4 +36,12 @@ export interface ProductType {
   photos: string[];
   price?: number;
   item_variants: ItemVariant[];
+}
+
+export interface ProductDetailProps {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
 }

@@ -9,24 +9,31 @@ import CartDrawer from "./CartDrawer";
 import SearchBar from "./SearchBar";
 import HeroSections from "./Home/HeroSections";
 import BottomNav from "./BottomNav/BottomNav";
-import { MockJsonData, searchData, navLinks, product, socialLinks, supportLinks } from "@/data/navData";
+import {
+  MockJsonData,
+  searchData,
+  navLinks,
+  product,
+  socialLinks,
+  supportLinks,
+} from "@/data/navData";
 
 export {
-    OptimizedImage,
-    ColorSwatch,
-    Button,
-    ProductCard,
-    ProductDetail,
-    NavbarHeader,
-    DrawerMenu,
-    CartDrawer,
-    SearchBar,
-    HeroSections,
-    BottomNav,
-    MockJsonData,
-    searchData,
-    navLinks,
-    product,
-    socialLinks,
-    supportLinks
+  OptimizedImage,
+  ColorSwatch,
+  Button,
+  ProductCard,
+  ProductDetail,
+  NavbarHeader,
+  DrawerMenu,
+  CartDrawer,
+  SearchBar,
+  HeroSections,
+  BottomNav,
+  MockJsonData,
+  searchData,
+  navLinks,
+  product,
+  socialLinks,
+  supportLinks,
 };

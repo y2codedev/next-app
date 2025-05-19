@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { OptimizedImage } from '@/components';
-import { MockJsonData } from '@/data/navData';
+import React from "react";
+import { OptimizedImage } from "@/components";
+import { MockJsonData } from "@/data/navData";
 
 interface Props {
   selectedColor: string;
@@ -12,10 +12,10 @@ interface Props {
 const ColorPicker: React.FC<Props> = ({ selectedColor, onSelect }) => {
   const colorUrls = Array.from(
     new Set(
-      MockJsonData.flatMap(product =>
-        product.item_variants.flatMap(variant => variant.color)
-      )
-    )
+      MockJsonData.flatMap((product) =>
+        product.item_variants.flatMap((variant) => variant.color),
+      ),
+    ),
   );
 
   return (
@@ -29,7 +29,7 @@ const ColorPicker: React.FC<Props> = ({ selectedColor, onSelect }) => {
               key={index}
               onClick={() => onSelect(url)}
               aria-label={`Color option ${index}`}
-              className={`rounded-full p-[2px] border transition ${isSelected ? 'border-white/50' : 'border-transparent'}`}
+              className={`rounded-full p-[2px] border transition ${isSelected ? "border-white/50" : "border-transparent"}`}
             >
               <OptimizedImage
                 src={url}

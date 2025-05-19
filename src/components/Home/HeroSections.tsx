@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useMemo } from 'react';
-import Slider from 'react-slick';
+import React, { useMemo } from "react";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { OptimizedImage ,MockJsonData} from '@/components';
-import SliderArrow from '@/components/SliderArrow';
+import { OptimizedImage, MockJsonData } from "@/components";
+import SliderArrow from "@/components/SliderArrow";
 
 interface Props {
   selectedFixture: string;
@@ -14,17 +14,26 @@ interface Props {
   description: string;
 }
 
-const HeroSections: React.FC<Props> = ({ selectedFixture, selectedColor, title, description }) => {
+const HeroSections: React.FC<Props> = ({
+  selectedFixture,
+  selectedColor,
+  title,
+  description,
+}) => {
   const variantPhotos = useMemo(() => {
-    const product = MockJsonData.find(item =>
-      item.item_variants.some(variant => variant.thumbnail === selectedFixture)
+    const product = MockJsonData.find((item) =>
+      item.item_variants.some(
+        (variant) => variant.thumbnail === selectedFixture,
+      ),
     );
 
     if (!product) return [];
 
-    const variant = product.item_variants.find(v =>
-      v.color.includes(selectedColor) && v.thumbnail === selectedFixture
-    ) || product.item_variants.find(v => v.thumbnail === selectedFixture);
+    const variant =
+      product.item_variants.find(
+        (v) =>
+          v.color.includes(selectedColor) && v.thumbnail === selectedFixture,
+      ) || product.item_variants.find((v) => v.thumbnail === selectedFixture);
 
     return variant?.photos || product.photos;
   }, [selectedFixture, selectedColor]);
@@ -54,8 +63,12 @@ const HeroSections: React.FC<Props> = ({ selectedFixture, selectedColor, title, 
               className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-4">
-              <h2 className="text-2xl md:text-4xl text-white font-bold">{title}</h2>
-              <p className="mt-2 md:mt-4 text-base text-white md:text-lg max-w-2xl">{description}</p>
+              <h2 className="text-2xl md:text-4xl text-white font-bold">
+                {title}
+              </h2>
+              <p className="mt-2 md:mt-4 text-base text-white md:text-lg max-w-2xl">
+                {description}
+              </p>
             </div>
           </div>
         ))}

@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 *,
 *::before,
 *::after {
@@ -15,7 +14,6 @@
   --color-secondary: #212529;
   --color-accent: #9333ea;
   --color-red: #bb1f2a;
-
 
   /* Font sizes */
   --font-size-h1: 2.25rem;
@@ -34,13 +32,12 @@
   /* Tracking */
   --tracking-1: 0em;
   --tracking-2: 0.15em;
-  --tracking-3: 0.20em;
+  --tracking-3: 0.2em;
   --tracking-4: 0.25em;
 
   /* Container */
   --container-max-width: 1280px;
 }
-
 
 @layer base {
   h1 {
@@ -107,4 +104,3 @@
   align-items: center;
   justify-content: center;
 }
-

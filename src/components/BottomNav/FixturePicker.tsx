@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { OptimizedImage } from '@/components';
-import { MockJsonData } from '@/data/navData';
+import React from "react";
+import { OptimizedImage } from "@/components";
+import { MockJsonData } from "@/data/navData";
 
 interface Props {
   onSelect: (fixture: string) => void;
@@ -18,7 +18,7 @@ const FixturePicker: React.FC<Props> = ({ onSelect, selectedFixture }) => {
           <button
             key={index}
             onClick={() => onSelect(item.thumbnail)}
-            className={`border ${selectedFixture === item.thumbnail ? 'border-white/50' : 'border-transparent'} p-1 rounded`}
+            className={`border ${selectedFixture === item.thumbnail ? "border-white/50" : "border-transparent"} p-1 rounded`}
           >
             <OptimizedImage
               src={item.thumbnail}

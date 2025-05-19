@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
- images:{
-  domains:['shopv.swissblu.com','cdn.keepconverting.ai','cdn.pixabay.com']
- },
- reactStrictMode: false,
+  images: {
+    domains: ["shopv.swissblu.com", "cdn.keepconverting.ai", "cdn.pixabay.com","fakestoreapi.com"],
+  },
+  reactStrictMode: false,
 };
 
 export default nextConfig;

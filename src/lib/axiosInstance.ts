@@ -1,16 +1,13 @@
-
-import axios from 'axios';
+import axios from "axios";
 // import axiosRetry from 'axios-retry';
 
-
 const axiosInstance = axios.create({
-    baseURL: 'https://jsonplaceholder.typicode.com',
-    timeout: 5000,
-    headers: {
-        'Content-Type': 'application/json',
-    },
+  baseURL: "https://jsonplaceholder.typicode.com",
+  timeout: 5000,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
-
 
 // axiosRetry(axiosInstance, {
 //     retries: 3,
