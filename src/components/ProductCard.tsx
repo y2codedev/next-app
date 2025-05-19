@@ -14,7 +14,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
     return (
-        <div className="w-[300px] h-[400px] bg-white rounded-lg shadow hover:shadow-lg transition duration-300 flex flex-col">
+        <div className="w-full h-[400px] bg-white rounded-lg shadow hover:shadow-lg transition duration-300 flex flex-col">
             <div className="w-full h-48 mb-4 overflow-hidden relative rounded-t-md ">
                 <Link href={`/product/${product.slug}`}>
                     <OptimizedImage
