@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 interface ButtonProps {
     label: string;
+    icon?: React.ReactNode;
     price?: number | string;
     onClick?: () => void;
     variant?: 'primary' | 'secondary' | 'ghost' | 'custom';
@@ -19,10 +20,9 @@ const Button: React.FC<ButtonProps> = ({
     variant = 'primary',
     className = '',
     type = 'button',
+    icon,
 }) => {
-    const baseStyle =
-        'flex items-center gap-2 justify-center cursor-pointer rounded-md text-md font-semibold transition-colors duration-200';
-
+    const baseStyle = 'flex items-center  justify-center cursor-pointer  text-sm  transition-colors duration-200';
     const variants: Record<string, string> = {
         primary: 'bg-[#d7e2da] text-black hover:bg-[#c9d8ce] py-2.5 px-4 w-full',
         secondary: 'bg-black text-white hover:bg-neutral-800 py-2.5 px-4 w-full',
@@ -36,6 +36,7 @@ const Button: React.FC<ButtonProps> = ({
             onClick={onClick}
             className={classNames(baseStyle, variants[variant], className)}
         >
+            {icon && <span>{icon}</span>}
             {price && <span>{price}</span>}
             {price && <span>|</span>}
             <span>{label}</span>

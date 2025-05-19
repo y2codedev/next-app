@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import OptimizedImage from '../OptimizedImage'
 import SearchBar from '../SearchBar'
+import { useRouter } from 'next/navigation'
 
 interface NavbarHeaderProps {
     onMenuClick: () => void
@@ -13,9 +14,10 @@ interface NavbarHeaderProps {
 
 export default function NavbarHeader({ onMenuClick, onCartClick }: NavbarHeaderProps) {
     const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const router = useRouter()
 
     return (
-        <header className="fixed top-0 w-full z-50 ">
+        <header className="fixed top-0 w-full z-50   bg-white">
             <div className="container">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center gap-4">
@@ -40,7 +42,7 @@ export default function NavbarHeader({ onMenuClick, onCartClick }: NavbarHeaderP
                         >
                             <FiSearch />
                         </button>
-                        <button className="text-2xl text-secondary hidden sm:block" aria-label="Account">
+                        <button onClick={() => router.push('/login')} className="text-2xl text-secondary hidden cursor-pointer sm:block" aria-label="Account">
                             <FiUser />
                         </button>
                         <button onClick={onCartClick} className="text-2xl text-secondary cursor-pointer" aria-label="Cart">

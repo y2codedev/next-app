@@ -9,11 +9,9 @@ const Home = () => {
   const firstFixture = MockJsonData[0];
   const defaultFixture = firstFixture.thumbnail;
   const defaultColor = firstFixture.item_variants[0]?.color[0] || '';
-
   const [selectedFixture, setSelectedFixture] = useState(defaultFixture);
   const [selectedColor, setSelectedColor] = useState(defaultColor);
   const [activeSection, setActiveSection] = useState(0);
-
   const sectionRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
 
   useEffect(() => {

@@ -31,7 +31,12 @@ const OptimizedImage = ({
         : { width, height })}
       priority={priority}
       loading={priority ? undefined : loading ?? 'lazy'}
-      quality={85}
+      quality={100}
+      sizes={fill ? '100vw' : undefined}
+      className={`object-cover ${fill ? 'w-full h-full' : ''}`}
+      {...(fill ? { style: { objectFit: 'cover' } } : {})}
+      placeholder="blur"
+      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII="
       {...rest}
     />
   )

@@ -92,7 +92,6 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
                 </div>
             </div>
         </div>
-
     );
 };
 

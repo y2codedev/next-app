@@ -1,8 +1,8 @@
 import React from 'react'
 import { FiSearch, FiX } from 'react-icons/fi'
 import OptimizedImage from './OptimizedImage';
-import Link from 'next/link';
 import { searchData } from '@/data/navData';
+import { useRouter } from 'next/navigation';
 
 interface SearchProps {
   onClose: () => void
@@ -11,6 +11,7 @@ interface SearchProps {
 
 const SearchBar = ({ isOpen, onClose }: SearchProps) => {
   const [searchTerm, setSearchTerm] = React.useState("");
+  const router = useRouter();
 
   const filteredData = searchData.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -19,6 +20,10 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   }
+
+  const navigate = () => {
+    router.push(`/products`);
+  };
 
   return (
     <div
@@ -56,7 +61,10 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
             <ul className="max-h-100 overflow-y-auto">
               {filteredData.length > 0 && searchTerm ? (
                 filteredData.map((item, index) => (
-                  <Link href={`/products`} key={index} onClick={onClose}>
+                  <div key={index} onClick={() => {
+                    navigate();
+                    onClose();
+                  }}>
                     <li
                       key={index}
                       className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
@@ -68,7 +76,7 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
                       />
                       <p className="text-sm font-medium text-gray-800">{item.title}</p>
                     </li>
-                  </Link>
+                  </div>
                 ))
               ) : (
                 <p className="p-4 text-sm text-gray-500 text-center">No results found</p>
