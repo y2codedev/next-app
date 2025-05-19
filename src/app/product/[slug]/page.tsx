@@ -4,8 +4,7 @@ import React from "react";
 import { ProductDetail } from "@/components";
 import Loader from "@/components/Loader";
 import { useParams } from "next/navigation";
-import { useProduct } from "@/hooks/useProducts";
-
+import  { useProduct } from "@/hooks/useProducts";
 
 const ProductDetailPage = () => {
   const { slug: id } = useParams();
