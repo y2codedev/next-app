@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import OptimizedImage from '../OptimizedImage';
+import { OptimizedImage } from '@/components';
 import { MockJsonData } from '@/data/navData';
 
 interface Props {
@@ -17,8 +17,6 @@ const ColorPicker: React.FC<Props> = ({ selectedColor, onSelect }) => {
       )
     )
   );
-  console.log(colorUrls);
-
 
   return (
     <div className="w-full">

@@ -4,9 +4,8 @@ import React, { useMemo } from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import OptimizedImage from '@/components/OptimizedImage';
+import { OptimizedImage ,MockJsonData} from '@/components';
 import SliderArrow from '@/components/SliderArrow';
-import { MockJsonData } from '@/data/navData';
 
 interface Props {
   selectedFixture: string;

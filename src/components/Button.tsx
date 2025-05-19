@@ -11,6 +11,7 @@ interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'ghost' | 'custom';
     className?: string;
     type?: 'button' | 'submit' | 'reset';
+    ariaLabel?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -21,6 +22,8 @@ const Button: React.FC<ButtonProps> = ({
     className = '',
     type = 'button',
     icon,
+    ariaLabel,
+    
 }) => {
     const baseStyle = 'flex items-center  justify-center cursor-pointer  text-sm  transition-colors duration-200';
     const variants: Record<string, string> = {
@@ -35,11 +38,13 @@ const Button: React.FC<ButtonProps> = ({
             type={type}
             onClick={onClick}
             className={classNames(baseStyle, variants[variant], className)}
+            aria-label={ariaLabel || label}
         >
             {icon && <span>{icon}</span>}
             {price && <span>{price}</span>}
             {price && <span>|</span>}
             <span>{label}</span>
+            
         </button>
     );
 };

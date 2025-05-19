@@ -1,7 +1,8 @@
+"use client";
+
 import React from 'react'
 import { FiSearch, FiX } from 'react-icons/fi'
-import OptimizedImage from './OptimizedImage';
-import { searchData } from '@/data/navData';
+import { OptimizedImage, searchData } from '@/components';
 import { useRouter } from 'next/navigation';
 
 interface SearchProps {

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Button from '@/components/Button';
+import { Button } from '@/components';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ const Login = () => {
                     Enter your email and well send you a login code
                 </p>
 
-                <form onSubmit={handleLogin} className="space-y-4">
+                <form aria-label='login' onSubmit={handleLogin} className="space-y-4">
                     <div>
                         <input
                             type="email"

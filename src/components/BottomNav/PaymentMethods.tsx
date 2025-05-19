@@ -1,7 +1,7 @@
 'use client'
 
 import { paymentMethod } from '@/data/navData'
-import OptimizedImage from '../OptimizedImage'
+import { OptimizedImage } from '@/components';
 import React from 'react'
 
 const PaymentMethods: React.FC = () => (

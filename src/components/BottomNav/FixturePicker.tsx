@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import OptimizedImage from '../OptimizedImage';
+import { OptimizedImage } from '@/components';
 import { MockJsonData } from '@/data/navData';
 
 interface Props {

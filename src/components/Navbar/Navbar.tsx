@@ -1,10 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import NavbarHeader from './NavbarHeader'
-import DrawerMenu from './DrawerMenu'
-import { navLinks, product, socialLinks, supportLinks } from '@/data/navData'
-import CartDrawer from '../CartDrawer'
+import { NavbarHeader, DrawerMenu, CartDrawer, navLinks, product, socialLinks, supportLinks } from '@/components'
 
 export default function Navbar() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)

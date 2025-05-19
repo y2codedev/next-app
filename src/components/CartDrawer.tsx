@@ -3,8 +3,7 @@
 import React from 'react';
 import { FiX, FiPlus, FiMinus } from 'react-icons/fi';
 import { CartDrawerProps } from '@/types/type';
-import Button from './Button';
-import OptimizedImage from './OptimizedImage';
+import { Button, OptimizedImage } from '@/components';
 
 const CartDrawer: React.FC<CartDrawerProps> = ({
     isOpen,

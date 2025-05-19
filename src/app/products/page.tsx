@@ -1,6 +1,5 @@
 import React from 'react';
-import { searchData } from '@/data/navData';
-import { ProductCard } from '@/components';
+import { ProductCard, searchData } from '@/components';
 
 const ProductListingPage = () => {
     return (

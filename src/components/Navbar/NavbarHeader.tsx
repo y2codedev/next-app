@@ -3,8 +3,7 @@
 import { FiMenu, FiSearch, FiShoppingBag, FiUser } from 'react-icons/fi'
 import Link from 'next/link'
 import { useState } from 'react'
-import OptimizedImage from '../OptimizedImage'
-import SearchBar from '../SearchBar'
+import { SearchBar, OptimizedImage } from '@/components'
 import { useRouter } from 'next/navigation'
 
 interface NavbarHeaderProps {

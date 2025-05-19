@@ -37,22 +37,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 />
             </div>
 
-          <div className='px-4'>
-              <h3 className="text-lg font-semibold mb-1 line-clamp-2">{product.title}</h3>
-            <p className="text-sm text-gray-500 mb-2 line-clamp-4">{product.description}</p>
-            <p className="text-base font-bold text-blue-600 mb-2">₹{product.price}</p>
-            <div className="flex items-center gap-2 mb-3">
-                <ColorSwatch colors={product.color} />
+            <div className='px-4'>
+                <h3 className="text-lg font-semibold mb-1 line-clamp-2">{product.title}</h3>
+                <p className="text-sm text-gray-500 mb-2 line-clamp-4">{product.description}</p>
+                <p className="text-base font-bold text-blue-600 mb-2">₹{product.price}</p>
+                <div className="flex items-center gap-2 mb-3">
+                    <ColorSwatch colors={product.color} />
+                </div>
+                <div className="flex justify-between mt-auto">
+                    <Button
+                        icon={<FiShoppingCart size={16} />}
+                        variant='custom'
+                        label="Add to Cart"
+                        className="flex items-center gap-2 cursor-pointer text-[12px] bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700"
+                    />
+                </div>
             </div>
-            <div className="flex justify-between mt-auto">
-                <Button
-                    icon={<FiShoppingCart size={16} />}
-                    variant='custom'
-                    label="Add to Cart"
-                    className="flex items-center gap-2 cursor-pointer text-[12px] bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700"
-                />
-            </div>
-          </div>
         </div>
     );
 };

@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import HeroSections from '@/components/Home/HeroSections';
-import BottomNav from '@/components/BottomNav/BottomNav';
-import { MockJsonData } from '@/data/navData';
+import { HeroSections, BottomNav, MockJsonData } from '@/components';
 
 const Home = () => {
   const firstFixture = MockJsonData[0];
@@ -49,7 +47,7 @@ const Home = () => {
     setSelectedFixture(sectionFixture);
     setSelectedColor(fallbackColor);
   }, [sectionFixture, fallbackColor]);
-  
+
   const { product, variant } = useMemo(() => {
     const product = MockJsonData.find((p) =>
       p.item_variants.some((v) => v.thumbnail === selectedFixture)
