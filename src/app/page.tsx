@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { HeroSections, BottomNav, MockJsonData } from '@/components';
+import Review from '@/components/Review';
 
 const Home = () => {
   const firstFixture = MockJsonData[0];
@@ -74,8 +75,12 @@ const Home = () => {
             title={title}
             description={description}
           />
+
         </div>
         <div ref={sectionRefs[1]} className="scroll-section">
+          <Review />
+        </div>
+        <div ref={sectionRefs[2]} className="scroll-section">
           <HeroSections
             selectedFixture={selectedFixture}
             selectedColor={selectedColor}

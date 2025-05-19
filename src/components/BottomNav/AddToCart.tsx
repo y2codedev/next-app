@@ -14,6 +14,7 @@ const AddToCart: React.FC<Props> = ({ price }) => {
       label={'Add to Cart'}
       price={price}
       variant="primary"
+      className=" rounded-md text-sm sm:text-base  hover:bg-[#c9d8ce] transition duration-300"
     />
   )
 }

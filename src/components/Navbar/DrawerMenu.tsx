@@ -22,9 +22,9 @@ export default function DrawerMenu({
         >
 
             <div className="flex justify-end p-4 sticky top-0 bg-white z-10 border-b border-gray-200">
-                <button onClick={onClose} aria-label="Close menu">
+                <div onClick={onClose} aria-label="Close menu">
                     <IoClose size={28} className="text-gray-700 cursor-pointer" />
-                </button>
+                </div>
             </div>
 
             <div className="flex flex-col h-[calc(100%-64px)]">
@@ -33,13 +33,13 @@ export default function DrawerMenu({
                         {navLinks.map((item, index) =>
                             item.nested ? (
                                 <div key={index}>
-                                    <button
+                                    <div
                                         onClick={toggleSupport}
                                         className="w-full border-b border-gray-200 py-3 text-lg font-bold text-left text-[#666] flex items-center gap-2"
                                     >
                                         {item.label}
                                         {isSupportOpen ? <FiChevronUp /> : <FiChevronDown />}
-                                    </button>
+                                    </div>
                                     {isSupportOpen && (
                                         <div className="mt-2 flex flex-col gap-2 pl-4">
                                             {supportLinks.map((link, i) => (

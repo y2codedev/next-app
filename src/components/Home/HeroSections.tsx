@@ -46,11 +46,12 @@ const HeroSections: React.FC<Props> = ({ selectedFixture, selectedColor, title, 
     <div className="w-full h-screen">
       <Slider {...settings}>
         {variantPhotos?.map((photo, index) => (
-          <div key={index} className="w-full min-h-screen relative">
+          <div key={index} className="w-full min-h-screen relative ">
             <OptimizedImage
               src={photo}
               alt={`Variant Image`}
               fill
+              className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-4">
               <h2 className="text-2xl md:text-4xl text-white font-bold">{title}</h2>
