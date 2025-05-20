@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
 import { ProductDetailProps } from "@/types/home";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<string | Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const product = await getProduct(params.slug);
 
