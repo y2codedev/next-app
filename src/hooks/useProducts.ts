@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { ProductDetailProps } from "@/types/home";
 
-export function useProduct(url: string) {
-  const [product, setProduct] = useState<ProductDetailProps | null>(null);
+export function useProductDetail(url: string) {
+  const [product, setProduct] = useState<ProductDetailProps>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,4 +27,4 @@ export function useProduct(url: string) {
   return { product, loading, error };
 }
 
-export default useProduct;
+export default useProductDetail;

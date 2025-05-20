@@ -9,7 +9,6 @@ import { Button, OptimizedImage } from "@/components";
 import { ProductDetailProps } from "@/types/home";
 
 const ProductCard = ({ id, title, description, price, image }: ProductDetailProps) => {
-
   return (
     <div className="w-full h-[440px] bg-white rounded-lg shadow hover:shadow-lg transition duration-300 flex flex-col">
       <div className="w-full h-48 mb-4 overflow-hidden relative rounded-t-md ">

@@ -19,7 +19,7 @@ const ProductDetail = ({ title, description, price, image }: ProductDetailProps)
         />
       </div>
 
-      <div className="sm:w-1/2 flex flex-col justify-between">
+      <div className="sm:w-1/2 mt-10 flex flex-col justify-between">
         <div>
           <h1 className="sm:text-2xl text-xl font-semibold mb-2">
             {title}

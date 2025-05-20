@@ -1,29 +1,83 @@
-"use client";
-
-import React from "react";
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
-import Loader from "@/components/Loader";
-import { useParams } from "next/navigation";
-import  { useProduct } from "@/hooks/useProducts";
+import { ProductDetailProps } from "@/types/home";
 
-const ProductDetailPage = () => {
-  const { slug: id } = useParams();
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const product = await getProduct(params.slug);
 
+  if (!product) {
+    return {
+      title: "Product Not Found",
+      robots: {
+        index: false,
+        follow: false
+      }
+    };
+  }
+
+  return {
+    title: `${product.title} | YourStore`,
+    description: product.description.substring(0, 160),
+    openGraph: {
+      title: product?.title || "Browse Our Products | YourStore",
+      description: product?.description || "Explore a wide range of high-quality products.",
+      url: `${baseUrl}/products/${params.slug}`,
+      siteName: "YourStore",
+      images: [{ url: product?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+      type: "website",
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: product.title,
+      description: product.description.substring(0, 160),
+      images: [product.image],
+    },
+    alternates: {
+      canonical: `/products/${params.slug}`,
+    },
+  };
+}
+
+async function getProduct(id: string): Promise<ProductDetailProps | null> {
   if (!process.env.NEXT_PUBLIC_BASE_URL) {
     throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
   }
 
-  const { product, loading, error } = useProduct(`${process.env.NEXT_PUBLIC_BASE_URL}${id}`);
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/${id}`, {
+      next: { revalidate: 36000 }
+    });
 
-  if (loading) return <Loader />;
-  if (error) return <p>Error: {error}</p>;
-  if (!product) return <p>Product not found</p>;
+    if (!response.ok) {
+      if (response.status === 404) return null;
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to fetch product:', error);
+    return null;
+  }
+}
+
+export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
+  const product = await getProduct(params.slug);
+
+  if (!product) {
+    notFound();
+  }
 
   return (
     <div className="min-h-screen container py-20">
-      <ProductDetail {...product} />
+      <ProductDetail
+        title={product.title}
+        id={product.id}
+        description={product.description}
+        price={product.price}
+        image={product.image}
+      />
     </div>
   );
-};
-
-export default ProductDetailPage;
+}

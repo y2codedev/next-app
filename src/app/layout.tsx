@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
+import { Suspense } from "react";
+import Loader from "@/components/Loader";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -24,7 +26,9 @@ export default function RootLayout({
     <html lang="en" className={poppins.className}>
       <body>
         <Navbar />
-        {children}
+        <Suspense fallback={<Loader />}>
+          {children}
+        </Suspense>
       </body>
     </html>
   );
