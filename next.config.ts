@@ -5,7 +5,9 @@ const nextConfig: NextConfig = {
     domains: ["shopv.swissblu.com", "cdn.keepconverting.ai", "cdn.pixabay.com","fakestoreapi.com"],
   },
   reactStrictMode: false,
-  ignoreDuringBuilds: true
+  eslint: {
+      ignoreDuringBuilds: false
+  }
 };
 
 export default nextConfig;
