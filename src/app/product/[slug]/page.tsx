@@ -3,9 +3,12 @@ import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
 import { ProductDetailProps } from "@/types/home";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<string | Metadata> {
+type tParams = Promise<{ slug: string }>;
+
+export async function generateMetadata({ params }: { params: tParams }): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const product = await getProduct(params.slug);
+  const { slug }: { slug: string } = await params;
+  const product = await getProduct(slug);
 
   if (!product) {
     return {
@@ -23,7 +26,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     openGraph: {
       title: product?.title || "Browse Our Products | YourStore",
       description: product?.description || "Explore a wide range of high-quality products.",
-      url: `${baseUrl}/products/${params.slug}`,
+      url: `${baseUrl}/products/${slug}`,
       siteName: "YourStore",
       images: [{ url: product?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
       type: "website",
@@ -35,7 +38,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       images: [product.image],
     },
     alternates: {
-      canonical: `/products/${params.slug}`,
+      canonical: `/products/${slug}`,
     },
   };
 }
