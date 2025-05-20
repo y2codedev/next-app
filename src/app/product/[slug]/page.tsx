@@ -5,9 +5,9 @@ import { ProductDetailProps } from "@/types/home";
 
 type tParams = Promise<{ slug: string }>;
 
-export async function generateMetadata({ params }: { params: tParams }): Promise<Metadata> {
+export async function generateMetadata(props: { params: tParams }): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const { slug }: { slug: string } = await params;
+  const { slug } = await props.params;
   const product = await getProduct(slug);
 
   if (!product) {
