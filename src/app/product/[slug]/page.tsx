@@ -1,11 +1,18 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
 import { ProductDetailProps } from "@/types/home";
 
-export async function generateMetadata({ params: slug }: { params: string }): Promise<Metadata> {
+export type paramsType = Promise<{ id: string }>;
+
+type Props = {
+  params: paramsType;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+   const { id } = await params;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const product = await getProduct(slug);
+  const product = await getProduct(id);
 
   if (!product) {
     return {
@@ -23,7 +30,7 @@ export async function generateMetadata({ params: slug }: { params: string }): Pr
     openGraph: {
       title: product?.title || "Browse Our Products | YourStore",
       description: product?.description || "Explore a wide range of high-quality products.",
-      url: `${baseUrl}/products/${slug}`,
+      url: `${baseUrl}/products/${id}`,
       siteName: "YourStore",
       images: [{ url: product?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
       type: "website",
@@ -35,7 +42,7 @@ export async function generateMetadata({ params: slug }: { params: string }): Pr
       images: [product.image],
     },
     alternates: {
-      canonical: `/products/${slug}`,
+      canonical: `/products/${id}`,
     },
   };
 }
