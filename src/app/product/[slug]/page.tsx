@@ -3,11 +3,8 @@ import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
 import { ProductDetailProps } from "@/types/home";
 
-// @ts-ignore
-
-export async function generateMetadata(
-  { params }: { params: { slug: string } }): Promise<Metadata> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const product = await getProduct(params.slug);
 
   if (!product) {
@@ -15,27 +12,20 @@ export async function generateMetadata(
       title: "Product Not Found",
       robots: {
         index: false,
-        follow: false,
-      },
+        follow: false
+      }
     };
   }
 
   return {
     title: `${product.title} | YourStore`,
     description: product.description.substring(0, 160),
-    openGraph: {
-      title: product.title,
-      description: product.description,
-      url: `${baseUrl}/products/${params.slug}`,
+     openGraph: {
+      title: product?.title || "Browse Our Products | YourStore",
+      description: product?.description || "Explore a wide range of high-quality products.",
+      url: `${baseUrl}/products`,
       siteName: "YourStore",
-      images: [
-        {
-          url: product.image || `${baseUrl}/og-image.jpg`,
-          width: 1200,
-          height: 630,
-          alt: "Product listing",
-        },
-      ],
+      images: [{ url: product?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
       type: "website",
     },
     twitter: {
@@ -49,7 +39,6 @@ export async function generateMetadata(
     },
   };
 }
-
 
 async function getProduct(id: string): Promise<ProductDetailProps | null> {
   if (!process.env.NEXT_PUBLIC_BASE_URL) {
