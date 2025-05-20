@@ -6,7 +6,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { CiHeart } from "react-icons/ci";
 import { ProductDetailProps } from "@/types/home";
 
-const ProductDetail = ({ title, description, price, image }: ProductDetailProps) => {
+const ProductDetail: React.FC<ProductDetailProps> = ({ title, description, price, image }) => {
   return (
     <div className="flex flex-col sm:flex-row gap-6 w-full overflow-hidden">
       <div className="w-full sm:w-1/2 h-[200px] sm:h-[500px] overflow-hidden">
