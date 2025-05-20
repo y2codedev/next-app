@@ -1,19 +1,22 @@
-import type { Metadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
 import { ProductDetailProps } from "@/types/home";
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const product = await getProduct(params?.id);
+  const product = await getProduct(params.slug);
 
   if (!product) {
     return {
       title: "Product Not Found",
       robots: {
         index: false,
-        follow: false
-      }
+        follow: false,
+      },
     };
   }
 
@@ -21,11 +24,18 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     title: `${product.title} | YourStore`,
     description: product.description.substring(0, 160),
     openGraph: {
-      title: product?.title || "Browse Our Products | YourStore",
-      description: product?.description || "Explore a wide range of high-quality products.",
-      url: `${baseUrl}/products/${params?.id}`,
+      title: product.title,
+      description: product.description,
+      url: `${baseUrl}/products/${params.slug}`,
       siteName: "YourStore",
-      images: [{ url: product?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+      images: [
+        {
+          url: product.image || `${baseUrl}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: "Product listing",
+        },
+      ],
       type: "website",
     },
     twitter: {
@@ -35,10 +45,11 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       images: [product.image],
     },
     alternates: {
-      canonical: `/products/${params?.id}`,
+      canonical: `/products/${params.slug}`,
     },
   };
 }
+
 
 async function getProduct(id: string): Promise<ProductDetailProps | null> {
   if (!process.env.NEXT_PUBLIC_BASE_URL) {
