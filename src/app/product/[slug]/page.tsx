@@ -3,16 +3,9 @@ import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
 import { ProductDetailProps } from "@/types/home";
 
-export type paramsType = Promise<{ id: string }>;
-
-type Props = {
-  params: paramsType;
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-   const { id } = await params;
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const product = await getProduct(id);
+  const product = await getProduct(params?.id);
 
   if (!product) {
     return {
@@ -30,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: product?.title || "Browse Our Products | YourStore",
       description: product?.description || "Explore a wide range of high-quality products.",
-      url: `${baseUrl}/products/${id}`,
+      url: `${baseUrl}/products/${params?.id}`,
       siteName: "YourStore",
       images: [{ url: product?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
       type: "website",
@@ -42,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [product.image],
     },
     alternates: {
-      canonical: `/products/${id}`,
+      canonical: `/products/${params?.id}`,
     },
   };
 }
