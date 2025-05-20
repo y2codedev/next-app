@@ -41,7 +41,7 @@ const Home = () => {
         if (ref.current) observer.unobserve(ref.current);
       });
     };
-  }, []);
+  }, [sectionRefs]);
 
   const sectionFixture =
     MockJsonData[activeSection]?.thumbnail || defaultFixture;
