@@ -1,13 +1,10 @@
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
 import { ProductDetailProps } from "@/types/home";
 
-type tParams = Promise<{ slug: string }>;
-
-export async function generateMetadata(props: { params: tParams }): Promise<Metadata> {
+export async function generateMetadata({ params: slug }: { params: string }): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const { slug } = await props.params;
   const product = await getProduct(slug);
 
   if (!product) {
