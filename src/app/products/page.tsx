@@ -55,6 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     };
   } catch (error) {
+    console.error('Failed to generate metadata:', error);
     return {
       title: "Browse Our Products | YourStore",
       description: "Explore a wide range of high-quality products.",
