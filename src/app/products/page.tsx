@@ -5,7 +5,7 @@ import { EmptyStateNotice } from "@/components/EmptyStateNotice";
 import { ProductDetailProps } from "@/types/home";
 import { Metadata } from "next";
 
-async function getProducts(): Promise<ProductDetailProps[]> {
+async function getProductsData(): Promise<ProductDetailProps[]> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   if (!baseUrl) throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
 
@@ -34,7 +34,7 @@ async function getProducts(): Promise<ProductDetailProps[]> {
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const products = await getProducts();
+  const products = await getProductsData();
   const seoData = products?.[0];
 
   return {
@@ -62,7 +62,7 @@ export default async function ProductListingPage() {
   let errorMessage: string | null = null;
 
   try {
-    products = await getProducts();
+    products = await getProductsData();
   } catch (error) {
     errorMessage = error instanceof Error ? error.message : 'Failed to load products';
   }
