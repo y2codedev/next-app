@@ -10,7 +10,7 @@ async function getProductsData(): Promise<ProductDetailProps[]> {
 
   try {
     const response = await fetch(`${baseUrl}products`, {
-      next: { revalidate: 3600 } // Add revalidation if needed
+      next: { revalidate: 3600 }
     });
 
     if (!response.ok) {
@@ -55,7 +55,6 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     };
   } catch (error) {
-    // Fallback metadata if API fails
     return {
       title: "Browse Our Products | YourStore",
       description: "Explore a wide range of high-quality products.",
