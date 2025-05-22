@@ -62,9 +62,6 @@ async function getProduct(id: string): Promise<ProductDetailProps | null> {
   }
 }
 
-type tParams = Promise<{ slug: string }>;
-
-
 export default async function ProductDetailPage({
   params,
 }: {
