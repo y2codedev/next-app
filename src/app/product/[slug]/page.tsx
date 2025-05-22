@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
 import { ProductDetailProps } from "@/types/home";
 
-// Explicitly define the type of params in generateMetadata
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const product = await getProduct(params.slug);
@@ -13,37 +12,30 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: "Product Not Found",
       robots: {
         index: false,
-        follow: false,
-      },
+        follow: false
+      }
     };
   }
 
   return {
-    title: `${product.title} | YourStore`,
-    description: product.description.substring(0, 160),
+    title: `${product?.title} | YourStore`,
+    description: product?.description,
     openGraph: {
       title: product?.title || "Browse Our Products | YourStore",
       description: product?.description || "Explore a wide range of high-quality products.",
       url: `${baseUrl}/products`,
       siteName: "YourStore",
-      images: [
-        {
-          url: product?.image || `${baseUrl}/og-image.jpg`,
-          width: 1200,
-          height: 630,
-          alt: "Product listing",
-        },
-      ],
+      images: [{ url: product?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
       type: "website",
     },
     twitter: {
       card: 'summary_large_image',
-      title: product.title,
-      description: product.description.substring(0, 160),
-      images: [product.image],
+      title: product?.title,
+      description: product?.description,
+      images: [product?.image],
     },
     alternates: {
-      canonical: `/products/${params.slug}`,
+      canonical: `/products/${params?.slug}`,
     },
   };
 }
@@ -70,7 +62,6 @@ async function getProduct(id: string): Promise<ProductDetailProps | null> {
   }
 }
 
-// Explicitly type the params for ProductDetailPage function
 export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
   const product = await getProduct(params.slug);
 
@@ -81,11 +72,11 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
   return (
     <div className="min-h-screen container py-20">
       <ProductDetail
-        title={product.title}
-        id={product.id}
-        description={product.description}
-        price={product.price}
-        image={product.image}
+        title={product?.title}
+        id={product?.id}
+        description={product?.description}
+        price={product?.price}
+        image={product?.image}
       />
     </div>
   );
