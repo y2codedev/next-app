@@ -5,37 +5,32 @@ import { EmptyStateNotice } from "@/components/EmptyStateNotice";
 import { ProductDetailProps } from "@/types/home";
 import { Metadata } from "next";
 
-async function getProduct(id: string): Promise<ProductDetailProps | null> {
-  if (!process.env.NEXT_PUBLIC_BASE_URL) {
-    throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
-  }
-
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/${id}`, {
-      next: { revalidate: 36000 }
-    });
-    
-    if (!response.ok) {
-      if (response.status === 404) return null;
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error('Failed to fetch product:', error);
-    return null;
-  }
-}
-
 async function getProducts(): Promise<ProductDetailProps[]> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const apiUrl = `${baseUrl}/products`;
+  if (!baseUrl) throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
 
-  const response = await getProduct(apiUrl);
+  try {
+    const response = await fetch(`${baseUrl}/products`, {
+      next: { revalidate: 36000 },
+    });
 
-  if (!Array.isArray(response)) throw new Error("Invalid response format: Expected array");
-  return response;
+    if (!response.ok) {
+      throw new Error(`Failed to fetch products: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      throw new Error("Invalid response format: Expected array");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("getProducts error:", error);
+    throw error;
+  }
 }
+
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
