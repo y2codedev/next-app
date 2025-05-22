@@ -10,7 +10,7 @@ async function getProductsData(): Promise<ProductDetailProps[]> {
   if (!baseUrl) throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
 
   try {
-    const response = await fetch(`${baseUrl}/products`, {
+    const response = await fetch(`${baseUrl}products`, {
       next: { revalidate: 36000 },
     });
 
