@@ -72,8 +72,13 @@ export default async function ProductDetailPage({
   params: Promise<{ slug: string }>
 }) {
   const slug = (await params).slug
-
-  const product = await getProduct(slug);
+  let product;
+  try {
+    product = await getProduct(slug);
+  } catch (error) {
+    console.error('Error fetching data in /products:', error);
+    throw error;
+  }
   console.log(product, 'product')
   if (!product) {
     notFound();
