@@ -62,8 +62,8 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleProductClick = (productId: number) => {
-    router.push(`/products/${productId}`);
+  const handleProductClick = () => {
+    router.push(`/products`);
     onClose();
   };
 
@@ -121,7 +121,7 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
                     <li
                       key={product.id}
                       className="p-3 hover:bg-gray-50 cursor-pointer border-b last:border-b-0"
-                      onClick={() => handleProductClick(product.id)}
+                      onClick={() => handleProductClick()}
                     >
                       <div className="flex items-center gap-4">
                         <OptimizedImage
