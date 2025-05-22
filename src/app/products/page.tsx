@@ -1,4 +1,3 @@
-import React from "react";
 import { ProductCard } from "@/components";
 import { ErrorAlert } from "@/components/ErrorAlert";
 import { EmptyStateNotice } from "@/components/EmptyStateNotice";
@@ -10,7 +9,9 @@ async function getProductsData(): Promise<ProductDetailProps[]> {
   if (!baseUrl) throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
 
   try {
-    const response = await fetch(`${baseUrl}products`);
+    const response = await fetch(`${baseUrl}products`, {
+      next: { revalidate: 3600 } // Add revalidation if needed
+    });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch products: ${response.status}`);
@@ -29,30 +30,37 @@ async function getProductsData(): Promise<ProductDetailProps[]> {
   }
 }
 
-
 export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const products = await getProductsData();
-  const seoData = products?.[0];
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const products = await getProductsData();
+    const seoData = products?.[0];
 
-  return {
-    title: seoData?.title || "Browse Our Products | YourStore",
-    description: seoData.description || "Explore a wide range of high-quality products.",
-    openGraph: {
+    return {
       title: seoData?.title || "Browse Our Products | YourStore",
       description: seoData?.description || "Explore a wide range of high-quality products.",
-      url: `${baseUrl}/products`,
-      siteName: "YourStore",
-      images: [{ url: seoData?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Our Products | YourStore",
-      description: "Discover top-rated items in our catalog.",
-      images: [{ url: seoData?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
-    },
-  };
+      openGraph: {
+        title: seoData?.title || "Browse Our Products | YourStore",
+        description: seoData?.description || "Explore a wide range of high-quality products.",
+        url: `${baseUrl}/products`,
+        siteName: "YourStore",
+        images: [{ url: seoData?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Our Products | YourStore",
+        description: "Discover top-rated items in our catalog.",
+        images: [{ url: seoData?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+      },
+    };
+  } catch (error) {
+    // Fallback metadata if API fails
+    return {
+      title: "Browse Our Products | YourStore",
+      description: "Explore a wide range of high-quality products.",
+    };
+  }
 }
 
 export default async function ProductListingPage() {
