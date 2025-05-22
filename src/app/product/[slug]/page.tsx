@@ -53,7 +53,7 @@ async function getProduct(id: string): Promise<ProductDetailProps | null> {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/${id}`, {
       next: { revalidate: 36000 }
     });
-
+    
     if (!response.ok) {
       if (response.status === 404) return null;
       throw new Error(`HTTP error! status: ${response.status}`);

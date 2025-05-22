@@ -7,25 +7,25 @@ import { Metadata } from "next";
 
 async function fetchWithRetry(url: string, options: RequestInit = {}, retries = 3, timeout = 5000): Promise<Response> {
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), timeout);
+    // const controller = new AbortController();
+    // const timeoutId = setTimeout(() => controller.abort(), timeout);
 
     const response = await fetch(url, {
       ...options,
-      signal: controller.signal,
+      // signal: controller.signal,
       redirect: "follow",
     });
 
-    clearTimeout(timeoutId);
+    // clearTimeout(timeoutId);
 
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     return response;
   } catch (error) {
-    if (retries > 0) {
+    // if (retries > 0) {
       console.warn(`Retrying fetch... ${retries} attempts left`);
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      return fetchWithRetry(url, options, retries - 1, timeout);
-    }
+      // await new Promise(resolve => setTimeout(resolve, 1000));
+      // return fetchWithRetry(url, options, retries - 1, timeout);
+    // }
     throw error;
   }
 }
