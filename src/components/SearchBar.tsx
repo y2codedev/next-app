@@ -61,88 +61,79 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
     onClose();
   };
 
+
   return (
     <div
-      className={`fixed inset-0 z-50 transition-opacity duration-300 ${
-        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
+      className={`
+        fixed inset-0 z-40 transition-transform duration-300 ease-in-out
+        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+      `}
     >
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/30 backdrop-blur-sm"
         onClick={onClose}
-      />
-      
-      <div className="relative top-20 mx-auto w-full max-w-3xl px-4">
-        <div className="bg-white rounded-lg shadow-xl overflow-hidden">
-          <div className="flex items-center p-3 border-b">
-            <div className="flex items-center flex-1">
-              <FiSearch className="text-gray-500 mr-2" size={20} />
+      ></div>
+      <div className="relative top-16 mx-auto w-full max-w-4xl px-4">
+        <div className="rounded-4xl bg-white ">
+          <div className="flex items-center justify-between py-2 px-3 sm:py-3 sm:px-4">
+            <div className="flex items-center gap-1 sm:gap-2 flex-1">
+              <FiSearch
+                size={20}
+                color="#888"
+                className="pointer-events-none"
+              />
               <input
-                type="text"
                 value={searchTerm}
                 onChange={handleInputChange}
+                type="text"
                 placeholder="Search products..."
-                className="w-full outline-none text-gray-800 placeholder-gray-400"
-                autoFocus
+                className="w-full flex-grow outline-none px-2 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base text-gray-800"
               />
             </div>
-            <button
-              onClick={onClose}
-              className="ml-2 text-gray-500 hover:text-gray-700"
-              aria-label="Close search"
-            >
-              <FiX size={24} />
-            </button>
+            {loading ? (
+              <div className="w-6 h-6 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              <button
+                onClick={onClose}
+                className="text-xl sm:text-2xl text-secondary px-2 sm:px-4 cursor-pointer"
+                aria-label="Close search"
+              >
+                <FiX color="#888" className="pointer-events-none" />
+              </button>
+            )}
           </div>
+        </div>
 
-          {loading && (
-            <div className="p-4 flex justify-center">
-              <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
-            </div>
-          )}
-
-          {error && (
-            <div className="p-4 text-red-500 text-center">
-              {error}
-            </div>
-          )}
-
-          {!loading && !error && searchTerm && (
-            <div className="max-h-[60vh] overflow-y-auto">
-              {filteredData?.length > 0 ? (
-                <ul>
-                  {filteredData.map((product) => (
+        <div className="bg-white shadow-sm w-full rounded-md mt-2">
+          {searchTerm && (
+            <ul className="max-h-100 overflow-y-auto">
+              {filteredData?.length > 0 && searchTerm ? (
+                filteredData?.map((item, index) => (
+                  <div
+                    key={index}
+                    onClick={handleProductClick}
+                  >
                     <li
-                      key={product.id}
-                      className="p-3 hover:bg-gray-50 cursor-pointer border-b last:border-b-0"
-                      onClick={() => handleProductClick()}
+                      key={index}
+                      className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
                     >
-                      <div className="flex items-center gap-4">
-                        <OptimizedImage
-                          src={product.image}
-                          alt={product.title}
-                          width={60}
-                          height={60}
-                          className="rounded-md object-contain"
-                        />
-                        <div>
-                          <h3 className="font-medium text-gray-900 line-clamp-1">
-                            {product.title}
-                          </h3>
-                          <p className="text-sm text-gray-500">
-                            ${product.price}
-                          </p>
-                        </div>
-                      </div>
+                      <OptimizedImage
+                        src={item?.image}
+                        alt={item?.title}
+                        className="w-16 h-16 "
+                      />
+                      <p className="text-sm font-medium text-gray-800">
+                        {item?.title}
+                      </p>
                     </li>
-                  ))}
-                </ul>
+                  </div>
+                ))
               ) : (
-                <div className="p-4 text-center text-gray-500">
-                  {searchTerm ? "No products found" : "Start typing to search"}
-                </div>
+                <p className="p-4 text-sm text-gray-500 text-center">
+                  No results found
+                </p>
               )}
-            </div>
+            </ul>
           )}
         </div>
       </div>
