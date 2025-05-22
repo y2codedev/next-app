@@ -5,11 +5,9 @@ import { ProductDetailProps } from "@/types/home";
 import { Metadata } from "next";
 
 async function getProductsData(): Promise<ProductDetailProps[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!baseUrl) throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
 
   try {
-    const response = await fetch(`${baseUrl}/products`, {
+    const response = await fetch('https://fakestoreapi.com/products', {
       next: { revalidate: 3600 }
     });
 

@@ -45,12 +45,9 @@ export async function generateMetadata({
 }
 
 async function getProduct(id: string): Promise<ProductDetailProps | null> {
-  if (!process.env.NEXT_PUBLIC_BASE_URL) {
-    throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
-  }
-  
+
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/${id}`, {
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
       next: { revalidate: 36000 }
     });
 

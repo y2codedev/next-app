@@ -22,18 +22,12 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const url = process.env.NEXT_PUBLIC_BASE_URL;
-      if (!url) {
-        setError("API base URL is not configured");
-        setLoading(false);
-        return;
-      }
 
       setLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(`${url}/products`);
+        const response = await fetch('https://fakestoreapi.com/products');
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status}`);
         }
