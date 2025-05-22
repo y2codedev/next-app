@@ -62,9 +62,17 @@ async function getProduct(id: string): Promise<ProductDetailProps | null> {
   }
 }
 
-export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
-  const product = await getProduct(params.slug);
+type tParams = Promise<{ slug: string }>;
 
+
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const slug = (await params).slug
+
+  const product = await getProduct(slug);
   if (!product) {
     notFound();
   }
