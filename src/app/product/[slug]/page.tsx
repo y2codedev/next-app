@@ -48,6 +48,7 @@ async function getProduct(id: string): Promise<ProductDetailProps | null> {
   if (!process.env.NEXT_PUBLIC_BASE_URL) {
     throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
   }
+  
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/${id}`, {
       next: { revalidate: 36000 }
