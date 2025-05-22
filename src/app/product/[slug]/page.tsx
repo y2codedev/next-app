@@ -3,9 +3,14 @@ import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
 import { ProductDetailProps } from "@/types/home";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const slug = (await params).slug
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const product = await getProduct(params.slug);
+  const product = await getProduct(slug);
 
   if (!product) {
     return {
@@ -35,7 +40,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       images: [product?.image],
     },
     alternates: {
-      canonical: `/products/${params?.slug}`,
+      canonical: `/products/${slug}`,
     },
   };
 }
