@@ -5,28 +5,25 @@ import { EmptyStateNotice } from "@/components/EmptyStateNotice";
 import { ProductDetailProps } from "@/types/home";
 import { Metadata } from "next";
 
-async function fetchWithRetry(url: string, options: RequestInit = {}, retries = 3, timeout = 5000): Promise<Response> {
+async function getProduct(id: string): Promise<ProductDetailProps | null> {
+  if (!process.env.NEXT_PUBLIC_BASE_URL) {
+    throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
+  }
+
   try {
-    // const controller = new AbortController();
-    // const timeoutId = setTimeout(() => controller.abort(), timeout);
-
-    const response = await fetch(url, {
-      ...options,
-      // signal: controller.signal,
-      redirect: "follow",
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/${id}`, {
+      next: { revalidate: 36000 }
     });
+    
+    if (!response.ok) {
+      if (response.status === 404) return null;
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
-    // clearTimeout(timeoutId);
-
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return response;
+    return await response.json();
   } catch (error) {
-    // if (retries > 0) {
-      console.warn(`Retrying fetch... ${retries} attempts left`);
-      // await new Promise(resolve => setTimeout(resolve, 1000));
-      // return fetchWithRetry(url, options, retries - 1, timeout);
-    // }
-    throw error;
+    console.error('Failed to fetch product:', error);
+    return null;
   }
 }
 
@@ -34,14 +31,10 @@ async function getProducts(): Promise<ProductDetailProps[]> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const apiUrl = `${baseUrl}/products`;
 
-  const response = await fetchWithRetry(apiUrl, {
-    next: { revalidate: 36000 },
-    headers: { 'Content-Type': 'application/json' },
-  });
+  const response = await getProduct(apiUrl);
 
-  const data = await response.json();
-  if (!Array.isArray(data)) throw new Error("Invalid response format: Expected array");
-  return data;
+  if (!Array.isArray(response)) throw new Error("Invalid response format: Expected array");
+  return response;
 }
 
 export async function generateMetadata(): Promise<Metadata> {
