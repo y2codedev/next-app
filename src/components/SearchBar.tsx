@@ -103,6 +103,11 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
             )}
           </div>
         </div>
+        {error && (
+          <div className="p-4 text-red-500 text-center text-sm">
+            {error}
+          </div>
+        )}
 
         <div className="bg-white shadow-sm w-full rounded-md mt-2">
           {searchTerm && (
