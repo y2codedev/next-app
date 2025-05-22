@@ -23,6 +23,10 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
     setLoading(true);
     async function getData() {
       const url = process.env.NEXT_PUBLIC_BASE_URL;
+      if (!url) {
+        console.error("NEXT_PUBLIC_BASE_URL is not defined in search bar");
+        return;
+      }
       try {
         const response = await fetch(`${url}/products`);
         if (!response.ok) {
