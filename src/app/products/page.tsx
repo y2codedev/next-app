@@ -74,7 +74,7 @@ export default async function ProductListingPage({ searchParams }: PageProps) {
   const errorMessage: string | null = null;
 
   const data = await getProductsData(page);
-  const totalPages = (data.total || 0) / 20;
+  const totalPages = Math.ceil(Number(data?.total) / 20);
 
   return (
     <main className="min-h-screen py-20 w-full container">
