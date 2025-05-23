@@ -65,7 +65,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-export default async function ProductListingPage({ searchParams }: { searchParams?: { page?: number } }) {
+export default async function ProductListingPage({ searchParams }: { searchParams?: { page?: number | undefined | string } }) {
   const page = Number(searchParams?.page || 10);
   const errorMessage: string | null = null;
   const data = await getProductsData(page);
