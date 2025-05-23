@@ -1,4 +1,3 @@
-import { ProductCard } from "@/components";
 import { ErrorAlert } from "@/components/ErrorAlert";
 import { EmptyStateNotice } from "@/components/EmptyStateNotice";
 import { ProductApiResponse } from "@/types/home";
@@ -67,7 +66,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ProductListingPage() {
-  let errorMessage: string | null = null;
+  const  errorMessage: string | null = null;
 
   const data = await getProductsData();
 
