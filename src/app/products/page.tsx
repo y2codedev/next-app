@@ -4,7 +4,8 @@ import { ProductApiResponse } from "@/types/home";
 import { Metadata } from "next";
 import ProductListing from "@/components/ProductListing";
 import Pagination from "@/components/Pagination";
-type PageProps = {
+
+type Props = {
   searchParams: { page?: number };
 };
 
@@ -67,12 +68,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-export default async function ProductListingPage({ searchParams }: PageProps) {
-  console.log(searchParams, "searchParams");
-
+export default async function ProductListingPage({ searchParams }: Props) {
   const page = Number(searchParams?.page || 10);
   const errorMessage: string | null = null;
-
   const data = await getProductsData(page);
   const totalPages = Math.ceil(Number(data?.total) / 20);
 
