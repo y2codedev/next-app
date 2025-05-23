@@ -5,9 +5,6 @@ import { Metadata } from "next";
 import ProductListing from "@/components/ProductListing";
 import Pagination from "@/components/Pagination";
 
-type Props = {
-  searchParams: { page?: number };
-};
 
 async function getProductsData(page: number): Promise<ProductApiResponse> {
   const limit = 20;
@@ -68,7 +65,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-export default async function ProductListingPage({ searchParams }: Props) {
+export default async function ProductListingPage({ searchParams }: { searchParams?: { page?: number } }) {
   const page = Number(searchParams?.page || 10);
   const errorMessage: string | null = null;
   const data = await getProductsData(page);
