@@ -13,8 +13,15 @@ interface SearchProps {
 }
 
 const SearchBar = ({ isOpen, onClose }: SearchProps) => {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  if (!baseUrl) {
+    throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
+  }
+
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<ProductDetailProps[]>([]);
+  const [data, setData] = useState<{ products: ProductDetailProps[] }>({ products: [] });
+
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedValue] = useDebounce(searchTerm, 1000);
   const [error, setError] = useState<string | null>(null);
@@ -22,17 +29,17 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-
       setLoading(true);
       setError(null);
 
       try {
-        const response = await fetch('https://fakestoreapi.com/products');
+        const response = await fetch(`${baseUrl}/products/search?q=${debouncedValue}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status}`);
         }
         const products = await response.json();
         setData(products);
+
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load products");
         console.error("Search fetch error:", err);
@@ -44,13 +51,10 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
     if (debouncedValue) {
       fetchProducts();
     } else {
-      setData([]);
+      setData({ products: [] });
     }
-  }, [debouncedValue]);
 
-  const filteredData = data?.filter((item) =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  }, [debouncedValue]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -91,11 +95,11 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
               />
             </div>
             {loading ? (
-              <div className="w-6 h-6 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-6 h-6 border-1  border-gray-600 border-t-transparent rounded-full animate-spin"></div>
             ) : (
               <button
                 onClick={onClose}
-                className="text-xl sm:text-2xl text-secondary px-2 sm:px-4 cursor-pointer"
+                className="text-xl sm:text-2xl text-secondary  cursor-pointer"
                 aria-label="Close search"
               >
                 <FiX color="#888" className="pointer-events-none" />
@@ -112,8 +116,8 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
         <div className="bg-white shadow-sm w-full rounded-md mt-2">
           {searchTerm && (
             <ul className="max-h-100 overflow-y-auto">
-              {filteredData?.length > 0 && searchTerm ? (
-                filteredData?.map((item, index) => (
+              {data?.products?.length > 0 && searchTerm ? (
+                data?.products?.map((item: ProductDetailProps, index: number) => (
                   <div
                     key={index}
                     onClick={handleProductClick}
@@ -123,7 +127,7 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
                       className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
                     >
                       <OptimizedImage
-                        src={item?.image}
+                        src={item?.thumbnail}
                         alt={item?.title}
                         className="w-16 h-16 "
                       />

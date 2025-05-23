@@ -38,10 +38,20 @@ export interface ProductType {
   item_variants: ItemVariant[];
 }
 
+
 export interface ProductDetailProps {
   id: number;
   title: string;
   description: string;
   price: number;
-  image: string;
+  thumbnail: string;
+  rating: number;
+  discountPercentage: number;
+  stock: number;
 }
+
+export interface ProductApiResponse {
+  products?: ProductDetailProps[];
+  total?: number;
+}
+

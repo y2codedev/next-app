@@ -29,14 +29,14 @@ export async function generateMetadata({
       description: product?.description || "Explore a wide range of high-quality products.",
       url: `${baseUrl}/products`,
       siteName: "YourStore",
-      images: [{ url: product?.image || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+      images: [{ url: product?.thumbnail || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
       type: "website",
     },
     twitter: {
       card: 'summary_large_image',
       title: product?.title,
       description: product?.description,
-      images: [product?.image],
+      images: [product?.thumbnail],
     },
     alternates: {
       canonical: `/products/${slug}`,
@@ -45,9 +45,14 @@ export async function generateMetadata({
 }
 
 async function getProduct(id: string): Promise<ProductDetailProps | null> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  if (!baseUrl) {
+    throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
+  }
 
   try {
-    const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+    const response = await fetch(`${baseUrl}/products/${id}`, {
       next: { revalidate: 36000 }
     });
 
@@ -88,7 +93,10 @@ export default async function ProductDetailPage({
         id={product?.id}
         description={product?.description}
         price={product?.price}
-        image={product?.image}
+        thumbnail={product?.thumbnail}
+        rating={product?.rating}
+        discountPercentage={product?.discountPercentage}
+        stock={product?.stock}
       />
     </div>
   );
