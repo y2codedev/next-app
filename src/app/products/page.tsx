@@ -5,14 +5,9 @@ import { Metadata } from "next";
 import ProductListing from "@/components/ProductListing";
 
 async function getProductsData(): Promise<ProductApiResponse> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
-  if (!baseUrl) {
-    throw new Error("NEXT_PUBLIC_BASE_URL is not defined");
-  }
 
   try {
-    const response = await fetch(`${baseUrl}/products`, {
+    const response = await fetch(`https://dummyjson.com/products`, {
       next: { revalidate: 3600 },
     });
 
