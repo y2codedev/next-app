@@ -5,14 +5,9 @@ import { Metadata } from "next";
 import ProductListing from "@/components/ProductListing";
 
 async function getProductsData(): Promise<ProductApiResponse> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
-  if (!baseUrl) {
-    throw new Error("NEXT_PUBLIC_BASE_URL is not defined");
-  }
-
+ 
   try {
-    const response = await fetch(`${baseUrl}/products`, {
+    const response = await fetch(`https://dummyjson.com/products`, {
       next: { revalidate: 3600 },
     });
 
@@ -34,7 +29,6 @@ async function getProductsData(): Promise<ProductApiResponse> {
 }
 export async function generateMetadata(): Promise<Metadata> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const products = await getProductsData();
     const seoData = products?.products?.[0];
 
@@ -44,16 +38,16 @@ export async function generateMetadata(): Promise<Metadata> {
       openGraph: {
         title: seoData?.title || "Browse Our Products | YourStore",
         description: seoData?.description || "Explore a wide range of high-quality products.",
-        url: `${baseUrl}/products`,
+        url: `https://dummyjson.com/products`,
         siteName: "YourStore",
-        images: [{ url: seoData?.thumbnail || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+        images: [{ url: seoData?.thumbnail || `https://dummyjson.com/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
         type: "website",
       },
       twitter: {
         card: "summary_large_image",
         title: "Our Products | YourStore",
         description: "Discover top-rated items in our catalog.",
-        images: [{ url: seoData?.thumbnail || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+        images: [{ url: seoData?.thumbnail || `https://dummyjson.com/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
       },
     };
   } catch (error) {
