@@ -3,11 +3,18 @@ import { EmptyStateNotice } from "@/components/EmptyStateNotice";
 import { ProductApiResponse } from "@/types/home";
 import { Metadata } from "next";
 import ProductListing from "@/components/ProductListing";
+import Pagination from "@/components/Pagination";
+type PageProps = {
+  searchParams: { page?: number };
+};
 
-async function getProductsData(): Promise<ProductApiResponse> {
- 
+async function getProductsData(page: number): Promise<ProductApiResponse> {
+  const limit = 20;
+  const skip = (page - 1) * limit;
+
   try {
-    const response = await fetch(`https://dummyjson.com/products`, {
+
+    const response = await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`, {
       next: { revalidate: 3600 },
     });
 
@@ -29,7 +36,7 @@ async function getProductsData(): Promise<ProductApiResponse> {
 }
 export async function generateMetadata(): Promise<Metadata> {
   try {
-    const products = await getProductsData();
+    const products = await getProductsData(1);
     const seoData = products?.products?.[0];
 
     return {
@@ -59,10 +66,15 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function ProductListingPage() {
+
+export default async function ProductListingPage({ searchParams }: PageProps) {
+  console.log(searchParams, "searchParams");
+
+  const page = Number(searchParams?.page || 10);
   const errorMessage: string | null = null;
 
-  const data = await getProductsData();
+  const data = await getProductsData(page);
+  const totalPages = (data.total || 0) / 20;
 
   return (
     <main className="min-h-screen py-20 w-full container">
@@ -71,6 +83,7 @@ export default async function ProductListingPage() {
         <EmptyStateNotice message="There are currently no products to display." />
       )}
       <ProductListing data={data} />
+      <Pagination totalPages={totalPages} currentPage={page} />
     </main>
   );
 }
