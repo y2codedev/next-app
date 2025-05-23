@@ -65,8 +65,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-export default async function ProductListingPage({ searchParams }: { searchParams?: { page?: number | undefined | string } }) {
-  const page = Number(searchParams?.page || 10);
+export default async function ProductListingPage({
+  searchParams,
+}: {
+  searchParams?: { page?: string };
+}) {
+  const page = Number(searchParams?.page || 1);
   const errorMessage: string | null = null;
   const data = await getProductsData(page);
   const totalPages = Math.ceil(Number(data?.total) / 20);
