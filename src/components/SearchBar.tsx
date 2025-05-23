@@ -13,6 +13,11 @@ interface SearchProps {
 }
 
 const SearchBar = ({ isOpen, onClose }: SearchProps) => {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  if (!baseUrl) {
+    throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
+  }
 
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<{ products: ProductDetailProps[] }>({ products: [] });
@@ -28,7 +33,7 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
       setError(null);
 
       try {
-        const response = await fetch(`https://dummyjson.com/products/search?q=${debouncedValue}`);
+        const response = await fetch(`${baseUrl}/products/search?q=${debouncedValue}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status}`);
         }

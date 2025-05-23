@@ -8,7 +8,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }) {
   const slug = (await params).slug
-
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const product = await getProduct(slug);
 
   if (!product) {
@@ -27,9 +27,9 @@ export async function generateMetadata({
     openGraph: {
       title: product?.title || "Browse Our Products | YourStore",
       description: product?.description || "Explore a wide range of high-quality products.",
-      url: `https://dummyjson.com/products`,
+      url: `${baseUrl}/products`,
       siteName: "YourStore",
-      images: [{ url: product?.thumbnail || `https://dummyjson.com/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+      images: [{ url: product?.thumbnail || `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
       type: "website",
     },
     twitter: {
@@ -45,9 +45,14 @@ export async function generateMetadata({
 }
 
 async function getProduct(id: string): Promise<ProductDetailProps | null> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  if (!baseUrl) {
+    throw new Error('NEXT_PUBLIC_BASE_URL is not defined');
+  }
 
   try {
-    const response = await fetch(`$https://dummyjson.com/products/${id}`, {
+    const response = await fetch(`${baseUrl}/products/${id}`, {
       next: { revalidate: 36000 }
     });
 
