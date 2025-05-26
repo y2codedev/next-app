@@ -87,12 +87,16 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function ProductsPage({ searchParams }: { searchParams?: Record<string, string> }) { 
-
-  const page = Number(searchParams?.page || 1);
-  const query = searchParams?.q || "";
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ [key: string]: string | undefined }>;
+}) {
+  const resolvedSearchParams = await searchParams;
+  const page = Number(resolvedSearchParams?.page || 1);
+  const query = resolvedSearchParams?.q || "";
   const errorMessage: string | null = null;
-  const category = searchParams?.category || "";
+  const category = resolvedSearchParams?.category || "";
   const data = await getProductsData(page, query, category);
   const totalPages = Math.ceil(Number(data?.total) / 20);
 

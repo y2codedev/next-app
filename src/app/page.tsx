@@ -11,10 +11,12 @@ const Home = () => {
   const [selectedFixture, setSelectedFixture] = useState(defaultFixture);
   const [selectedColor, setSelectedColor] = useState(defaultColor);
   const [activeSection, setActiveSection] = useState(0);
-  const sectionRefs = [
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-  ];
+
+  const sectionRefs = useRef([
+    React.createRef<HTMLDivElement>(),
+    React.createRef<HTMLDivElement>(),
+  ]);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,19 +31,20 @@ const Home = () => {
         root: null,
         rootMargin: "0px",
         threshold: 0.5,
-      },
+      }
     );
 
-    sectionRefs.forEach((ref) => {
+    sectionRefs.current.forEach((ref) => {
       if (ref.current) observer.observe(ref.current);
     });
 
     return () => {
-      sectionRefs.forEach((ref) => {
+      sectionRefs.current.forEach((ref) => {
         if (ref.current) observer.unobserve(ref.current);
       });
     };
   }, [sectionRefs]);
+
 
   const sectionFixture =
     MockJsonData[activeSection]?.thumbnail || defaultFixture;
@@ -74,7 +77,7 @@ const Home = () => {
   return (
     <>
       <div className="scroll-container relative">
-        <div ref={sectionRefs[0]} className="scroll-section">
+        <div ref={sectionRefs.current[0]} className="scroll-section">
           <HeroSections
             selectedFixture={selectedFixture}
             selectedColor={selectedColor}
@@ -82,10 +85,10 @@ const Home = () => {
             description={description}
           />
         </div>
-        <div ref={sectionRefs[1]} className="scroll-section">
+        <div ref={sectionRefs.current[0]} className="scroll-section">
           <Review />
         </div>
-        <div ref={sectionRefs[2]} className="scroll-section">
+        <div ref={sectionRefs.current[0]} className="scroll-section">
           <HeroSections
             selectedFixture={selectedFixture}
             selectedColor={selectedColor}

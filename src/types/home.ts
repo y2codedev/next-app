@@ -52,9 +52,6 @@ export interface ProductDetailProps {
 export interface ProductApiResponse {
   products?: ProductDetailProps[];
   total?: number;
-  page: number,
-  query?: string,
-  category?: string,
 }
 
 export interface ProductDetail {
