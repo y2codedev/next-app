@@ -1,37 +1,42 @@
 import { ErrorAlert } from "@/components/ErrorAlert";
-import { EmptyStateNotice } from "@/components/EmptyStateNotice";
 import { ProductApiResponse } from "@/types/home";
 import { Metadata } from "next";
 import ProductListing from "@/components/ProductListing";
 import Pagination from "@/components/Pagination";
 
-
-async function getProductsData(page: number): Promise<ProductApiResponse> {
+async function getProductsData(page: number, query?: string, category?: string): Promise<ProductApiResponse> {
   const limit = 20;
   const skip = (page - 1) * limit;
 
-  try {
+  const queryParts = [];
 
-    const response = await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`, {
-      next: { revalidate: 3600 },
-    });
+  if (query) queryParts.push(`q=${query}`);
+  if (category) queryParts.push(`category=${category}`);
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch products: ${response.status}`);
-    }
 
-    const data = await response.json();
+  // if (sort) queryParts.push(`sort=${sort}`);
+  // if (order) queryParts.push(`order=${order}`);
 
-    if (!data?.products || !Array.isArray(data.products)) {
-      throw new Error("Invalid response format: Expected object with products array");
-    }
+  queryParts.push(`limit=${limit}`);
+  queryParts.push(`skip=${skip}`);
 
-    return data as ProductApiResponse;
-  } catch (error) {
-    console.error("getProducts error:", error);
-    throw error;
-  }
+
+  const url =
+    category && !query
+      ? `https://dummyjson.com/products/category/${encodeURIComponent(category)}?limit=${limit}&skip=${skip}`
+      : `https://dummyjson.com/products${query || category ? "/search" : ""}?${queryParts.join("&")}`;
+
+
+  const response = await fetch(url, { cache: "no-store" });
+
+  if (!response.ok) throw new Error(`Failed to fetch products: ${response.status}`);
+  const data = await response.json();
+
+  if (!data?.products || !Array.isArray(data.products)) throw new Error("Invalid response format");
+
+  return data as ProductApiResponse;
 }
+
 export async function generateMetadata(): Promise<Metadata> {
   try {
     const products = await getProductsData(1);
@@ -68,21 +73,25 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ProductListingPage({
   searchParams,
 }: {
-  searchParams?: { page?: string };
+  searchParams?: { page?: string; q?: string; category?: string; sort?: string; order?: string };
 }) {
   const page = Number(searchParams?.page || 1);
+  const query = searchParams?.q || "";
   const errorMessage: string | null = null;
-  const data = await getProductsData(page);
+  const category = searchParams?.category || "";
+  // const sort = searchParams?.sort;
+  // const order = searchParams?.order;
+
+  const data = await getProductsData(page, query, category);
   const totalPages = Math.ceil(Number(data?.total) / 20);
 
   return (
     <main className="min-h-screen py-20 w-full container">
       {errorMessage && <ErrorAlert message={errorMessage} />}
-      {!errorMessage && data?.products?.length === 0 && (
-        <EmptyStateNotice message="There are currently no products to display." />
-      )}
       <ProductListing data={data} />
-      <Pagination totalPages={totalPages} currentPage={page} />
+      {totalPages > 1 && (
+        <Pagination totalPages={totalPages} currentPage={page} />
+      )}
     </main>
   );
 }

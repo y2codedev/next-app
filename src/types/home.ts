@@ -55,3 +55,25 @@ export interface ProductApiResponse {
   total?: number;
 }
 
+
+export interface ProductDetail {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  thumbnail: string;
+  rating: number;
+  discountPercentage: number;
+  stock: number;
+  warrantyInformation: string;
+  shippingInformation: string;
+  returnPolicy: string;
+  minimumOrderQuantity: number;
+  reviews: {
+    rating: number;
+    comment: string;
+    reviewerName: string;
+  }[];
+  images?: string[];
+}
+

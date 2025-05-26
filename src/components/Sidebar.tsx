@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 import {
     FiSearch,
@@ -8,37 +9,55 @@ import {
     FiArrowDown,
     FiChevronRight,
 } from "react-icons/fi";
-
-const categories = [
-    "All",
-    "Smartphones",
-    "Laptops",
-    "Fragrances",
-    "Skincare",
-    "Groceries",
-];
+import Button from "./Button";
+import { useCategories } from "@/hooks/useCategories";
 
 const sortFields = [
     { value: "price", label: "Price" },
-    { value: "rating", label: "Rating" },
-    { value: "stock", label: "Stock" },
 ];
 
 const Sidebar = () => {
+    const { categories } = useCategories();
     const [mobileOpen, setMobileOpen] = useState(false);
     const [search, setSearch] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [sortBy, setSortBy] = useState("price");
     const [order, setOrder] = useState<"asc" | "desc">("asc");
+    const searchParams = useSearchParams();
+    const router = useRouter();
 
     const toggleOrder = () => {
         setOrder((prev) => (prev === "asc" ? "desc" : "asc"));
     };
 
+    const applyFliters = () => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        if (search.trim()) {
+            params.set("q", search.trim());
+        } else {
+            params.delete("q");
+        }
+
+        if (selectedCategory && selectedCategory !== "All") {
+            params.set("category", selectedCategory);
+        } else {
+            params.delete("category");
+        }
+
+        router.push(`?${params.toString()}`);
+    };
+
+
+    const resetFilters = () => {
+        router.push(`/products`);
+        setSearch("");
+        setSelectedCategory("All");
+    };
+
     const renderSidebar = () => (
         <div className="w-full min-h-screen rounded-md  p-4 bg-white shadow-sm animate-fade-in space-y-6">
             <h3 className="text-xl font-semibold">Search & Filters</h3>
-
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Search</label>
                 <div className="relative">
@@ -87,9 +106,9 @@ const Sidebar = () => {
                         <li
                             key={cat}
                             onClick={() => setSelectedCategory(cat)}
-                            className={`cursor-pointer px-3 py-2 rounded transition flex items-center justify-between ${selectedCategory === cat
-                                    ? "bg-blue-100 text-blue-700 font-medium"
-                                    : "hover:bg-gray-100 text-gray-800"
+                            className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${selectedCategory === cat
+                                ? "bg-blue-100 text-blue-700 font-medium"
+                                : "hover:bg-gray-100 text-gray-800"
                                 }`}
                         >
                             {cat}
@@ -97,6 +116,27 @@ const Sidebar = () => {
                         </li>
                     ))}
                 </ul>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                <Button
+                    label="Apply Filters"
+                    variant="custom"
+                    onClick={() => {
+                        applyFliters();
+                        setMobileOpen(false);
+                    }}
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-all duration-200"
+                />
+                <Button
+                    icon={<FiX className="text-gray-500" />}
+                    label="Reset"
+                    variant="custom"
+                    onClick={() => {
+                        resetFilters();
+                        setMobileOpen(false);
+                    }}
+                    className="flex-1 border gap-2 border-gray-300 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded text-sm transition-all duration-200"
+                />
             </div>
         </div>
     );

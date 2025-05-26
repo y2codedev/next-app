@@ -42,53 +42,45 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
         <button
           key={i}
           onClick={() => goToPage(i)}
-          className={`px-3 py-2 border text-sm font-medium hidden sm:inline ${
-            currentPage === i
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
-          }`}
+          className={`px-3 py-2 border text-sm font-medium hidden sm:inline ${currentPage === i
+            ? 'bg-blue-600 text-white border-blue-600'
+            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
+            }`}
         >
           {i}
         </button>
       );
     }
-
     return pages;
   };
 
   return (
     <div className="flex justify-center mt-8">
       <nav className="flex flex-wrap justify-center items-center gap-2 sm:gap-1" aria-label="Pagination">
-        {/* Previous Button */}
         <button
           onClick={() => goToPage(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`px-3 py-2 border text-sm font-medium rounded-md ${
-            currentPage === 1
-              ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-              : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
-          }`}
+          className={`px-3 py-2 border text-sm font-medium rounded-md ${currentPage === 1
+            ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
+            }`}
         >
           Previous
         </button>
 
-        {/* Page Numbers */}
         {renderPageNumbers()}
 
-        {/* Current Page Display (mobile only) */}
         <span className="block sm:hidden text-sm px-3 py-2 text-gray-700">
           Page {currentPage} of {totalPages}
         </span>
 
-        {/* Next Button */}
         <button
           onClick={() => goToPage(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`px-3 py-2 border text-sm font-medium rounded-md ${
-            currentPage === totalPages
-              ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-              : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
-          }`}
+          className={`px-3 py-2 border text-sm font-medium rounded-md ${currentPage === totalPages
+            ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
+            }`}
         >
           Next
         </button>

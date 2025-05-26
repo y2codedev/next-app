@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { ProductDetail } from "@/components";
-import { ProductDetailProps } from "@/types/home";
+import { ProductDetail as ProductDetailType } from "@/types/home";
 
 export async function generateMetadata({
   params,
@@ -43,7 +43,7 @@ export async function generateMetadata({
   };
 }
 
-async function getProduct(id: string): Promise<ProductDetailProps | null> {
+async function getProduct(id: string): Promise<ProductDetailType | null> {
 
   try {
     const response = await fetch(`https://dummyjson.com/products/${id}`, {
@@ -91,6 +91,12 @@ export default async function ProductDetailPage({
         rating={product?.rating}
         discountPercentage={product?.discountPercentage}
         stock={product?.stock}
+        warrantyInformation={product?.warrantyInformation}
+        shippingInformation={product?.shippingInformation}
+        returnPolicy={product?.returnPolicy}
+        minimumOrderQuantity={product?.minimumOrderQuantity}
+        reviews={product?.reviews}
+        images={product?.images || []}
       />
     </div>
   );
