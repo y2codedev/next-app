@@ -9,8 +9,6 @@ interface PageProps {
     page?: string;
     q?: string;
     category?: string;
-    sort?: string;
-    order?: string;
   };
 }
 async function getProductsData(
@@ -25,9 +23,6 @@ async function getProductsData(
 
   if (query) queryParts.push(`q=${query}`);
   if (category) queryParts.push(`category=${category}`);
-
-  // if (sort) queryParts.push(`sort=${sort}`);
-  // if (order) queryParts.push(`order=${order}`);
 
   queryParts.push(`limit=${limit}`);
   queryParts.push(`skip=${skip}`);
@@ -99,16 +94,14 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function ProductsPage({ searchParams }: PageProps) {
+export default async function ProductsPage({ searchParams }: { searchParams?: Record<string, string> }) { 
+
   const page = Number(searchParams?.page || 1);
   const query = searchParams?.q || "";
   const errorMessage: string | null = null;
   const category = searchParams?.category || "";
   const data = await getProductsData(page, query, category);
   const totalPages = Math.ceil(Number(data?.total) / 20);
-
-  // const sort = searchParams?.sort;
-  // const order = searchParams?.order;
 
   return (
     <main className="min-h-screen py-20 w-full container">
