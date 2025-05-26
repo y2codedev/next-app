@@ -4,6 +4,15 @@ import { Metadata } from "next";
 import ProductListing from "@/components/ProductListing";
 import Pagination from "@/components/Pagination";
 
+interface Props {
+  searchParams?: {
+    page?: string;
+    q?: string;
+    category?: string;
+    sort?: string;
+    order?: string;
+  };
+}
 async function getProductsData(page: number, query?: string, category?: string): Promise<ProductApiResponse> {
   const limit = 20;
   const skip = (page - 1) * limit;
@@ -70,11 +79,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-export default async function ProductListingPage({
-  searchParams,
-}: {
-  searchParams?: { page?: string; q?: string; category?: string; sort?: string; order?: string };
-}) {
+export default async function ProductsPage({ searchParams }: Props) {
   const page = Number(searchParams?.page || 1);
   const query = searchParams?.q || "";
   const errorMessage: string | null = null;
