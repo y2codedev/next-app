@@ -4,13 +4,6 @@ import { Metadata } from "next";
 import ProductListing from "@/components/ProductListing";
 import Pagination from "@/components/Pagination";
 
-interface PageProps {
-  searchParams?: {
-    page?: string;
-    q?: string;
-    category?: string;
-  };
-}
 async function getProductsData(
   page: number,
   query?: string,
