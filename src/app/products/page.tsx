@@ -13,7 +13,11 @@ interface PageProps {
     order?: string;
   };
 }
-async function getProductsData(page: number, query?: string, category?: string): Promise<ProductApiResponse> {
+async function getProductsData(
+  page: number,
+  query?: string,
+  category?: string,
+): Promise<ProductApiResponse> {
   const limit = 20;
   const skip = (page - 1) * limit;
 
@@ -22,26 +26,25 @@ async function getProductsData(page: number, query?: string, category?: string):
   if (query) queryParts.push(`q=${query}`);
   if (category) queryParts.push(`category=${category}`);
 
-
   // if (sort) queryParts.push(`sort=${sort}`);
   // if (order) queryParts.push(`order=${order}`);
 
   queryParts.push(`limit=${limit}`);
   queryParts.push(`skip=${skip}`);
 
-
   const url =
     category && !query
       ? `https://dummyjson.com/products/category/${encodeURIComponent(category)}?limit=${limit}&skip=${skip}`
       : `https://dummyjson.com/products${query || category ? "/search" : ""}?${queryParts.join("&")}`;
 
-
   const response = await fetch(url, { cache: "no-store" });
 
-  if (!response.ok) throw new Error(`Failed to fetch products: ${response.status}`);
+  if (!response.ok)
+    throw new Error(`Failed to fetch products: ${response.status}`);
   const data = await response.json();
 
-  if (!data?.products || !Array.isArray(data.products)) throw new Error("Invalid response format");
+  if (!data?.products || !Array.isArray(data.products))
+    throw new Error("Invalid response format");
 
   return data as ProductApiResponse;
 }
@@ -53,31 +56,48 @@ export async function generateMetadata(): Promise<Metadata> {
 
     return {
       title: seoData?.title || "Browse Our Products | YourStore",
-      description: seoData?.description || "Explore a wide range of high-quality products.",
+      description:
+        seoData?.description ||
+        "Explore a wide range of high-quality products.",
       openGraph: {
         title: seoData?.title || "Browse Our Products | YourStore",
-        description: seoData?.description || "Explore a wide range of high-quality products.",
+        description:
+          seoData?.description ||
+          "Explore a wide range of high-quality products.",
         url: `https://dummyjson.com/products`,
         siteName: "YourStore",
-        images: [{ url: seoData?.thumbnail || `https://dummyjson.com/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+        images: [
+          {
+            url: seoData?.thumbnail || `https://dummyjson.com/og-image.jpg`,
+            width: 1200,
+            height: 630,
+            alt: "Product listing",
+          },
+        ],
         type: "website",
       },
       twitter: {
         card: "summary_large_image",
         title: "Our Products | YourStore",
         description: "Discover top-rated items in our catalog.",
-        images: [{ url: seoData?.thumbnail || `https://dummyjson.com/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+        images: [
+          {
+            url: seoData?.thumbnail || `https://dummyjson.com/og-image.jpg`,
+            width: 1200,
+            height: 630,
+            alt: "Product listing",
+          },
+        ],
       },
     };
   } catch (error) {
-    console.error('Failed to generate metadata:', error);
+    console.error("Failed to generate metadata:", error);
     return {
       title: "Browse Our Products | YourStore",
       description: "Explore a wide range of high-quality products.",
     };
   }
 }
-
 
 export default async function ProductsPage({ searchParams }: PageProps) {
   const page = Number(searchParams?.page || 1);
@@ -89,7 +109,6 @@ export default async function ProductsPage({ searchParams }: PageProps) {
 
   // const sort = searchParams?.sort;
   // const order = searchParams?.order;
-
 
   return (
     <main className="min-h-screen py-20 w-full container">

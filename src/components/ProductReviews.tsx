@@ -13,11 +13,16 @@ const ProductReviews: React.FC<{ reviews?: Review[] }> = ({ reviews = [] }) => (
     {reviews.length > 0 ? (
       <div className="space-y-4">
         {reviews.map((review, index) => (
-          <div key={index} className="bg-white border border-gray-200 p-4 rounded-md ">
+          <div
+            key={index}
+            className="bg-white border border-gray-200 p-4 rounded-md "
+          >
             <div className="flex justify-between items-center mb-2">
               <div className="font-medium">{review.reviewerName}</div>
               <div className="flex text-yellow-400">
-                {Array.from({ length: review.rating }, (_, i) => <FaStar key={i} size={14} />)}
+                {Array.from({ length: review.rating }, (_, i) => (
+                  <FaStar key={i} size={14} />
+                ))}
               </div>
             </div>
             <p className="text-gray-700 italic text-sm">{review.comment}</p>

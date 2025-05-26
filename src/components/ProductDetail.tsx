@@ -6,7 +6,6 @@ import ProductActions from "./ProductActions";
 import ProductReviews from "./ProductReviews";
 import ProductInfo from "./ProductInfo";
 
-
 const ProductDetail: React.FC<ProductDetailType> = ({
   title,
   description,
@@ -20,7 +19,8 @@ const ProductDetail: React.FC<ProductDetailType> = ({
   returnPolicy,
   minimumOrderQuantity,
   reviews,
-  images = [], }) => {
+  images = [],
+}) => {
   return (
     <>
       <div className="flex flex-col lg:flex-row gap-8 w-full  ">

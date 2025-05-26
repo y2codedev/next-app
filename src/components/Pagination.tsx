@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import React from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface PaginationProps {
   currentPage: number;
@@ -14,7 +14,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
 
   const goToPage = (page: number) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('page', page.toString());
+    params.set("page", page.toString());
     router.push(`?${params.toString()}`);
   };
 
@@ -22,7 +22,11 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
     const pages = [];
 
     for (let i = 1; i <= totalPages; i++) {
-      const isHidden = totalPages > 7 && Math.abs(currentPage - i) > 2 && i !== 1 && i !== totalPages;
+      const isHidden =
+        totalPages > 7 &&
+        Math.abs(currentPage - i) > 2 &&
+        i !== 1 &&
+        i !== totalPages;
 
       if (isHidden) {
         if (
@@ -30,9 +34,12 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
           (i === currentPage + 3 && i < totalPages)
         ) {
           pages.push(
-            <span key={`ellipsis-${i}`} className="px-2 py-2 text-gray-500 text-sm hidden sm:inline">
+            <span
+              key={`ellipsis-${i}`}
+              className="px-2 py-2 text-gray-500 text-sm hidden sm:inline"
+            >
               ...
-            </span>
+            </span>,
           );
         }
         continue;
@@ -42,13 +49,14 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
         <button
           key={i}
           onClick={() => goToPage(i)}
-          className={`px-3 py-2 border text-sm font-medium hidden sm:inline ${currentPage === i
-            ? 'bg-blue-600 text-white border-blue-600'
-            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
-            }`}
+          className={`px-3 py-2 border text-sm font-medium hidden sm:inline ${
+            currentPage === i
+              ? "bg-blue-600 text-white border-blue-600"
+              : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+          }`}
         >
           {i}
-        </button>
+        </button>,
       );
     }
     return pages;
@@ -56,14 +64,18 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
 
   return (
     <div className="flex justify-center mt-8">
-      <nav className="flex flex-wrap justify-center items-center gap-2 sm:gap-1" aria-label="Pagination">
+      <nav
+        className="flex flex-wrap justify-center items-center gap-2 sm:gap-1"
+        aria-label="Pagination"
+      >
         <button
           onClick={() => goToPage(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`px-3 py-2 border text-sm font-medium rounded-md ${currentPage === 1
-            ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
-            }`}
+          className={`px-3 py-2 border text-sm font-medium rounded-md ${
+            currentPage === 1
+              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+              : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+          }`}
         >
           Previous
         </button>
@@ -77,10 +89,11 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
         <button
           onClick={() => goToPage(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`px-3 py-2 border text-sm font-medium rounded-md ${currentPage === totalPages
-            ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
-            }`}
+          className={`px-3 py-2 border text-sm font-medium rounded-md ${
+            currentPage === totalPages
+              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+              : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+          }`}
         >
           Next
         </button>

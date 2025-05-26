@@ -1,13 +1,13 @@
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
 import { ProductDetail } from "@/components";
 import { ProductDetail as ProductDetailType } from "@/types/home";
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }) {
-  const slug = (await params).slug
+  const slug = (await params).slug;
   const product = await getProduct(slug);
 
   if (!product) {
@@ -15,8 +15,8 @@ export async function generateMetadata({
       title: "Product Not Found",
       robots: {
         index: false,
-        follow: false
-      }
+        follow: false,
+      },
     };
   }
 
@@ -25,14 +25,23 @@ export async function generateMetadata({
     description: product?.description,
     openGraph: {
       title: product?.title || "Browse Our Products | YourStore",
-      description: product?.description || "Explore a wide range of high-quality products.",
+      description:
+        product?.description ||
+        "Explore a wide range of high-quality products.",
       url: `https://dummyjson.com/products`,
       siteName: "YourStore",
-      images: [{ url: product?.thumbnail || `https://dummyjson.com/og-image.jpg`, width: 1200, height: 630, alt: "Product listing" }],
+      images: [
+        {
+          url: product?.thumbnail || `https://dummyjson.com/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: "Product listing",
+        },
+      ],
       type: "website",
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: product?.title,
       description: product?.description,
       images: [product?.thumbnail],
@@ -44,10 +53,9 @@ export async function generateMetadata({
 }
 
 async function getProduct(id: string): Promise<ProductDetailType | null> {
-
   try {
     const response = await fetch(`https://dummyjson.com/products/${id}`, {
-      next: { revalidate: 36000 }
+      next: { revalidate: 36000 },
     });
 
     if (!response.ok) {
@@ -57,7 +65,7 @@ async function getProduct(id: string): Promise<ProductDetailType | null> {
 
     return await response.json();
   } catch (error) {
-    console.error('Failed to fetch product:', error);
+    console.error("Failed to fetch product:", error);
     return null;
   }
 }
@@ -65,17 +73,17 @@ async function getProduct(id: string): Promise<ProductDetailType | null> {
 export default async function ProductDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }) {
-  const slug = (await params).slug
+  const slug = (await params).slug;
   let product;
   try {
     product = await getProduct(slug);
   } catch (error) {
-    console.error('Error fetching data in /products:', error);
+    console.error("Error fetching data in /products:", error);
     throw error;
   }
-  console.log(product, 'product')
+  console.log(product, "product");
   if (!product) {
     notFound();
   }

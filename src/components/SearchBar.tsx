@@ -13,10 +13,10 @@ interface SearchProps {
 }
 
 const SearchBar = ({ isOpen, onClose }: SearchProps) => {
-
-
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<{ products: ProductDetailProps[] }>({ products: [] });
+  const [data, setData] = useState<{ products: ProductDetailProps[] }>({
+    products: [],
+  });
 
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedValue] = useDebounce(searchTerm, 1000);
@@ -29,15 +29,18 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
       setError(null);
 
       try {
-        const response = await fetch(`https://dummyjson.com/products/search?q=${debouncedValue}`);
+        const response = await fetch(
+          `https://dummyjson.com/products/search?q=${debouncedValue}`,
+        );
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status}`);
         }
         const products = await response.json();
         setData(products);
-
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load products");
+        setError(
+          err instanceof Error ? err.message : "Failed to load products",
+        );
         console.error("Search fetch error:", err);
       } finally {
         setLoading(false);
@@ -49,7 +52,6 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
     } else {
       setData({ products: [] });
     }
-
   }, [debouncedValue]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +62,6 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
     router.push(`/products`);
     onClose();
   };
-
 
   return (
     <div
@@ -104,35 +105,32 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
           </div>
         </div>
         {error && (
-          <div className="p-4 text-red-500 text-center text-sm">
-            {error}
-          </div>
+          <div className="p-4 text-red-500 text-center text-sm">{error}</div>
         )}
 
         <div className="bg-white shadow-sm w-full rounded-md mt-2">
           {searchTerm && (
             <ul className="max-h-100 overflow-y-auto">
               {data?.products?.length > 0 && searchTerm ? (
-                data?.products?.map((item: ProductDetailProps, index: number) => (
-                  <div
-                    key={index}
-                    onClick={handleProductClick}
-                  >
-                    <li
-                      key={index}
-                      className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
-                    >
-                      <OptimizedImage
-                        src={item?.thumbnail}
-                        alt={item?.title}
-                        className="w-16 h-16 "
-                      />
-                      <p className="text-sm font-medium text-gray-800">
-                        {item?.title}
-                      </p>
-                    </li>
-                  </div>
-                ))
+                data?.products?.map(
+                  (item: ProductDetailProps, index: number) => (
+                    <div key={index} onClick={handleProductClick}>
+                      <li
+                        key={index}
+                        className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
+                      >
+                        <OptimizedImage
+                          src={item?.thumbnail}
+                          alt={item?.title}
+                          className="w-16 h-16 "
+                        />
+                        <p className="text-sm font-medium text-gray-800">
+                          {item?.title}
+                        </p>
+                      </li>
+                    </div>
+                  ),
+                )
               ) : (
                 <p className="p-4 text-sm text-gray-500 text-center">
                   No results found

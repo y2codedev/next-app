@@ -10,7 +10,16 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 import AddToCartModal from "./AddToCartModal";
 
 const ProductCard = (product: ProductDetailProps) => {
-  const { id, title, description, price, thumbnail, rating, discountPercentage, stock } = product;
+  const {
+    id,
+    title,
+    description,
+    price,
+    thumbnail,
+    rating,
+    discountPercentage,
+    stock,
+  } = product;
   const [modalOpen, setModalOpen] = useState(false);
 
   const renderStars = () => {
@@ -45,14 +54,18 @@ const ProductCard = (product: ProductDetailProps) => {
           <Button
             label=""
             variant="custom"
-            icon={<CiHeart strokeWidth={0.5} size={20} className="text-secondary" />}
+            icon={
+              <CiHeart strokeWidth={0.5} size={20} className="text-secondary" />
+            }
             className="absolute top-2 right-2 bg-white p-2 rounded-full shadow hover:bg-red-100"
           />
         </div>
 
         <div className="px-4 flex flex-col flex-grow">
           <h3 className="text-lg font-semibold mb-1 line-clamp-2">{title}</h3>
-          <p className="text-sm text-gray-500 mb-2 line-clamp-4">{description}</p>
+          <p className="text-sm text-gray-500 mb-2 line-clamp-4">
+            {description}
+          </p>
 
           <div className="flex justify-between items-center mb-2">
             <div className="flex flex-col">
@@ -68,7 +81,9 @@ const ProductCard = (product: ProductDetailProps) => {
 
           <div className="flex justify-between items-center text-sm mb-2">
             <div className="flex items-center gap-1">{renderStars()}</div>
-            <span className={`text-xs font-medium ${stock < 10 ? 'text-red-600' : 'text-gray-600'}`}>
+            <span
+              className={`text-xs font-medium ${stock < 10 ? "text-red-600" : "text-gray-600"}`}
+            >
               {stock < 10 ? `Only ${stock} left!` : `In Stock: ${stock}`}
             </span>
           </div>
@@ -86,7 +101,11 @@ const ProductCard = (product: ProductDetailProps) => {
       </div>
 
       {/* Modal */}
-      <AddToCartModal open={modalOpen} onClose={() => setModalOpen(false)} product={product} />
+      <AddToCartModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        product={product}
+      />
     </>
   );
 };

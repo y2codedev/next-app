@@ -2,69 +2,83 @@ import React from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 
 interface Props {
-    title: string;
-    description: string;
-    price: number;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
-    warrantyInformation?: string;
-    shippingInformation?: string;
-    returnPolicy?: string;
-    minimumOrderQuantity?: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  warrantyInformation?: string;
+  shippingInformation?: string;
+  returnPolicy?: string;
+  minimumOrderQuantity?: number;
 }
 
 const ProductInfo: React.FC<Props> = ({
-    title,
-    description,
-    price,
-    discountPercentage,
-    rating,
-    stock,
-    warrantyInformation,
-    shippingInformation,
-    returnPolicy,
-    minimumOrderQuantity,
+  title,
+  description,
+  price,
+  discountPercentage,
+  rating,
+  stock,
+  warrantyInformation,
+  shippingInformation,
+  returnPolicy,
+  minimumOrderQuantity,
 }) => {
-    const fullStars = Math.floor(rating);
-    const emptyStars = 5 - fullStars;
+  const fullStars = Math.floor(rating);
+  const emptyStars = 5 - fullStars;
 
-    return (
-        <div className="w-full ">
-            <h1 className="md:text-3xl text-2xl  font-semibold mb-3">{title}</h1>
-            <p className="text-gray-600 mb-5 leading-relaxed">{description}</p>
+  return (
+    <div className="w-full ">
+      <h1 className="md:text-3xl text-2xl  font-semibold mb-3">{title}</h1>
+      <p className="text-gray-600 mb-5 leading-relaxed">{description}</p>
 
-            <div className="flex items-center justify-between mb-4">
-                <div>
-                    <p className="text-2xl font-bold text-blue-700">₹ {price.toFixed(2)}</p>
-                    <p className="text-sm text-gray-500 line-through">
-                        ₹ {(price / (1 - discountPercentage / 100)).toFixed(2)}
-                    </p>
-                </div>
-                <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded">
-                    {discountPercentage}% OFF
-                </span>
-            </div>
-
-            <div className="flex items-center justify-between text-sm text-gray-700 mb-4">
-                <div className="flex items-center gap-2">
-                    {[...Array(fullStars)].map((_, i) => <FaStar key={`full-${i}`} className="text-yellow-400" />)}
-                    {[...Array(emptyStars)].map((_, i) => <FaRegStar key={`empty-${i}`} className="text-yellow-400" />)}
-                    <span className="ml-1">({rating.toFixed(1)})</span>
-                </div>
-                <span className={stock < 10 ? "text-red-600" : ""}>
-                    {stock < 10 ? `Only ${stock} left!` : `In Stock: ${stock}`}
-                </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-800 border-t border-gray-300 pt-4 mb-6">
-                <p><strong>Shipping:</strong> {shippingInformation}</p>
-                <p><strong>Warranty:</strong> {warrantyInformation}</p>
-                <p><strong>Return Policy:</strong> {returnPolicy}</p>
-                <p><strong>Min Order:</strong> {minimumOrderQuantity}</p>
-            </div>
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <p className="text-2xl font-bold text-blue-700">
+            ₹ {price.toFixed(2)}
+          </p>
+          <p className="text-sm text-gray-500 line-through">
+            ₹ {(price / (1 - discountPercentage / 100)).toFixed(2)}
+          </p>
         </div>
-    );
+        <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded">
+          {discountPercentage}% OFF
+        </span>
+      </div>
+
+      <div className="flex items-center justify-between text-sm text-gray-700 mb-4">
+        <div className="flex items-center gap-2">
+          {[...Array(fullStars)].map((_, i) => (
+            <FaStar key={`full-${i}`} className="text-yellow-400" />
+          ))}
+          {[...Array(emptyStars)].map((_, i) => (
+            <FaRegStar key={`empty-${i}`} className="text-yellow-400" />
+          ))}
+          <span className="ml-1">({rating.toFixed(1)})</span>
+        </div>
+        <span className={stock < 10 ? "text-red-600" : ""}>
+          {stock < 10 ? `Only ${stock} left!` : `In Stock: ${stock}`}
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-800 border-t border-gray-300 pt-4 mb-6">
+        <p>
+          <strong>Shipping:</strong> {shippingInformation}
+        </p>
+        <p>
+          <strong>Warranty:</strong> {warrantyInformation}
+        </p>
+        <p>
+          <strong>Return Policy:</strong> {returnPolicy}
+        </p>
+        <p>
+          <strong>Min Order:</strong> {minimumOrderQuantity}
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default ProductInfo;

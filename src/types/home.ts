@@ -38,7 +38,6 @@ export interface ProductType {
   item_variants: ItemVariant[];
 }
 
-
 export interface ProductDetailProps {
   id: number;
   title: string;
@@ -54,7 +53,6 @@ export interface ProductApiResponse {
   products?: ProductDetailProps[];
   total?: number;
 }
-
 
 export interface ProductDetail {
   id: number;
@@ -76,4 +74,3 @@ export interface ProductDetail {
   }[];
   images?: string[];
 }
-

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Loader = ({ message = 'Loading...' }: { message?: string }) => {
+const Loader = ({ message = "Loading..." }: { message?: string }) => {
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="flex gap-4 items-center space-y-2">
