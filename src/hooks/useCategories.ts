@@ -13,9 +13,14 @@ export const useCategories = () => {
                 }
                 const data = await res.json();
                 setCategories(["All", ...data]);
-            } catch (err: any) {
-                setError(err.message || "An unexpected error occurred");
+            } catch (err) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("An unexpected error occurred");
+                }
             }
+
         };
 
         fetchCategories();

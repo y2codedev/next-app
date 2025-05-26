@@ -20,12 +20,12 @@ const ProductReviews: React.FC<{ reviews?: Review[] }> = ({ reviews = [] }) => (
                 {Array.from({ length: review.rating }, (_, i) => <FaStar key={i} size={14} />)}
               </div>
             </div>
-            <p className="text-gray-700 italic text-sm">"{review.comment}"</p>
+            <p className="text-gray-700 italic text-sm">{review.comment}</p>
           </div>
         ))}
       </div>
     ) : (
-      <p className="text-gray-500">No reviews yet.</p>
+      <p className="text-gray-500">No reviews yet</p>
     )}
   </div>
 );

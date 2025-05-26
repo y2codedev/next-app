@@ -3,7 +3,6 @@
 import React from "react";
 import { Dialog } from "@headlessui/react";
 import { FiShoppingCart } from "react-icons/fi";
-import { IoClose } from "react-icons/io5";
 import { ProductDetailProps } from "@/types/home";
 import { OptimizedImage, Button } from "@/components";
 
