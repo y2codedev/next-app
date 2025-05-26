@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import ProductListing from "@/components/ProductListing";
 import Pagination from "@/components/Pagination";
 
-interface Props {
+interface PageProps {
   searchParams?: {
     page?: string;
     q?: string;
@@ -79,16 +79,17 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-export default async function ProductsPage({ searchParams }: Props) {
+export default async function ProductsPage({ searchParams }: PageProps) {
   const page = Number(searchParams?.page || 1);
   const query = searchParams?.q || "";
   const errorMessage: string | null = null;
   const category = searchParams?.category || "";
+  const data = await getProductsData(page, query, category);
+  const totalPages = Math.ceil(Number(data?.total) / 20);
+
   // const sort = searchParams?.sort;
   // const order = searchParams?.order;
 
-  const data = await getProductsData(page, query, category);
-  const totalPages = Math.ceil(Number(data?.total) / 20);
 
   return (
     <main className="min-h-screen py-20 w-full container">
