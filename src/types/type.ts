@@ -43,14 +43,15 @@ interface CartItem {
 }
 
 export interface CartDrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
-  cartItems: CartItem[];
-  onIncrement: (index: number) => void;
-  onDecrement: (index: number) => void;
+  cartOpen: boolean;
   note: string;
+  cartItems: CartItem[];
+  setCartOpen: (open: boolean) => void;
+  toggleCart: () => void;
   setNote: (note: string) => void;
-  onCheckout: () => void;
+  handleIncrement: (index: number) => void;
+  handleDecrement: (index: number) => void;
+  setCartItems: (items: CartItem[]) => void;
 }
 
 export interface searchDataProps {

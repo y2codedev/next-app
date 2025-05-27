@@ -54,11 +54,17 @@ const ProductCard = (product: ProductDetailProps) => {
           <Button
             label=""
             variant="custom"
+            onClick={() => alert("Added to Wishlist!")}
             icon={
-              <CiHeart strokeWidth={0.5} size={20} className="text-secondary" />
+              <CiHeart
+                strokeWidth={0.5}
+                size={20}
+                className="text-secondary transition-colors duration-300 hover:text-white"
+              />
             }
-            className="absolute top-2 right-2 bg-white p-2 rounded-full shadow hover:bg-red-100"
+            className="absolute top-2 right-2 bg-white p-2 rounded-full cursor-pointer shadow hover:bg-red-500 transition-colors duration-300"
           />
+
         </div>
 
         <div className="px-4 flex flex-col flex-grow">

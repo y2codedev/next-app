@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
-import { Dialog } from "@headlessui/react";
-import { FiShoppingCart } from "react-icons/fi";
+import React, { useState } from "react";
+import { FiMinus, FiPlus, FiX } from "react-icons/fi";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import { ProductDetailProps } from "@/types/home";
 import { OptimizedImage, Button } from "@/components";
+import SizeSelector from "./SizeSelector";
+import ColorSelector from "./ColorSelector";
 
 interface AddToCartModalProps {
   open: boolean;
@@ -12,70 +14,182 @@ interface AddToCartModalProps {
   product: ProductDetailProps;
 }
 
-const AddToCartModal: React.FC<AddToCartModalProps> = ({
+const AddToCartModal: React.FC<any> = ({
   open,
   onClose,
   product,
 }) => {
-  const { title, price, thumbnail, stock, discountPercentage } = product;
+  const {
+    title,
+    price,
+    thumbnail,
+    description,
+    discountPercentage,
+    stock,
+    images = [],
+    rating,
+    warrantyInformation,
+    shippingInformation,
+    returnPolicy,
+    minimumOrderQuantity,
+  } = product;
+
+  const [mainImage, setMainImage] = useState<string>(thumbnail);
+
+  const renderStars = () => {
+    const fullStars = Math.floor(rating);
+    const emptyStars = 5 - fullStars;
+    return (
+      <>
+        {[...Array(fullStars)].map((_, i) => (
+          <FaStar key={`full-${i}`} className="text-yellow-500 text-sm" />
+        ))}
+        {[...Array(emptyStars)].map((_, i) => (
+          <FaRegStar key={`empty-${i}`} className="text-yellow-400 text-sm" />
+        ))}
+      </>
+    );
+  };
 
   return (
-    <Dialog open={open} onClose={onClose} className="relative z-50">
+    <>
+      {open && (
+        <div
+          onClick={onClose}
+          className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm transition-opacity duration-300"
+        />
+      )}
       <div
-        className="fixed inset-0 bg-black/30 backdrop-blur-xs "
-        aria-hidden="true"
-      />
+        className={`
+          fixed bottom-0 right-0 z-50 bg-white shadow-lg
+          rounded-t-2xl sm:rounded-md
+          h-[80%] sm:h-[79%] w-full sm:max-w-5xl
+          overflow-hidden sm:overflow-y-auto
+          transition-transform duration-300 ease-in-out
+          ${open
+            ? "translate-y-0 sm:translate-x-0 sm:top-1/2 sm:left-1/7 sm:-translate-x-1/2 sm:-translate-y-1/2"
+            : "translate-y-full sm:scale-95 sm:opacity-0 sm:pointer-events-none"
+          }
+        `}
+      >
+        <div className="relative flex flex-col sm:flex-row h-full sm:h-auto">
 
-      <div className="fixed inset-0 flex items-center justify-center p-4 sm:p-0 transition-all duration-300">
-        <Dialog.Panel className="relative w-full max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden sm:my-10">
-          <div className="flex flex-col md:flex-row items-center gap-6 p-6">
-            <div className="w-full md:w-1/3">
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-10 text-gray-500 hover:text-black"
+            aria-label="Close"
+          >
+            <FiX size={20} />
+          </button>
+
+          {/* Image + Slider */}
+          <div className="w-full sm:w-1/2 relative flex flex-col border-r sm:border-none">
+            <div className="relative w-full mt-3 h-48 sm:h-[500px] overflow-hidden">
               <OptimizedImage
-                src={thumbnail}
+                src={mainImage}
                 alt={title}
-                className="w-full h-36 object-contain"
-                width={200}
-                height={200}
+                fill
+                className="object-cover"
               />
             </div>
 
-            <div className="w-full md:w-2/3 space-y-2">
-              <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+            {/* Slider Thumbnails */}
+            <div className="flex justify-center gap-2 overflow-x-auto px-2 sm:py-8 py-2">
+              {[thumbnail, ...images].map((imgSrc, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setMainImage(imgSrc)}
+                  className={`relative min-w-[50px] sm:min-w-[120px] cursor-pointer sm:h-28 h-14 rounded overflow-hidden border ${mainImage === imgSrc ? "border-red-500" : "border-gray-200"
+                    }`}
+                >
+                  <OptimizedImage
+                    src={imgSrc}
+                    alt={`Preview ${idx}`}
+                    fill
+                    className="object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
 
-              <div className="flex items-center gap-2">
-                <p className="text-blue-600 font-bold text-lg">
-                  ₹ {price.toFixed(2)}
-                </p>
-                <p className="text-sm text-gray-400 line-through">
-                  ₹ {(price / (1 - discountPercentage / 100)).toFixed(0)}
-                </p>
+          <div className="flex flex-col h-full">
+            <div className="px-4 flex flex-col overflow-y-auto flex-grow sm:py-10  pb-76 sm:pb-0 sm:h-auto">
+              <div>
+                <h3 className="text-lg font-semibold mb-1 line-clamp-2">{title}</h3>
+                <p className="text-sm text-gray-500 mb-2 line-clamp-4">{description}</p>
+                <div className="flex justify-between items-center mb-2">
+                  <div className="flex flex-col">
+                    <p className="text-md font-semibold text-blue-600">₹ {price}</p>
+                    <span className="text-xs text-gray-500 line-through mt-1">
+                      ₹ {(price / (1 - discountPercentage / 100)).toFixed(0)}
+                    </span>
+                  </div>
+                  <span className="bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded">
+                    {discountPercentage}% OFF
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center text-sm mb-4">
+                  <div className="flex items-center gap-1">{renderStars()}</div>
+                  <span className={stock < 10 ? "text-red-600" : ""}>
+                    {stock < 10 ? `Only ${stock} left!` : `In Stock: ${stock}`}
+                  </span>
+                </div>
+
+                <div className="flex gap-4 flex-col text-sm text-gray-800 border-t border-gray-300 pt-4 mb-6">
+                  <p><strong>Shipping:</strong> {shippingInformation}</p>
+                  <p><strong>Warranty:</strong> {warrantyInformation}</p>
+                  <p><strong>Return Policy:</strong> {returnPolicy}</p>
+                  <p><strong>Min Order:</strong> {minimumOrderQuantity}</p>
+                </div>
+
+                <SizeSelector />
+                <ColorSelector />
+              </div>
+            </div>
+
+            {/* Sticky Footer */}
+            <div className="sticky bottom-0 bg-white border-t border-gray-300 sm:static sm:border-none p-4">
+              <div className="flex sm:hidden justify-between items-center bg-gray-100 px-4 py-3 rounded-xl text-sm text-secondary mb-2">
+                <div className="flex items-center gap-2">
+                  <button className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
+                    <FiMinus size={12} />
+                  </button>
+                  <span>1</span>
+                  <button className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
+                    <FiPlus size={12} />
+                  </button>
+                </div>
+                <div className="flex flex-col items-end text-[12px] font-semibold">
+                  <span className="uppercase">Subtotal</span>
+                  <span>${price.toFixed(2)}</span>
+                </div>
               </div>
 
-              <p
-                className={`text-sm ${stock < 10 ? "text-red-500" : "text-green-600"}`}
-              >
-                {stock < 10 ? `Only ${stock} left!` : `In Stock: ${stock}`}
-              </p>
-
-              <div className="flex gap-3 pt-4">
+              <div className="flex items-center justify-between gap-2 pt-2">
+                <div className="hidden bg-gray-200  px-6 py-3 rounded-lg text-sm text-secondary sm:flex items-center gap-6">
+                  <button className="h-6 w-6 cursor-pointer flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
+                    <FiMinus size={12} />
+                  </button>
+                  <span>1</span>
+                  <button className="h-6 w-6 flex  cursor-pointer items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
+                    <FiPlus size={12} />
+                  </button>
+                </div>
                 <Button
-                  icon={<FiShoppingCart />}
-                  label="Confirm"
+                  label="Add to Cart"
                   variant="custom"
-                  className="flex-1 bg-blue-600 gap-2 text-white px-4 py-2 text-sm rounded-lg hover:bg-blue-700 transition"
-                />
-                <Button
-                  label="Cancel"
-                  onClick={onClose}
-                  variant="custom"
-                  className="sm:flex-1  border border-gray-300 px-4 py-2 text-sm rounded-lg hover:bg-gray-100 transition"
+                  className="sm:w-1/2 w-full bg-red-600 text-white py-3 text-sm rounded-lg hover:bg-red-700 transition"
                 />
               </div>
             </div>
           </div>
-        </Dialog.Panel>
+
+        </div>
       </div>
-    </Dialog>
+    </>
   );
 };
 

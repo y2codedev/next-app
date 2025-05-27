@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { Suspense } from "react";
 import Loader from "@/components/Loader";
-import Footer from "@/components/Footer/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,7 +27,6 @@ export default function RootLayout({
       <body>
         <Navbar />
         <Suspense fallback={<Loader />}>{children}</Suspense>
-        <Footer />
       </body>
     </html>
   );

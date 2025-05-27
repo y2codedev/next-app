@@ -6,41 +6,16 @@ import {
   DrawerMenu,
   CartDrawer,
   navLinks,
-  product,
   socialLinks,
   supportLinks,
 } from "@/components";
 
+import { useCartStore } from "@/store/cartStore";
+
 export default function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSupportOpen, setIsSupportOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
-  const [note, setNote] = useState("");
-
-  const [cartItems, setCartItems] = useState(
-    product?.map((p) => ({
-      product: p,
-      quantity: p.quantity,
-    })),
-  );
-
-  const handleIncrement = (index: number) => {
-    setCartItems((items) =>
-      items.map((item, i) =>
-        i === index ? { ...item, quantity: item.quantity + 1 } : item,
-      ),
-    );
-  };
-
-  const handleDecrement = (index: number) => {
-    setCartItems((items) =>
-      items.map((item, i) =>
-        i === index
-          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
-          : item,
-      ),
-    );
-  };
+  const { cartOpen, setCartOpen, cartItems, handleIncrement, handleDecrement, note, setNote } = useCartStore();
 
   return (
     <div>

@@ -371,7 +371,7 @@ export const product = [
     title:
       "Swissblu - Handheld This is a test product  Swissblu - Handheld This is a test product description",
     image:
-      "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+      "https://cdn.dummyjson.com/product-images/sunglasses/black-sun-glasses/thumbnail.webp",
     price: 69.99,
     color: "Black",
     fixture: "Handheld",
@@ -380,7 +380,7 @@ export const product = [
   {
     title: "Blue - Handheld",
     image:
-      "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+      "https://cdn.dummyjson.com/product-images/sunglasses/classic-sun-glasses/thumbnail.webp",
     price: 99.99,
     color: "Blue",
     fixture: "Handheld",
@@ -389,7 +389,7 @@ export const product = [
   {
     title: "Swissblu - Handheld",
     image:
-      "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+      "https://cdn.dummyjson.com/product-images/mens-shirts/gigabyte-aorus-men-tshirt/thumbnail.webp",
     price: 69.99,
     color: "Black",
     fixture: "Handheld",
@@ -398,7 +398,7 @@ export const product = [
   {
     title: "Blue - Handheld",
     image:
-      "https://cdn.keepconverting.ai/Blu/Images/Rain/rain%20original%20chrome%20ionic-shower-filter-lighting-tire-audio-242.webp",
+      "https://cdn.dummyjson.com/product-images/mens-shirts/man-short-sleeve-shirt/thumbnail.webp",
     price: 99.99,
     color: "Blue",
     fixture: "Handheld",

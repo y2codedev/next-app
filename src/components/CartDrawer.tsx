@@ -2,40 +2,38 @@
 
 import React from "react";
 import { FiX, FiPlus, FiMinus } from "react-icons/fi";
-import { CartDrawerProps } from "@/types/type";
 import { Button, OptimizedImage } from "@/components";
 
-const CartDrawer: React.FC<CartDrawerProps> = ({
-  isOpen,
-  onClose,
-  cartItems,
-  onIncrement,
-  onDecrement,
-  note,
-  setNote,
-  onCheckout,
-}) => {
-  const subtotal = cartItems.reduce(
-    (total, item) => total + item.product.price * item.quantity,
+const CartDrawer = ({ isOpen, onClose, cartItems, onIncrement, onDecrement, note, setNote, onCheckout }: any) => {
+
+  const subtotal = cartItems?.reduce(
+    (total: number, item: any) => total + item.product.price * item.quantity,
     0,
   );
 
   return (
     <div
-      className={`fixed top-0 right-0 h-full w-full sm:w-[24%] bg-white z-50 shadow-lg transition-transform duration-300 ${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      }`}
+      className={`
+    fixed bottom-0 right-0 z-50 bg-white shadow-lg
+    rounded-t-2xl sm:rounded-none
+    h-[70%] sm:h-full w-full sm:w-[24%]
+    transition-transform duration-300
+    ${isOpen
+          ? 'translate-y-0 sm:translate-x-0'
+          : 'translate-y-full sm:translate-x-full'}
+  `}
     >
-      <div className="flex justify-between items-center p-4 border-b border-gray-200 sticky top-0 bg-white z-10">
-        <h2 className="text-lg font-semibold text-secondary">Your Cart</h2>
+
+      <div className="flex  rounded-t-2xl  sm:rounded-none justify-between  items-center p-4 border-b border-gray-200 sticky top-0 bg-white z-10">
+        <h2 className="text-sm  font-semibold text-secondary">Your Cart</h2>
         <button onClick={onClose} aria-label="Close cart">
-          <FiX className="text-xl cursor-pointer" />
+          <FiX className="text-sm cursor-pointer" />
         </button>
       </div>
 
-      <div className="flex flex-col justify-between h-[calc(100%-64px)]">
+      <div className="flex flex-col  justify-between h-[calc(100%-64px)]">
         <div className="flex-1 overflow-y-auto p-4">
-          {cartItems.map((item, index) => (
+          {cartItems?.map((item: any, index: number) => (
             <div key={index} className="flex gap-4 mb-4 items-start">
               <OptimizedImage
                 src={item.product.image}
@@ -73,7 +71,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
                     </button>
                   </div>
                   <p className="text-base text-secondary">
-                    ${item.product.price.toFixed(2)}
+                    ${item?.product?.price?.toFixed(2)}
                   </p>
                 </div>
               </div>
@@ -99,15 +97,23 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
         </div>
 
         <div className="p-4 border-t border-gray-300 bg-white">
-          <div className="flex justify-between text-lg text-secondary mb-2">
+          <div className="flex justify-between bg-gray-100   sm:shadow-none mx-1 px-4 py-3 rounded-xl  text-sm text-secondary mb-2">
             <span className="uppercase">Subtotal</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>${subtotal?.toFixed(2)}</span>
           </div>
-          <p className="text-sm text-secondary text-center mb-4">
-            Shipping, taxes, and discount codes calculated at checkout.
-          </p>
-
-          <Button label="Checkout" onClick={onCheckout} />
+          <div className="flex items-center justify-center gap-2 pt-2">
+            <Button
+              label="View Cart"
+              onClick={onCheckout}  
+              variant="custom"
+              className="border border-red-600 text-red-600  px-8 py-2 text-sm rounded-lg hover:bg-red-100 transition"
+            />
+            <Button
+              label="Checkout"
+              variant="custom"
+              className=" bg-red-600  text-white px-8 py-2 text-sm rounded-lg hover:bg-red-700 transition"
+            />
+          </div>
         </div>
       </div>
     </div>

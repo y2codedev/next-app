@@ -91,9 +91,8 @@ const Sidebar = () => {
             title={`Order: ${order.toUpperCase()}`}
           >
             <FiArrowDown
-              className={`transform transition-transform ${
-                order === "desc" ? "rotate-180" : "rotate-0"
-              }`}
+              className={`transform transition-transform ${order === "desc" ? "rotate-180" : "rotate-0"
+                }`}
             />
           </button>
         </div>
@@ -106,11 +105,10 @@ const Sidebar = () => {
             <li
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${
-                selectedCategory === cat
-                  ? "bg-blue-100 text-blue-700 font-medium"
+              className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${selectedCategory === cat
+                  ? "bg-blue-100 text-blue-600 font-medium"
                   : "hover:bg-gray-100 text-gray-800"
-              }`}
+                }`}
             >
               {cat}
               {selectedCategory === cat && (
@@ -131,7 +129,6 @@ const Sidebar = () => {
           className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-all duration-200"
         />
         <Button
-          icon={<FiX className="text-gray-500" />}
           label="Reset"
           variant="custom"
           onClick={() => {
