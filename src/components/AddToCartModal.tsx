@@ -14,7 +14,7 @@ interface AddToCartModalProps {
   product: ProductDetailProps;
 }
 
-const AddToCartModal: React.FC<any> = ({
+const AddToCartModal: React.FC<AddToCartModalProps> = ({
   open,
   onClose,
   product,
@@ -37,7 +37,7 @@ const AddToCartModal: React.FC<any> = ({
   const [mainImage, setMainImage] = useState<string>(thumbnail);
 
   const renderStars = () => {
-    const fullStars = Math.floor(rating);
+    const fullStars = Math.floor(Number(rating || 0));
     const emptyStars = 5 - fullStars;
     return (
       <>

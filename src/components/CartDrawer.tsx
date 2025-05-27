@@ -4,7 +4,18 @@ import React from "react";
 import { FiX, FiPlus, FiMinus } from "react-icons/fi";
 import { Button, OptimizedImage } from "@/components";
 
-const CartDrawer = ({ isOpen, onClose, cartItems, onIncrement, onDecrement, note, setNote, onCheckout }: any) => {
+interface CartDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+  cartItems: any[];
+  onIncrement: (index: number) => void;
+  onDecrement: (index: number) => void;
+  note: string;
+  setNote: (note: string) => void;
+  onCheckout: () => void;
+}
+
+const CartDrawer = ({ isOpen, onClose, cartItems, onIncrement, onDecrement, note, setNote, onCheckout }: CartDrawerProps) => {
 
   const subtotal = cartItems?.reduce(
     (total: number, item: any) => total + item.product.price * item.quantity,
@@ -104,7 +115,7 @@ const CartDrawer = ({ isOpen, onClose, cartItems, onIncrement, onDecrement, note
           <div className="flex items-center justify-center gap-2 pt-2">
             <Button
               label="View Cart"
-              onClick={onCheckout}  
+              onClick={onCheckout}
               variant="custom"
               className="border border-red-600 text-red-600  px-8 py-2 text-sm rounded-lg hover:bg-red-100 transition"
             />
