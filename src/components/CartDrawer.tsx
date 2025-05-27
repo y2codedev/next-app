@@ -58,7 +58,7 @@ const CartDrawer = ({
           {cartItems?.map((item, index) => (
             <div key={index} className="flex gap-4 mb-4 items-start">
               <OptimizedImage
-                src={item.product.image}
+                src={item.product.images?.[0] || "/placeholder.jpg"}
                 alt={item.product.title}
                 width={80}
                 height={80}
