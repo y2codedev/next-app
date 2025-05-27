@@ -19,14 +19,14 @@ export const useCartStore = create<CartDrawerProps>((set) => ({
 
   handleIncrement: (index: number) =>
     set((state) => ({
-      cartItems: state.cartItems.map((item, i) =>
+      cartItems: state?.cartItems?.map((item, i) =>
         i === index ? { ...item, quantity: item.quantity + 1 } : item
       ),
     })),
 
   handleDecrement: (index: number) =>
     set((state) => ({
-      cartItems: state.cartItems.map((item, i) =>
+      cartItems: state.cartItems?.map((item, i) =>
         i === index
           ? { ...item, quantity: Math.max(1, item.quantity - 1) }
           : item

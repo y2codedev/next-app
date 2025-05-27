@@ -19,6 +19,7 @@ const AddToCart: React.FC<Props> = ({ price }) => {
         variant="primary"
         className=" rounded-md text-sm  font-semibold gap-2  hover:bg-[#c9d8ce] transition duration-300"
         onClick={() => setCartOpen(true)}
+
       />
     </>
   );

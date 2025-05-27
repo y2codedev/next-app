@@ -46,7 +46,7 @@ export interface CartDrawerProps {
   cartOpen: boolean;
   note: string;
   cartItems?: CartItem[];
-  setCartOpen?: (open: boolean) => void;
+ setCartOpen: (open: boolean) => void;
   toggleCart?: () => void;
   setNote?: (note: string) => void;
   handleIncrement?: (index: number) => void;
