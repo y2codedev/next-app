@@ -44,7 +44,6 @@ export interface ProductDetailProps {
   description: string;
   price: number;
   thumbnail: string;
-  images?: string[];
   discountPercentage: number;
   stock: number;
   rating?: number;
@@ -52,6 +51,9 @@ export interface ProductDetailProps {
   shippingInformation?: string;
   returnPolicy?: string;
   minimumOrderQuantity?: number;
+  color?: string[];
+  fixture?: string;
+  images?: string;
 }
 
 export interface ProductApiResponse {
