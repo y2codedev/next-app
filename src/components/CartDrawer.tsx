@@ -128,13 +128,11 @@ const CartDrawer = ({
           <div className="flex items-center justify-center gap-2 pt-2">
             <Button
               label="View Cart"
-              onClick={onCheckout}
               variant="custom"
               className="border border-red-600 text-red-600 px-6 py-2 text-sm rounded-lg hover:bg-red-100 transition"
             />
             <Button
               label="Checkout"
-              onClick={onCheckout}
               variant="custom"
               className="bg-red-600 text-white px-6 py-2 text-sm rounded-lg hover:bg-red-700 transition"
             />
