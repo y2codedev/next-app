@@ -16,7 +16,6 @@ interface CartDrawerProps {
   onDecrement: (index: number) => void;
   note: string;
   setNote: (note: string) => void;
-  onCheckout: () => void;
 }
 
 const CartDrawer = ({
@@ -27,7 +26,6 @@ const CartDrawer = ({
   onDecrement,
   note,
   setNote,
-  onCheckout,
 }: CartDrawerProps) => {
   const subtotal = cartItems?.reduce(
     (total: number, item) => total + item.product.price * item.quantity,
