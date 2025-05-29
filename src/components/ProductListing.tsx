@@ -1,7 +1,7 @@
   import React from "react";
   import Sidebar from "./Sidebar";
   import ProductCard from "./ProductCard";
-  import { ProductApiResponse, ProductDetailProps } from "@/types/home";
+  import { ProductApiResponse, ProductDetail } from "@/types/home";
   import { EmptyStateNotice } from "./EmptyStateNotice";
 
   interface ProductListingProps {
@@ -26,7 +26,7 @@
                 {total} Our Products
               </h1>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-                {products?.map((product: ProductDetailProps, index: number) => (
+                {products?.map((product: ProductDetail, index: number) => (
                   <ProductCard key={index} {...product} />
                 ))}
               </div>
