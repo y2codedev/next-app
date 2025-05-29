@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef } from "react";
 import OptimizedImage from "@/components/OptimizedImage";
 import SliderArrow from "../SliderArrow";
