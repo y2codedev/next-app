@@ -5,11 +5,11 @@ import { FiShoppingCart } from "react-icons/fi";
 import { CiHeart } from "react-icons/ci";
 import Link from "next/link";
 import { Button, OptimizedImage } from "@/components";
-import { ProductDetailProps } from "@/types/home";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import AddToCartModal from "./AddToCartModal";
+import { ProductDetail } from "@/types/home";
 
-const ProductCard = (product: ProductDetailProps) => {
+const ProductCard = (product: ProductDetail) => {
   const {
     id,
     title,
@@ -23,7 +23,7 @@ const ProductCard = (product: ProductDetailProps) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const renderStars = () => {
-    const fullStars = Math.floor(rating);
+    const fullStars = Math.floor(Number(rating || 0));
     const emptyStars = 5 - fullStars;
     return (
       <>
