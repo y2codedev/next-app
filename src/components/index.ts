@@ -1,3 +1,5 @@
+"use client";
+
 import OptimizedImage from "./OptimizedImage";
 import ColorSwatch from "./ColorSwatch";
 import Button from "./Button";

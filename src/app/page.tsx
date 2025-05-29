@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { HeroSections } from "@/components";
-import Review from "@/components/Review";
+import dynamic from 'next/dynamic';
+const HeroSections = dynamic(() => import('@/components/Home/HeroSections'), { ssr: false });
+const Review = dynamic(() => import('@/components/Review'), { ssr: false });
 
 const Home = () => {
 

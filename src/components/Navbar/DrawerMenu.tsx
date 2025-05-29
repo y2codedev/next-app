@@ -1,3 +1,5 @@
+"use client";
+
 import { IoClose } from "react-icons/io5";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Link from "next/link";

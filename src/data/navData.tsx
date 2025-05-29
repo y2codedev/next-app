@@ -1,3 +1,5 @@
+"use client";
+
 import { BannerSlide, ProductData, ProductType } from "@/types/home";
 import { NavItem, SocialLink, Options, searchDataProps } from "@/types/type";
 import {

@@ -10,9 +10,6 @@ const nextConfig: NextConfig = {
       'cdn.pixabay.com',
     ],
   },
-   eslint: {
-    ignoreDuringBuilds: true,
-  },
 };
 
 export default nextConfig;
