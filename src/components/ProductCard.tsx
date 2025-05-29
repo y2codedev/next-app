@@ -75,7 +75,7 @@ const ProductCard = (product: ProductDetailProps) => {
 
           <div className="flex justify-between items-center mb-2">
             <div className="flex flex-col">
-              <p className="text-md font-semibold text-blue-600">₹ {price}</p>
+              <p className="text-md font-semibold text-indigo-600">₹ {price}</p>
               <span className="text-xs text-gray-500 line-through mt-1">
                 ₹ {(price / (1 - discountPercentage / 100)).toFixed(0)}
               </span>
@@ -100,7 +100,7 @@ const ProductCard = (product: ProductDetailProps) => {
               variant="custom"
               label="Add to Cart"
               onClick={() => setModalOpen(true)}
-              className="flex items-center gap-2 text-[12px] bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700"
+              className="flex items-center gap-2 text-[12px] bg-indigo-600 text-white px-3 py-2 rounded hover:bg-indigo-700"
             />
           </div>
         </div>

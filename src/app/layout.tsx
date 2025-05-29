@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { Suspense } from "react";
 import Loader from "@/components/Loader";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const poppins = Poppins({
   subsets: ["latin"],

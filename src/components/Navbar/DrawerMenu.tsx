@@ -2,6 +2,7 @@ import { IoClose } from "react-icons/io5";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Link from "next/link";
 import { DrawerMenuProps } from "@/types/type";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 export default function DrawerMenu({
   isOpen,
@@ -12,8 +13,10 @@ export default function DrawerMenu({
   isSupportOpen,
   toggleSupport,
 }: DrawerMenuProps) {
+  const drawerRef = useOutsideClick<HTMLDivElement>({ handler: onClose, enabled: isOpen });
   return (
     <div
+      ref={drawerRef}
       className={`
           fixed top-0 left-0 h-full w-full sm:w-[24%] z-50 bg-white sm:border-r border-gray-200
           transition-transform duration-300 ease-in-out

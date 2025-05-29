@@ -3,15 +3,18 @@
 import React, { useState } from "react";
 import { FiMinus, FiPlus, FiX } from "react-icons/fi";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import { ProductDetailProps } from "@/types/home";
+
 import { OptimizedImage, Button } from "@/components";
 import SizeSelector from "./SizeSelector";
 import ColorSelector from "./ColorSelector";
+import ThumbnailSlider from "./Slider";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
+import { ProductDetail } from "@/types/home";
 
 interface AddToCartModalProps {
   open: boolean;
   onClose: () => void;
-  product: ProductDetailProps;
+  product: ProductDetail;
 }
 
 const AddToCartModal: React.FC<AddToCartModalProps> = ({
@@ -33,7 +36,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
     returnPolicy,
     minimumOrderQuantity,
   } = product;
-
+  const drawerRef = useOutsideClick<HTMLDivElement>({ handler: onClose, enabled: open });
   const [mainImage, setMainImage] = useState<string>(thumbnail);
 
   const renderStars = () => {
@@ -56,35 +59,32 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
       {open && (
         <div
           onClick={onClose}
-          className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm transition-opacity duration-300"
+          className="fixed inset-0 bg-black/30 z-40  transition-opacity  duration-500"
         />
       )}
       <div
+        ref={drawerRef}
         className={`
           fixed bottom-0 right-0 z-50 bg-white shadow-lg
           rounded-t-2xl sm:rounded-md
           h-[80%] sm:h-[79%] w-full sm:max-w-5xl
-          overflow-hidden sm:overflow-y-auto
-          transition-transform duration-300 ease-in-out
+          overflow-hidden
+          transition-transform duration-500 ease-in-out 
           ${open
-            ? "translate-y-0 sm:translate-x-0 sm:top-1/2 sm:left-1/7 sm:-translate-x-1/2 sm:-translate-y-1/2"
+            ? "translate-y-0 sm:translate-x-0 sm:top-1/2 sm:left-1/7 sm:-translate-y-1/2"
             : "translate-y-full sm:scale-95 sm:opacity-0 sm:pointer-events-none"
           }
         `}
       >
-        <div className="relative flex flex-col sm:flex-row h-full sm:h-auto">
-
-          {/* Close Button */}
+        <div className="relative sm:px-2 px-0 flex overflow-y-auto flex-col sm:flex-row h-full sm:h-auto">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-10 text-gray-500 hover:text-black"
+            className="absolute top-4 cursor-pointer right-4 z-10 text-gray-500 hover:text-black"
             aria-label="Close"
           >
             <FiX size={20} />
           </button>
-
-          {/* Image + Slider */}
-          <div className="w-full sm:w-1/2 relative flex flex-col border-r sm:border-none">
+          <div className="w-full sm:w-1/2 relative flex flex-col ">
             <div className="relative w-full mt-3 h-48 sm:h-[500px] overflow-hidden">
               <OptimizedImage
                 src={mainImage}
@@ -94,34 +94,23 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
               />
             </div>
 
-            {/* Slider Thumbnails */}
-            <div className="flex justify-center gap-2 overflow-x-auto px-2 sm:py-8 py-2">
-              {[thumbnail, ...images].map((imgSrc, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setMainImage(imgSrc)}
-                  className={`relative min-w-[50px] sm:min-w-[120px] cursor-pointer sm:h-28 h-14 rounded overflow-hidden border ${mainImage === imgSrc ? "border-red-500" : "border-gray-200"
-                    }`}
-                >
-                  <OptimizedImage
-                    src={imgSrc}
-                    alt={`Preview ${idx}`}
-                    fill
-                    className="object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+           <div className="py-4 px-2 sm:px-0  ">
+             <ThumbnailSlider
+              images={[thumbnail, ...images]}
+              activeImage={mainImage}
+              onImageClick={setMainImage}
+            />
+           </div>
           </div>
 
-          <div className="flex flex-col h-full">
-            <div className="px-4 flex flex-col overflow-y-auto flex-grow sm:py-10  pb-76 sm:pb-0 sm:h-auto">
+          <div className="flex  sm:w-1/2 flex-col h-full">
+            <div className="px-4 flex flex-col  flex-grow sm:py-10   sm:pb-0 sm:h-auto">
               <div>
-                <h3 className="text-lg font-semibold mb-1 line-clamp-2">{title}</h3>
+                <h3 className="text-lg font-semibold mt-6 sm:mt-0 line-clamp-2">{title}</h3>
                 <p className="text-sm text-gray-500 mb-2 line-clamp-4">{description}</p>
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex flex-col">
-                    <p className="text-md font-semibold text-blue-600">₹ {price}</p>
+                    <p className="text-md font-semibold text-indigo-600">₹ {price}</p>
                     <span className="text-xs text-gray-500 line-through mt-1">
                       ₹ {(price / (1 - discountPercentage / 100)).toFixed(0)}
                     </span>
@@ -178,15 +167,15 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                     <FiPlus size={12} />
                   </button>
                 </div>
-                <Button
+                <Button 
+                  onClick={() => console.log("Add to Cart Clicked")}
                   label="Add to Cart"
                   variant="custom"
-                  className="sm:w-1/2 w-full bg-red-600 text-white py-3 text-sm rounded-lg hover:bg-red-700 transition"
+                  className="sm:w-1/2 w-full bg-indigo-600 text-white py-3 text-sm rounded-lg hover:bg-indigo-700 transition"
                 />
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </>

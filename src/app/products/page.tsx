@@ -101,7 +101,7 @@ export default async function ProductsPage({
   const totalPages = Math.ceil(Number(data?.total) / 20);
 
   return (
-    <main className="min-h-screen py-20 w-full container">
+    <main className="min-h-screen py-28 w-full container">
       {errorMessage && <ErrorAlert message={errorMessage} />}
       <ProductListing data={data} />
       {totalPages > 1 && (

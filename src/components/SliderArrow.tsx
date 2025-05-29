@@ -14,7 +14,7 @@ const SliderArrow: React.FC<SliderArrowProps> = ({ onClick, direction }) => {
       onClick={onClick}
       className={`absolute z-10 p-2 flex justify-center items-center  cursor-pointer rounded-full 
         top-1/2 -translate-y-1/2 
-        ${isLeft ? "left-2 md:left-6" : "right-2 md:right-6"}`}
+        ${isLeft ? "left-0 md:left-6" : "right-0 md:right-6"}`}
       aria-label={isLeft ? "Previous Slide" : "Next Slide"}
     >
       {isLeft ? (

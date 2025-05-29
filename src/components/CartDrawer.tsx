@@ -4,6 +4,7 @@ import React from "react";
 import { FiX, FiPlus, FiMinus } from "react-icons/fi";
 import { Button, OptimizedImage } from "@/components";
 import { ProductDetailProps } from "@/types/home";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -27,6 +28,7 @@ const CartDrawer = ({
   note,
   setNote,
 }: CartDrawerProps) => {
+  const drawerRef = useOutsideClick<HTMLDivElement>({ handler: onClose, enabled: isOpen });
   const subtotal = cartItems?.reduce(
     (total: number, item) => total + item.product.price * item.quantity,
     0
@@ -34,29 +36,27 @@ const CartDrawer = ({
 
   return (
     <div
+      ref={drawerRef}
       className={`
-        fixed bottom-0 right-0 z-50 bg-white shadow-lg
-        rounded-t-2xl sm:rounded-none
-        h-[70%] sm:h-full w-full sm:w-[24%]
-        transition-transform duration-300
-        ${isOpen ? "translate-y-0 sm:translate-x-0" : "translate-y-full sm:translate-x-full"}
-      `}
+    fixed bottom-0 right-0 z-50 bg-white shadow-sm
+    h-full w-full sm:w-[28%]
+    transition-transform duration-300
+    ${isOpen ? "translate-y-0 sm:translate-x-0" : "translate-y-full sm:translate-x-full"}
+  `}
     >
-      {/* Header */}
       <div className="flex justify-between items-center p-4 border-b border-gray-200 sticky top-0 bg-white z-10 rounded-t-2xl sm:rounded-none">
         <h2 className="text-sm font-semibold text-secondary">Your Cart</h2>
         <button onClick={onClose} aria-label="Close cart">
-          <FiX className="text-sm cursor-pointer" />
+          <FiX size={18} className="text-sm cursor-pointer" />
         </button>
       </div>
 
-      {/* Cart Body */}
-      <div className="flex flex-col justify-between h-[calc(100%-64px)]">
+      <div className="flex flex-col h-full">
         <div className="flex-1 overflow-y-auto p-4">
           {cartItems?.map((item, index) => (
             <div key={index} className="flex gap-4 mb-4 items-start">
               <OptimizedImage
-                src={item.product.images?.[0] || "/placeholder.jpg"}
+                src={item.product.images || "https://cdn.dummyjson.com/product-images/mens-watches/longines-master-collection/1.webp"}
                 alt={item.product.title}
                 width={80}
                 height={80}
@@ -98,7 +98,6 @@ const CartDrawer = ({
             </div>
           ))}
 
-          {/* Note Area */}
           <div className="mt-4">
             <label
               htmlFor="note"
@@ -117,22 +116,21 @@ const CartDrawer = ({
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="p-4 border-t border-gray-300 bg-white">
-          <div className="flex justify-between bg-gray-100 mx-1 px-4 py-3 rounded-xl text-sm text-secondary mb-2">
+        <div className="p-4 border-t mb-14 border-gray-300 bg-white">
+          <div className="flex justify-between bg-gray-100 mx-1 px-4 py-3 rounded-lg text-sm text-secondary mb-2">
             <span className="uppercase">Subtotal</span>
             <span>₹{subtotal?.toFixed(2)}</span>
           </div>
-          <div className="flex items-center justify-center gap-2 pt-2">
+          <div className="flex items-center justify-center  gap-2 px-1 pt-2">
             <Button
               label="View Cart"
               variant="custom"
-              className="border border-red-600 text-red-600 px-6 py-2 text-sm rounded-lg hover:bg-red-100 transition"
+              className="border w-full border-gray-300 text-secondary py-3 text-sm rounded-lg hover:bg-indigo-100 transition"
             />
             <Button
               label="Checkout"
               variant="custom"
-              className="bg-red-600 text-white px-6 py-2 text-sm rounded-lg hover:bg-red-700 transition"
+              className="bg-indigo-600 w-full text-white py-3 text-sm rounded-lg hover:bg-indigo-700 transition"
             />
           </div>
         </div>

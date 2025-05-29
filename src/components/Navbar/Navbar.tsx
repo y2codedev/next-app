@@ -36,7 +36,7 @@ export default function Navbar() {
       <CartDrawer
         isOpen={cartOpen}
         onClose={() => setCartOpen(false)}
-        cartItems={cartItems}
+        cartItems={cartItems || []}
         onIncrement={handleIncrement}
         onDecrement={handleDecrement}
         note={note}

@@ -11,6 +11,7 @@ export const ErrorAlert: React.FC<ErrorAlertProps> = ({
   title = "Error loading data",
   message,
 }) => (
+ <div className="flex items-center justify-center min-h-screen">
   <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8">
     <div className="flex">
       <div className="flex-shrink-0">
@@ -32,4 +33,5 @@ export const ErrorAlert: React.FC<ErrorAlertProps> = ({
       </div>
     </div>
   </div>
+ </div>
 );

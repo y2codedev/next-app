@@ -41,8 +41,8 @@ const ColorSelector = () => {
                 cursor-pointer focus:outline-none
                 ${
                   selectedColor === color.value
-                    ? "border-black "
-                    : "border-red-300 hover:border-red-600"
+                    ? "border-indigo-600 "
+                    : "border-indigo-300 hover:border-indigo-600"
                 }
               `}
               style={{ backgroundColor: color.hex }}

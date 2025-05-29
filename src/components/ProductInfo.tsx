@@ -1,5 +1,7 @@
 import React from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
+import SizeSelector from "./SizeSelector";
+import ColorSelector from "./ColorSelector";
 
 interface Props {
   title: string;
@@ -31,9 +33,8 @@ const ProductInfo: React.FC<Props> = ({
 
   return (
     <div className="w-full ">
-      <h1 className="md:text-3xl text-2xl  font-semibold mb-3">{title}</h1>
+      <h1 className="sm:text-2xl text-xl  font-semibold mb-3">{title}</h1>
       <p className="text-gray-600 mb-5 leading-relaxed">{description}</p>
-
       <div className="flex items-center justify-between mb-4">
         <div>
           <p className="text-2xl font-bold text-blue-700">
@@ -63,7 +64,7 @@ const ProductInfo: React.FC<Props> = ({
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-800 border-t border-gray-300 pt-4 mb-6">
+      <div className="flex flex-col space-y-3 text-sm text-gray-800 border-t border-gray-300 pt-4 mb-6">
         <p>
           <strong>Shipping:</strong> {shippingInformation}
         </p>
@@ -76,6 +77,12 @@ const ProductInfo: React.FC<Props> = ({
         <p>
           <strong>Min Order:</strong> {minimumOrderQuantity}
         </p>
+      </div>
+      <div>
+        <SizeSelector />
+      </div>
+        <div>
+        <ColorSelector />
       </div>
     </div>
   );

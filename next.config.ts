@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       "shopv.swissblu.com",
       "cdn.keepconverting.ai",
       "cdn.dummyjson.com",
+      'cdn.pixabay.com',
     ],
   },
   reactStrictMode: false,

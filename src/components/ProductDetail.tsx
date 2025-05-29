@@ -23,13 +23,16 @@ const ProductDetail: React.FC<ProductDetailType> = ({
 }) => {
   return (
     <>
-      <div className="flex flex-col lg:flex-row gap-8 w-full  ">
-        <ProductImageGallery
-          thumbnail={thumbnail}
-          images={images}
-          title={title}
-        />
-        <div className="flex flex-col justify-between w-full ">
+      <div className="flex flex-col  sm:py-6 py-0 sm:flex-row">
+        <div className="w-full sm:w-1/2 mb-6">
+          <ProductImageGallery
+            thumbnail={thumbnail}
+            images={images}
+            title={title}
+          />
+        </div>
+
+        <div className="w-full sm:w-1/2 flex flex-col ">
           <ProductInfo
             title={title}
             description={description}
@@ -45,7 +48,9 @@ const ProductDetail: React.FC<ProductDetailType> = ({
           <ProductActions />
         </div>
       </div>
-      <ProductReviews reviews={reviews} />
+      <div className=" sm:py-6 py-0">
+        <ProductReviews reviews={reviews} />
+      </div>
     </>
   );
 };

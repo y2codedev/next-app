@@ -19,9 +19,9 @@ export default function NavbarHeader({
   const router = useRouter();
 
   return (
-    <header className="fixed top-0 w-full z-50   bg-white">
+    <header className="fixed top-0 w-full z-50  shadow-sm   bg-white">
       <div className="container">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between sm:h-20 h-16">
           <div className="flex items-center gap-4">
             <button
               onClick={onMenuClick}

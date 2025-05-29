@@ -35,7 +35,7 @@ const SizeSelector = () => {
                 px-4 py-1  border-[1px] text-sm cursor-pointer 
                 transition-all 
                 ${selectedSize === size.value
-                  ? "bg-red-600 text-white border-red-600"
+                  ? "bg-indigo-600 text-white border-indigo-600"
                   : "text-gray-700 border-gray-300"}
               `}
             >

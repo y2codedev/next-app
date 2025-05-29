@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FiSearch,
   FiFilter,
@@ -10,15 +10,19 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 import Button from "./Button";
-import { useCategories } from "@/hooks/useCategories";
+import { useFetchData } from "@/hooks/useFetchData";
 
 const sortFields = [{ value: "price", label: "Price" }];
 
 const Sidebar = () => {
-  const { categories } = useCategories();
+  const { data } = useFetchData("https://dummyjson.com/products/category-list");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => {
+    return localStorage.getItem("selectedCategory") || "";
+  });
+
   const [sortBy, setSortBy] = useState("price");
   const [order, setOrder] = useState<"asc" | "desc">("asc");
   const searchParams = useSearchParams();
@@ -51,6 +55,18 @@ const Sidebar = () => {
     setSearch("");
     setSelectedCategory("All");
   };
+
+
+
+  useEffect(() => {
+    if (!selectedCategory && data?.length) {
+      setSelectedCategory(data[0]);
+    }
+    if (selectedCategory) {
+      localStorage.setItem("selectedCategory", selectedCategory);
+    }
+  }, [selectedCategory, data]);
+
 
   const renderSidebar = () => (
     <div className="w-full min-h-screen rounded-md  p-4 bg-white shadow-sm animate-fade-in space-y-6">
@@ -99,26 +115,26 @@ const Sidebar = () => {
       </div>
 
       <div>
-        <h4 className="text-sm font-medium text-gray-700 mb-2">Categories</h4>
+        <h4 className="text-sm font-semibold text-gray-700 mb-2">All Categories</h4>
         <ul className="space-y-2">
-          {categories?.map((cat) => (
+          {data?.map((cat: string, index: number) => (
             <li
-              key={cat}
+              key={index}
               onClick={() => setSelectedCategory(cat)}
               className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${selectedCategory === cat
-                  ? "bg-blue-100 text-blue-600 font-medium"
-                  : "hover:bg-gray-100 text-gray-800"
+                ? "bg-blue-100 text-indigo-600 font-medium"
+                : "hover:bg-gray-100 text-gray-800"
                 }`}
             >
               {cat}
               {selectedCategory === cat && (
-                <FiChevronRight className="text-blue-500" />
+                <FiChevronRight className="text-indigo-600" />
               )}
             </li>
           ))}
         </ul>
       </div>
-      <div className="flex flex-col sm:flex-row gap-3 pt-4">
+      <div className="flex items-center gap-2 pt-4">
         <Button
           label="Apply Filters"
           variant="custom"
@@ -126,7 +142,7 @@ const Sidebar = () => {
             applyFliters();
             setMobileOpen(false);
           }}
-          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-all duration-200"
+          className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm transition-all duration-200"
         />
         <Button
           label="Reset"
