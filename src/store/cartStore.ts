@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 import { product } from "@/components"; 
-import { CartItem } from "@/types/cartStore";
+import { CartItem } from "@/types/cartStoreType";
 
 interface CartState {
   cartOpen: boolean;

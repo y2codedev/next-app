@@ -4,7 +4,7 @@ import React from "react";
 import { FiX, FiPlus, FiMinus } from "react-icons/fi";
 import { Button, OptimizedImage } from "@/components";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
-import { CartItem } from "@/types/cartStore";
+import { CartItem } from "@/types/cartStoreType";
 
 interface CartDrawerProps {
   isOpen: boolean;
