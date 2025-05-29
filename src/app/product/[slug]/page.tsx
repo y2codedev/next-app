@@ -85,7 +85,7 @@ export default async function ProductDetailPage({
   }
   console.log(product, "product");
   if (!product) {
-    notFound();
+    return <></>
   }
 
   return (
