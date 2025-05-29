@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FiSearch, FiX } from "react-icons/fi";
 import { OptimizedImage } from "@/components";
 import { useRouter } from "next/navigation";
-import { ProductDetailProps } from "@/types/home";
+import { ProductDetail } from "@/types/home";
 import { useDebounce } from "use-debounce";
 
 interface SearchProps {
@@ -14,7 +14,7 @@ interface SearchProps {
 
 const SearchBar = ({ isOpen, onClose }: SearchProps) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<{ products: ProductDetailProps[] }>({
+  const [data, setData] = useState<{ products: ProductDetail[] }>({
     products: [],
   });
 
@@ -113,7 +113,7 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
             <ul className="max-h-100 overflow-y-auto">
               {data?.products?.length > 0 && searchTerm ? (
                 data?.products?.map(
-                  (item: ProductDetailProps, index: number) => (
+                  (item: ProductDetail, index: number) => (
                     <div key={index} onClick={handleProductClick}>
                       <li
                         key={index}
