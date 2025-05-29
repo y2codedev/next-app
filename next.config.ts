@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       'cdn.pixabay.com',
     ],
   },
+  reactStrictMode: false,
 };
 
 export default nextConfig;
