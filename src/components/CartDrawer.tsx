@@ -3,16 +3,13 @@
 import React from "react";
 import { FiX, FiPlus, FiMinus } from "react-icons/fi";
 import { Button, OptimizedImage } from "@/components";
-import { ProductDetailProps } from "@/types/home";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
+import { CartItem } from "@/types/cartStore";
 
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  cartItems: {
-    product: ProductDetailProps;
-    quantity: number;
-  }[];
+  cartItems: CartItem[];
   onIncrement: (index: number) => void;
   onDecrement: (index: number) => void;
   note: string;
@@ -28,21 +25,24 @@ const CartDrawer = ({
   note,
   setNote,
 }: CartDrawerProps) => {
-  const drawerRef = useOutsideClick<HTMLDivElement>({ handler: onClose, enabled: isOpen });
+  const drawerRef = useOutsideClick<HTMLDivElement>({
+    handler: onClose,
+    enabled: isOpen,
+  });
+
   const subtotal = cartItems?.reduce(
-    (total: number, item) => total + item.product.price * item.quantity,
+    (total, item) => total + item.product.price * item.quantity,
     0
   );
 
   return (
     <div
       ref={drawerRef}
-      className={`
-    fixed bottom-0 right-0 z-50 bg-white shadow-sm
-    h-full w-full sm:w-[28%]
-    transition-transform duration-300
-    ${isOpen ? "translate-y-0 sm:translate-x-0" : "translate-y-full sm:translate-x-full"}
-  `}
+      className={`fixed bottom-0 right-0 z-50 bg-white shadow-sm h-full w-full sm:w-[28%] transition-transform duration-300 ${
+        isOpen
+          ? "translate-y-0 sm:translate-x-0"
+          : "translate-y-full sm:translate-x-full"
+      }`}
     >
       <div className="flex justify-between items-center p-4 border-b border-gray-200 sticky top-0 bg-white z-10 rounded-t-2xl sm:rounded-none">
         <h2 className="text-sm font-semibold text-secondary">Your Cart</h2>
@@ -53,10 +53,13 @@ const CartDrawer = ({
 
       <div className="flex flex-col h-full">
         <div className="flex-1 overflow-y-auto p-4">
-          {cartItems?.map((item, index) => (
+          {cartItems.map((item, index) => (
             <div key={index} className="flex gap-4 mb-4 items-start">
               <OptimizedImage
-                src={item.product.images || "https://cdn.dummyjson.com/product-images/mens-watches/longines-master-collection/1.webp"}
+                src={
+                  item.product.images?.[0] ||
+                  "https://cdn.dummyjson.com/product-images/mens-watches/longines-master-collection/1.webp"
+                }
                 alt={item.product.title}
                 width={80}
                 height={80}
@@ -121,7 +124,7 @@ const CartDrawer = ({
             <span className="uppercase">Subtotal</span>
             <span>₹{subtotal?.toFixed(2)}</span>
           </div>
-          <div className="flex items-center justify-center  gap-2 px-1 pt-2">
+          <div className="flex items-center justify-center gap-2 px-1 pt-2">
             <Button
               label="View Cart"
               variant="custom"

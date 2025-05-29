@@ -13,8 +13,8 @@ import {
 import { useCartStore } from "@/store/cartStore";
 
 export default function Navbar() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [isSupportOpen, setIsSupportOpen] = useState<boolean>(false);
   const { cartOpen, setCartOpen, cartItems, handleIncrement, handleDecrement, note, setNote } = useCartStore();
 
   return (
@@ -36,12 +36,11 @@ export default function Navbar() {
       <CartDrawer
         isOpen={cartOpen}
         onClose={() => setCartOpen(false)}
-        cartItems={cartItems || []}
+        cartItems={cartItems}
         onIncrement={handleIncrement}
         onDecrement={handleDecrement}
         note={note}
         setNote={setNote}
-        onCheckout={() => alert("Proceed to checkout")}
       />
     </div>
   );

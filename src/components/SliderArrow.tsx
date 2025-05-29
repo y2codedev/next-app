@@ -18,9 +18,9 @@ const SliderArrow: React.FC<SliderArrowProps> = ({ onClick, direction }) => {
       aria-label={isLeft ? "Previous Slide" : "Next Slide"}
     >
       {isLeft ? (
-        <FaArrowLeftLong size={15} color="black" />
+        <FaArrowLeftLong size={15} color="#fff" />
       ) : (
-        <FaArrowRight size={15} color="black" />
+        <FaArrowRight size={15} color="#fff" />
       )}
     </button>
   );
