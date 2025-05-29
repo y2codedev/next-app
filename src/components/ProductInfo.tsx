@@ -8,7 +8,7 @@ interface Props {
   description: string;
   price: number;
   discountPercentage: number;
-  rating: number;
+  rating: number | undefined;
   stock: number;
   warrantyInformation?: string;
   shippingInformation?: string;
@@ -28,7 +28,7 @@ const ProductInfo: React.FC<Props> = ({
   returnPolicy,
   minimumOrderQuantity,
 }) => {
-  const fullStars = Math.floor(rating);
+  const fullStars = Math.floor(Number(rating || 0));
   const emptyStars = 5 - fullStars;
 
   return (
@@ -57,7 +57,7 @@ const ProductInfo: React.FC<Props> = ({
           {[...Array(emptyStars)].map((_, i) => (
             <FaRegStar key={`empty-${i}`} className="text-yellow-400" />
           ))}
-          <span className="ml-1">({rating.toFixed(1)})</span>
+          <span className="ml-1">({rating?.toFixed(1)})</span>
         </div>
         <span className={stock < 10 ? "text-red-600" : ""}>
           {stock < 10 ? `Only ${stock} left!` : `In Stock: ${stock}`}
