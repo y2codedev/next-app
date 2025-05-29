@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { ProductDetail } from "@/components";
 import { ProductDetail as ProductDetailType } from "@/types/home";
 
