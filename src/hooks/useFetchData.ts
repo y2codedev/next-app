@@ -13,8 +13,9 @@ export const useFetchData = (url: string) => {
         const res = await fetch(url, { cache: "no-store" });
         const json = await res.json();
         setData(json);
-      } catch (err) {
-        setError("Failed to fetch data");
+      } catch (err: unknown) {
+        const error = err as Error;
+        setError(error.message || "Failed to fetch data");
       } finally {
         setLoading(false);
       }

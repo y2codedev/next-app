@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { HeroSections } from "@/components";
 import Review from "@/components/Review";
 
 const Home = () => {
-  const [activeSection, setActiveSection] = useState<number>(0);
 
   const sectionRefs = useRef([
     React.createRef<HTMLDivElement>(),
@@ -17,10 +16,7 @@ const Home = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = sectionRefs.current.findIndex(ref => ref.current === entry.target);
-            if (index !== -1) {
-              setActiveSection(index);
-            }
+            entry.target.classList.add("animate-fadeIn");
           }
         });
       },
@@ -48,7 +44,7 @@ const Home = () => {
         >
           <HeroSections />
         </div>
-         <div
+        <div
           ref={sectionRefs.current[1]}
           className="scroll-section snap-start h-screen w-full shrink-0 flex items-center justify-center transition-all duration-[800ms] ease-in-out animate-fadeIn"
         >
