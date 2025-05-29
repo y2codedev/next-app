@@ -65,16 +65,17 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
       <div
         ref={drawerRef}
         className={`
-          fixed bottom-0 right-0 z-50 bg-white shadow-lg
-          rounded-t-2xl sm:rounded-md
-          h-[80%] sm:h-[79%] w-full sm:max-w-5xl
-          overflow-hidden
-          transition-transform duration-500 ease-in-out 
-          ${open
-            ? "translate-y-0 sm:translate-x-0 sm:top-1/2 sm:left-1/7 sm:-translate-y-1/2"
-            : "translate-y-full sm:scale-95 sm:opacity-0 sm:pointer-events-none"
+  fixed inset-0 z-50 flex items-center justify-center
+  bg-white shadow-lg rounded-2xl
+  h-[80%] w-full max-w-5xl mx-auto
+  overflow-hidden
+  transition-transform duration-500 ease-in-out
+  ${open
+            ? "opacity-100 scale-100 pointer-events-auto"
+            : "opacity-0 scale-95 pointer-events-none"
           }
-        `}
+`}
+
       >
         <div className="relative sm:px-2 px-0 flex overflow-y-auto flex-col sm:flex-row h-full sm:h-auto">
           <button
