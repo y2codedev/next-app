@@ -94,13 +94,13 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
               />
             </div>
 
-           <div className="py-4 px-2 sm:px-0  ">
-             <ThumbnailSlider
-              images={[thumbnail, ...images]}
-              activeImage={mainImage}
-              onImageClick={setMainImage}
-            />
-           </div>
+            <div className="py-4 px-2 sm:px-0  ">
+              <ThumbnailSlider
+                images={[thumbnail, ...images]}
+                activeImage={mainImage}
+                onImageClick={setMainImage}
+              />
+            </div>
           </div>
 
           <div className="flex  sm:w-1/2 flex-col h-full">
@@ -115,11 +115,13 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                       ₹ {(price / (1 - discountPercentage / 100)).toFixed(0)}
                     </span>
                   </div>
+
                   <span className="bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded">
                     {discountPercentage}% OFF
                   </span>
                 </div>
-
+                <SizeSelector />
+                <ColorSelector />
                 <div className="flex justify-between items-center text-sm mb-4">
                   <div className="flex items-center gap-1">{renderStars()}</div>
                   <span className={stock < 10 ? "text-red-600" : ""}>
@@ -133,9 +135,6 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                   <p><strong>Return Policy:</strong> {returnPolicy}</p>
                   <p><strong>Min Order:</strong> {minimumOrderQuantity}</p>
                 </div>
-
-                <SizeSelector />
-                <ColorSelector />
               </div>
             </div>
 
@@ -152,7 +151,6 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                   </button>
                 </div>
                 <div className="flex flex-col items-end text-[12px] font-semibold">
-                  <span className="uppercase">Subtotal</span>
                   <span>${price.toFixed(2)}</span>
                 </div>
               </div>
@@ -167,7 +165,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                     <FiPlus size={12} />
                   </button>
                 </div>
-                <Button 
+                <Button
                   onClick={() => console.log("Add to Cart Clicked")}
                   label="Add to Cart"
                   variant="custom"

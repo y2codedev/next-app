@@ -533,7 +533,8 @@ export const productData: ProductData = {
       },
       items: {
         "#D3A196": {
-          price: "10",
+          id: 1,
+          price:10,
           title: "Luxury Timepieces - Blush Watch Edition",
           description: "A refined collection of elegant watches with a soft pink aesthetic, ideal for classy occasions.",
           images: [
@@ -542,9 +543,18 @@ export const productData: ProductData = {
             "https://cdn.pixabay.com/photo/2018/02/24/20/39/clock-3179167_1280.jpg",
             "https://cdn.pixabay.com/photo/2018/02/16/02/03/pocket-watch-3156771_640.jpg",
           ],
+          thumbnail: "https://cdn.pixabay.com/photo/2016/04/30/02/53/rolex-watches-1362341_640.jpg",
+          discountPercentage: 15,
+          stock: 50,
+          rating: 4.5,
+          warrantyInformation: "1-year manufacturer warranty",
+          shippingInformation: "Free shipping on orders over $50",
+          returnPolicy: "30-day money-back guarantee",
+          minimumOrderQuantity: 1
         },
         "#FFD700": {
-          price: "12",
+          id: 2,
+          price: 21,
           title: "Gold Glamour - Luxe Makeup Collection",
           description: "Golden-themed cosmetics for a radiant and luxurious look, perfect for special events and bold styles.",
           images: [
@@ -553,9 +563,18 @@ export const productData: ProductData = {
             "https://cdn.pixabay.com/photo/2020/05/17/06/31/collection-5180255_640.jpg",
             "https://cdn.pixabay.com/photo/2020/01/02/17/37/eyeshadow-4736412_640.jpg"
           ],
+          thumbnail: "https://cdn.pixabay.com/photo/2022/04/11/18/17/makeup-7126383_1280.png",
+          discountPercentage: 10,
+          stock: 5,
+          rating: 3.5,
+          warrantyInformation: "2-year manufacturer warranty",
+          shippingInformation: "Free shipping on orders over $50",
+          returnPolicy: "30-day money-back guarantee",
+          minimumOrderQuantity: 1
         },
         "#4682B4": {
-          price: "11",
+          id: 3,
+          price: 11,
           title: "Coastal Comforts - Ocean Blue Interiors",
           description: "A serene selection of stylish hotel and living room spaces inspired by ocean blue tranquility.",
           images: [
@@ -564,9 +583,18 @@ export const productData: ProductData = {
             "https://cdn.pixabay.com/photo/2019/08/19/13/58/bed-4416515_640.jpg",
             "https://cdn.pixabay.com/photo/2020/02/01/06/12/living-room-4809587_640.jpg",
           ],
+          thumbnail: "https://cdn.pixabay.com/photo/2019/08/19/13/58/bed-4416515_640.jpg",
+          discountPercentage: 10,
+          stock: 5,
+          rating: 3.5,
+          warrantyInformation: "2-year manufacturer warranty",
+          shippingInformation: "Free shipping on orders over $50",
+          returnPolicy: "30-day money-back guarantee",
+          minimumOrderQuantity: 1
         },
         "#90EE90": {
-          price: "9",
+          id: 4,
+          price: 299,
           title: "Fresh Steps - Mint Green Running Shoes",
           description: "Energetic and stylish mint green sneakers designed for comfort, speed, and everyday athletic wear.",
           images: [
@@ -575,9 +603,16 @@ export const productData: ProductData = {
             "https://cdn.pixabay.com/photo/2014/04/10/18/39/running-shoe-321199_640.jpg",
             "https://cdn.pixabay.com/photo/2017/07/13/02/53/shoe-2498994_640.jpg"
           ],
+          thumbnail: "https://cdn.pixabay.com/photo/2014/04/10/18/39/running-shoe-321199_640.jpg",
+          discountPercentage: 10,
+          stock: 5,
+          rating: 3.5,
+          warrantyInformation: "2-year manufacturer warranty",
+          shippingInformation: "Free shipping on orders over $50",
+          returnPolicy: "30-day money-back guarantee",
+          minimumOrderQuantity: 1
         },
       }
-
     },
   ],
 };

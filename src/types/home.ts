@@ -71,10 +71,19 @@ export interface ProductApiResponse {
 export type ColorCode = string;
 
 export interface VariantItem {
-  price: string;
+  id?: number;
+  price: number;
   title: string;
   description: string;
   images: string[];
+  stock?: number;
+  thumbnail?: string;
+  discountPercentage?: number;
+  warrantyInformation?: string;
+  shippingInformation?: string;
+  returnPolicy?: string;
+  minimumOrderQuantity?: number;
+  rating?: number;
 }
 
 export interface Variant {
@@ -89,3 +98,4 @@ export interface Variant {
 export interface ProductData {
   variants: Variant[];
 }
+

@@ -1,22 +1,22 @@
 "use client";
 
-import React, {  } from "react";
+import React from "react";
 import { HeroSections } from "@/components";
 import Review from "@/components/Review";
 
 const Home = () => {
   return (
-    <>
-      <div className="scroll-container relative">
-        <div  className="scroll-section">
-          <HeroSections />
-        </div>
-
-        <div className="scroll-section">
-          <Review />
-        </div>
+    <div className="h-screen w-full overflow-y-auto snap-y snap-mandatory">
+      <div className="h-screen w-full snap-start">
+        <HeroSections />
       </div>
-    </>
+      <div className="h-screen w-full snap-start">
+        <Review />
+      </div>
+       <div className="h-screen w-full snap-start">
+        <HeroSections />
+      </div>
+    </div>
   );
 };
 
