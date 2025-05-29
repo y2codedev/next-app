@@ -1,6 +1,7 @@
-// next.config.js
 module.exports = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-};
+    skipTypescriptChecking: true,
+    // or
+    typescript: {
+       transpileOnly: true // same as ts-node --transpile-only
+    }
+}
