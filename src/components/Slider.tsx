@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Slider from "react-slick";
-import {OptimizedImage} from "@/components";
+import { OptimizedImage } from "@/components";
 
 type ThumbnailSliderProps = {
   images: string[];
@@ -40,7 +40,7 @@ const ThumbnailSlider: React.FC<ThumbnailSliderProps> = ({
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           centerMode: false,
         },
@@ -49,15 +49,14 @@ const ThumbnailSlider: React.FC<ThumbnailSliderProps> = ({
   };
 
   return (
-    <div className="slider-container">
+    <div className="">
       <Slider {...settings}>
         {images?.map((imgSrc, idx) => (
-          <div key={idx} className="px-1">
+          <div key={idx} className="px-0">
             <div
               onClick={() => onImageClick?.(imgSrc)}
-              className={`relative w-20 sm:w-40 h-20 sm:h-40 cursor-pointer rounded overflow-hidden border ${
-                activeImage === imgSrc ? "border-indigo-600" : "border-gray-200"
-              }`}
+              className={`relative w-16 sm:w-40 h-16 sm:h-40 cursor-pointer rounded overflow-hidden border ${activeImage === imgSrc ? "border-indigo-600" : "border-gray-200"
+                }`}
             >
               <OptimizedImage
                 src={imgSrc}

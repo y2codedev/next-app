@@ -12,11 +12,12 @@ import {
 
 export const navLinks: NavItem[] = [
   { label: "Ionic shower filter", href: "/", isActive: true },
-  { label: "NMC Filter Cartridge", href: "/" },
-  { label: "Shower Filter Accessories & Spare Parts", href: "/" },
+  { label: "Products", href: "/products" },
   { label: "About", href: "/" },
   { label: "Blog", href: "/" },
   { label: "Support", nested: true },
+  { label: "NMC Filter Cartridge", href: "/" },
+  { label: "Shower Filter Accessories & Spare Parts", href: "/" },
   { label: "Go to swissblu.com", href: "/" },
 ];
 

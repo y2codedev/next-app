@@ -58,7 +58,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
       {open && (
         <div
           onClick={onClose}
-          className="fixed inset-0 bg-black/30 z-40  transition-opacity  duration-500"
+          className="fixed inset-0 bg-black/50 z-50  transition-opacity  duration-500"
         />
       )}
       <div
@@ -68,29 +68,31 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
     inset-0 sm:inset-auto
     bottom-0 sm:bottom-auto
     sm:top-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2
-    flex items-end sm:items-center justify-center
+    flex items-end sm:items-center justify-center  
     w-full sm:max-w-5xl
-    h-[100%] sm:h-auto
+    h-[100%] sm:h-[75%]
     bg-white shadow-lg
     rounded-none sm:rounded-2xl
-    overflow-hidden
+    overflow-y-auto
     transition-all duration-300 ease-in-out
+    py-2
+    container
     ${open
             ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
             : "opacity-0 translate-y-full sm:translate-y-0 scale-95 pointer-events-none"
           }
   `}
       >
-        <div className="relative sm:px-2 px-0 flex overflow-y-auto flex-col sm:flex-row h-full sm:h-auto">
+        <div className="relative  flex overflow-y-auto flex-col sm:flex-row h-full">
           <button
             onClick={onClose}
-            className="absolute top-4 cursor-pointer right-4 z-10 text-gray-500 hover:text-black"
+            className="absolute h-6 w-6 flex items-center justify-center rounded-full bg-indigo-600 top-2 cursor-pointer right-0 z-10 text-white hover:bg-indigo-700"
             aria-label="Close"
           >
-            <FiX size={20} />
+            <FiX size={18} />
           </button>
           <div className="w-full sm:w-1/2 relative flex flex-col ">
-            <div className="relative w-full mt-3 h-48 sm:h-[500px] overflow-hidden">
+            <div className="relative w-full mt-3 h-64 sm:h-[500px] overflow-hidden">
               <OptimizedImage
                 src={mainImage}
                 alt={title}
@@ -98,8 +100,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                 className="object-cover"
               />
             </div>
-
-            <div className="py-4 px-2 sm:px-0  ">
+            <div className="py-4  sm:px-0  ">
               <ThumbnailSlider
                 images={[thumbnail, ...images]}
                 activeImage={mainImage}
@@ -109,9 +110,9 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
           </div>
 
           <div className="flex  sm:w-1/2 flex-col h-full">
-            <div className="px-4 flex flex-col  flex-grow sm:py-10   sm:pb-0 sm:h-auto">
+            <div className=" flex flex-col  flex-grow sm:py-10   sm:pb-0 sm:h-auto">
               <div>
-                <h3 className="text-lg font-semibold mt-6 sm:mt-0 line-clamp-2">
+                <h3 className="text-lg font-semibold mt-2 sm:mt-0 line-clamp-2">
                   {title}
                 </h3>
                 <p className="text-sm text-gray-500 mb-2 line-clamp-4">
@@ -158,7 +159,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
             </div>
 
             {/* Sticky Footer */}
-            <div className="sticky bottom-0 bg-white border-t border-gray-300 sm:static sm:border-none p-4">
+            <div className="sticky bottom-0 bg-white sm:border-t border-none border-gray-300 sm:static sm:border-none">
               <div className="flex sm:hidden justify-between items-center bg-gray-100 px-4 py-3 rounded-xl text-sm text-secondary mb-2">
                 <div className="flex items-center gap-2">
                   <button className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
@@ -174,7 +175,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center justify-between gap-2 pt-2">
+              <div className="flex items-center justify-between gap-2 sm:pb-6 pb-2">
                 <div className="hidden bg-gray-200  px-6 py-3 rounded-lg text-sm text-secondary sm:flex items-center gap-6">
                   <button className="h-6 w-6 cursor-pointer flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
                     <FiMinus size={12} />

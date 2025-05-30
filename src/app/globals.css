@@ -115,16 +115,7 @@ html {
   overflow: hidden;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 100, 100, 0.6);
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(100, 100, 100, 0.9);
+.slick-dots li button:before {
+  font-size: 15px !important;
+  color: blue;
 }

@@ -44,7 +44,7 @@ const Sidebar = () => {
     if (selectedCategory && selectedCategory !== "All") {
       params.set("category", selectedCategory);
     } else {
-      params.delete("category");
+      params.delete("category", selectedCategory);
     }
 
     router.push(`?${params.toString()}`);
@@ -63,7 +63,7 @@ const Sidebar = () => {
     if (selectedCategory) {
       localStorage.setItem("selectedCategory", selectedCategory);
     }
-  }, [selectedCategory, data]);
+  }, [selectedCategory]);
 
   const renderSidebar = () => (
     <div className="w-full min-h-screen rounded-md  p-4 bg-white shadow-sm animate-fade-in space-y-6">

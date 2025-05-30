@@ -14,7 +14,7 @@ const sizes: SizeOption[] = [
 ];
 
 const SizeSelector = () => {
-  const [selectedSize, setSelectedSize] = useState("26");
+  const [selectedSize, setSelectedSize] = useState("2");
 
   return (
     <div className="mb-4">
