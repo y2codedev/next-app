@@ -7,6 +7,7 @@ import { OptimizedImage, Button, SizeSelector, ColorSelector, ThumbnailSlider } 
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { ProductDetail } from "@/types/home";
 import useAddToCart from "@/hooks/useAddToCart";
+import showToast from "@/lib/toast";
 
 interface AddToCartModalProps {
   open: boolean;
@@ -59,6 +60,10 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
 
   const handleIncrement = () => {
     if (qty < stock) {
+      if (qty >= Number(minimumOrderQuantity)) {
+        showToast.error(`You are reach the minimum order quantity`);
+        return;
+      }
       setQty((prevQty) => prevQty + 1);
     }
   };
@@ -73,8 +78,11 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
     const storedQty = localStorage.getItem("qty");
     if (storedQty) {
       const parsedQty = JSON.parse(storedQty);
+      console.log("Parsed qty:", parsedQty);
       if (typeof parsedQty === "number" && parsedQty > 0 && parsedQty <= stock) {
         setQty(parsedQty);
+      } else {
+        setQty(1);
       }
     }
   }, [stock]);

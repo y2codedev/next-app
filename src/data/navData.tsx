@@ -551,7 +551,7 @@ export const productData: ProductData = {
           warrantyInformation: "1-year manufacturer warranty",
           shippingInformation: "Free shipping on orders over $50",
           returnPolicy: "30-day money-back guarantee",
-          minimumOrderQuantity: 1,
+          minimumOrderQuantity: 20,
         },
         "#FFD700": {
           id: 2,
@@ -573,7 +573,7 @@ export const productData: ProductData = {
           warrantyInformation: "2-year manufacturer warranty",
           shippingInformation: "Free shipping on orders over $50",
           returnPolicy: "30-day money-back guarantee",
-          minimumOrderQuantity: 1,
+          minimumOrderQuantity: 4,
         },
         "#4682B4": {
           id: 3,
@@ -595,7 +595,7 @@ export const productData: ProductData = {
           warrantyInformation: "2-year manufacturer warranty",
           shippingInformation: "Free shipping on orders over $50",
           returnPolicy: "30-day money-back guarantee",
-          minimumOrderQuantity: 1,
+          minimumOrderQuantity: 3,
         },
         "#90EE90": {
           id: 4,
@@ -612,12 +612,12 @@ export const productData: ProductData = {
           thumbnail:
             "https://cdn.pixabay.com/photo/2014/04/10/18/39/running-shoe-321199_640.jpg",
           discountPercentage: 10,
-          stock: 5,
+          stock: 15,
           rating: 3.5,
           warrantyInformation: "2-year manufacturer warranty",
           shippingInformation: "Free shipping on orders over $50",
           returnPolicy: "30-day money-back guarantee",
-          minimumOrderQuantity: 1,
+          minimumOrderQuantity: 10,
         },
       },
     },
