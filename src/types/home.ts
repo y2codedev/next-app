@@ -55,7 +55,7 @@ export interface ProductDetail {
   minimumOrderQuantity?: number;
   color?: string[];
   fixture?: string;
-  images?: string[]; 
+  images?: string[];
   reviews?: {
     rating: number;
     comment: string;
@@ -98,4 +98,3 @@ export interface Variant {
 export interface ProductData {
   variants: Variant[];
 }
-

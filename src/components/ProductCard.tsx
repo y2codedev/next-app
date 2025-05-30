@@ -4,9 +4,8 @@ import React, { useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { CiHeart } from "react-icons/ci";
 import Link from "next/link";
-import { Button, OptimizedImage } from "@/components";
+import { Button, OptimizedImage, AddToCartModal } from "@/components";
 import { FaStar, FaRegStar } from "react-icons/fa";
-import AddToCartModal from "./AddToCartModal";
 import { ProductDetail } from "@/types/home";
 
 const ProductCard = (product: ProductDetail) => {
@@ -64,7 +63,6 @@ const ProductCard = (product: ProductDetail) => {
             }
             className="absolute top-2 right-2 bg-white p-2 rounded-full cursor-pointer shadow hover:bg-red-500 transition-colors duration-300"
           />
-
         </div>
 
         <div className="px-4 flex flex-col flex-grow">

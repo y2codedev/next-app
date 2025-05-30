@@ -103,7 +103,6 @@
   animation: fadeIn 1s ease-in forwards;
 }
 
-
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;

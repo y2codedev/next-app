@@ -15,7 +15,10 @@ export default function DrawerMenu({
   isSupportOpen,
   toggleSupport,
 }: DrawerMenuProps) {
-  const drawerRef = useOutsideClick<HTMLDivElement>({ handler: onClose, enabled: isOpen });
+  const drawerRef = useOutsideClick<HTMLDivElement>({
+    handler: onClose,
+    enabled: isOpen,
+  });
   return (
     <div
       ref={drawerRef}

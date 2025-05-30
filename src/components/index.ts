@@ -11,6 +11,19 @@ import CartDrawer from "./CartDrawer";
 import SearchBar from "./SearchBar";
 import HeroSections from "./Home/HeroSections";
 import BottomNav from "./BottomNav/BottomNav";
+import AddToCartModal from "./AddToCartModal";
+import SliderArrow from "./SliderArrow";
+import PaymentMethods from "./BottomNav/PaymentMethods";
+import SizeSelector from "./SizeSelector";
+import ColorSelector from "./ColorSelector";
+import ThumbnailSlider from "./Slider";
+import Loader from "./Loader";
+import ProductImageGallery from "./ProductImageGallery";
+import ProductActions from "./ProductActions";
+import ProductReviews from "./ProductReviews";
+import ProductInfo from "./ProductInfo";
+import  EmptyStateNotice  from "./EmptyStateNotice";
+import Sidebar from "./Sidebar";
 import {
   MockJsonData,
   searchData,
@@ -38,4 +51,17 @@ export {
   product,
   socialLinks,
   supportLinks,
+  AddToCartModal,
+  SliderArrow,
+  PaymentMethods,
+  SizeSelector,
+  ColorSelector,
+  ThumbnailSlider,
+  Loader,
+  ProductImageGallery,
+  ProductActions,
+  ProductReviews,
+  ProductInfo,
+  EmptyStateNotice,
+  Sidebar,
 };

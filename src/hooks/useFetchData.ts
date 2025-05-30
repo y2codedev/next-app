@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 
-
 export const useFetchData = (url: string) => {
   const [data, setData] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);

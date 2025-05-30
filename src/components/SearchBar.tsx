@@ -19,18 +19,19 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
   });
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedValue] = useDebounce(searchTerm, 1000);
+  const [debouncedValue] = useDebounce(searchTerm, 500);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const fetchProducts = async () => {
+      const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/products/search?q=${debouncedValue}`;
       setLoading(true);
       setError(null);
 
       try {
         const response = await fetch(
-          `https://dummyjson.com/products/search?q=${debouncedValue}`,
+          baseUrl,
         );
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status}`);
@@ -112,25 +113,23 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
           {searchTerm && (
             <ul className="max-h-100 overflow-y-auto">
               {data?.products?.length > 0 && searchTerm ? (
-                data?.products?.map(
-                  (item: ProductDetail, index: number) => (
-                    <div key={index} onClick={handleProductClick}>
-                      <li
-                        key={index}
-                        className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
-                      >
-                        <OptimizedImage
-                          src={item?.thumbnail}
-                          alt={item?.title}
-                          className="w-16 h-16 "
-                        />
-                        <p className="text-sm font-medium text-gray-800">
-                          {item?.title}
-                        </p>
-                      </li>
-                    </div>
-                  ),
-                )
+                data?.products?.map((item: ProductDetail, index: number) => (
+                  <div key={index} onClick={handleProductClick}>
+                    <li
+                      key={index}
+                      className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
+                    >
+                      <OptimizedImage
+                        src={item?.thumbnail}
+                        alt={item?.title}
+                        className="w-16 h-16 "
+                      />
+                      <p className="text-sm font-medium text-gray-800">
+                        {item?.title}
+                      </p>
+                    </li>
+                  </div>
+                ))
               ) : (
                 <p className="p-4 text-sm text-gray-500 text-center">
                   No results found

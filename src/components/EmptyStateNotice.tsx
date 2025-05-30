@@ -7,7 +7,7 @@ interface EmptyStateNoticeProps {
   message: string;
 }
 
-export const EmptyStateNotice: React.FC<EmptyStateNoticeProps> = ({
+const EmptyStateNotice: React.FC<EmptyStateNoticeProps> = ({
   message,
 }) => (
   <div className="flex flex-col items-center justify-center min-h-[70vh] text-center px-4">
@@ -22,3 +22,5 @@ export const EmptyStateNotice: React.FC<EmptyStateNoticeProps> = ({
     </div>
   </div>
 );
+
+export default EmptyStateNotice;

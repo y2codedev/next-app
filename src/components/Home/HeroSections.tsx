@@ -1,14 +1,10 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import OptimizedImage from "@/components/OptimizedImage";
-import SliderArrow from "../SliderArrow";
-import PaymentMethods from "../BottomNav/PaymentMethods";
 import { ColorCode, VariantItem } from "@/types/home";
 import { productData } from "@/data/navData";
 import Slider from "react-slick";
-import Button from "../Button";
-import AddToCartModal from "../AddToCartModal";
+import { Button, AddToCartModal, PaymentMethods, SliderArrow, OptimizedImage } from "@/components";
 
 const HeroSections = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -83,7 +79,7 @@ const HeroSections = () => {
   if (!variant) return null;
 
   return (
-  <div className="relative w-full min-h-screen overflow-hidden">
+    <div className="relative w-full min-h-screen overflow-hidden">
       <Slider {...sliderSettings} ref={sliderRef}>
         {variantItem.images?.map((img, idx) => (
           <div key={idx} className="relative w-full min-h-screen">
@@ -105,20 +101,25 @@ const HeroSections = () => {
         ))}
       </Slider>
 
-      <nav className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 bg-black/40 sm:px-4 px-2 py-3 rounded-md backdrop-blur-md shadow-md w-[97vw] sm:w-1/2">
+      <nav className="absolute bottom-5  left-1/2 transform -translate-x-1/2 z-30 bg-black/40 sm:px-4 px-2 py-3 rounded-md backdrop-blur-md shadow-md w-[97vw] sm:w-1/2">
         <div className="flex justify-between items-center mb-4 gap-4">
           <div className="">
             <span className="text-sm pb-2 text-white block">Images</span>
             <div className="flex gap-3 overflow-x-auto">
-              {variantItem.images?.map((img, idx) => (
+              {variantItem?.images?.map((img, idx) => (
                 <div
                   key={idx}
                   onClick={() => handleImageSelect(img)}
-                  className={`w-[30px] h-[30px] sm:w-[60px] sm:h-[60px] cursor-pointer flex items-center justify-center rounded border overflow-hidden transition ${
-                    img === selectedImage
+                  className={`w-[30px] h-[30px]
+                  sm:w-[60px] sm:h-[60px]
+                  md:w-[30px] md:h-[30px]
+                  lg:w-[60px] lg:h-[60px]
+                  xl:w-[60px] xl:h-[60px]
+                  2xl:w-[100px] 2xl:h-[100px]
+                  cursor-pointer flex items-center justify-center rounded border overflow-hidden transition ${img === selectedImage
                       ? "border-indigo-600"
                       : "border-gray-300"
-                  }`}
+                    }`}
                 >
                   <OptimizedImage
                     src={img}
@@ -138,11 +139,10 @@ const HeroSections = () => {
                 <div
                   key={color}
                   onClick={() => handleColorSelect(color)}
-                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full cursor-pointer border-2 transition duration-200 ${
-                    selectedColor === color
-                      ? "border-white"
-                      : "border-transparent"
-                  }`}
+                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full cursor-pointer border-2 transition duration-200 ${selectedColor === color
+                    ? "border-white"
+                    : "border-transparent"
+                    }`}
                   style={{ backgroundColor: color }}
                   aria-label={`Color ${color}`}
                   title={`Color: ${color}`}
@@ -165,10 +165,9 @@ const HeroSections = () => {
       <AddToCartModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
-        product={product}  
+        product={product}
       />
     </div>
-    
   );
 };
 

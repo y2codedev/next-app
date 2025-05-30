@@ -1,7 +1,7 @@
 "use client";
 
 import { create } from "zustand";
-import { product } from "@/components"; 
+import { product } from "@/components";
 import { CartItem } from "@/types/cartStoreType";
 
 interface CartState {
@@ -25,7 +25,7 @@ export const useCartStore = create<CartState>((set) => ({
     product?.map((p) => ({
       product: {
         ...p,
-        images: [p.image], 
+        images: [p.image],
       },
       quantity: p.quantity,
     })) || [],
@@ -38,7 +38,7 @@ export const useCartStore = create<CartState>((set) => ({
   handleIncrement: (index) =>
     set((state) => ({
       cartItems: state.cartItems.map((item, i) =>
-        i === index ? { ...item, quantity: item.quantity + 1 } : item
+        i === index ? { ...item, quantity: item.quantity + 1 } : item,
       ),
     })),
 
@@ -47,7 +47,7 @@ export const useCartStore = create<CartState>((set) => ({
       cartItems: state.cartItems.map((item, i) =>
         i === index
           ? { ...item, quantity: Math.max(1, item.quantity - 1) }
-          : item
+          : item,
       ),
     })),
 }));

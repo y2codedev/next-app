@@ -1,15 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { OptimizedImage } from "@/components";
-import ThumbnailSlider from "./Slider";
+import { OptimizedImage,ThumbnailSlider } from "@/components";
 
 interface Props {
   thumbnail: string;
   images: string[];
   title: string;
 }
-
 
 const ProductImageGallery: React.FC<Props> = ({ thumbnail, images, title }) => {
   const [mainImage, setMainImage] = useState<string>(thumbnail);
@@ -30,7 +28,7 @@ const ProductImageGallery: React.FC<Props> = ({ thumbnail, images, title }) => {
         onImageClick={setMainImage}
       />
     </div>
-  )
-}
+  );
+};
 
 export default ProductImageGallery;

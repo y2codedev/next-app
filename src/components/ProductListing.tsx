@@ -1,10 +1,8 @@
 "use client";
 
 import React from "react";
-import Sidebar from "./Sidebar";
-import ProductCard from "./ProductCard";
 import { ProductApiResponse, ProductDetail } from "@/types/home";
-import { EmptyStateNotice } from "./EmptyStateNotice";
+import { EmptyStateNotice, ProductCard, Sidebar } from "@/components";
 
 interface ProductListingProps {
   data: ProductApiResponse;

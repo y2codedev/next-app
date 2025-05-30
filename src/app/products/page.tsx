@@ -33,7 +33,9 @@ async function getProductsData(
     const data = await response.json();
 
     if (!data?.products || !Array.isArray(data.products)) {
-      throw new Error("Invalid response format: products missing or not an array");
+      throw new Error(
+        "Invalid response format: products missing or not an array",
+      );
     }
     return {
       products: data.products,
@@ -87,10 +89,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
     return {
       title: seoData.title || "Browse Our Products | YourStore",
-      description: seoData.description || "Explore a wide range of high-quality products.",
+      description:
+        seoData.description || "Explore a wide range of high-quality products.",
       openGraph: {
         title: seoData.title || "Browse Our Products | YourStore",
-        description: seoData.description || "Explore a wide range of high-quality products.",
+        description:
+          seoData.description ||
+          "Explore a wide range of high-quality products.",
         url: `https://dummyjson.com/products`,
         siteName: "YourStore",
         images: [
@@ -106,7 +111,8 @@ export async function generateMetadata(): Promise<Metadata> {
       twitter: {
         card: "summary_large_image",
         title: seoData.title || "Our Products | YourStore",
-        description: seoData.description || "Discover top-rated items in our catalog.",
+        description:
+          seoData.description || "Discover top-rated items in our catalog.",
         images: [
           {
             url: seoData.thumbnail || `https://dummyjson.com/og-image.jpg`,

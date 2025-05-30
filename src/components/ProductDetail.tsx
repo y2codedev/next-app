@@ -1,10 +1,7 @@
 "use client";
 import React from "react";
 import { ProductDetail as ProductDetailType } from "@/types/home";
-import ProductImageGallery from "./ProductImageGallery";
-import ProductActions from "./ProductActions";
-import ProductReviews from "./ProductReviews";
-import ProductInfo from "./ProductInfo";
+import { ProductInfo, ProductImageGallery, ProductActions, ProductReviews } from "@/components";
 
 const ProductDetail: React.FC<ProductDetailType> = ({
   title,

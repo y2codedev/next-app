@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import PaymentMethods from "./PaymentMethods";
+import { PaymentMethods } from "@/components";
+
 
 const BottomNav = () => {
   return (

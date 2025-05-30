@@ -3,11 +3,7 @@
 import React, { useState } from "react";
 import { FiMinus, FiPlus, FiX } from "react-icons/fi";
 import { FaRegStar, FaStar } from "react-icons/fa";
-
-import { OptimizedImage, Button } from "@/components";
-import SizeSelector from "./SizeSelector";
-import ColorSelector from "./ColorSelector";
-import ThumbnailSlider from "./Slider";
+import { OptimizedImage, Button, SizeSelector, ColorSelector, ThumbnailSlider } from "@/components";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { ProductDetail } from "@/types/home";
 
@@ -36,7 +32,10 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
     returnPolicy,
     minimumOrderQuantity,
   } = product;
-  const drawerRef = useOutsideClick<HTMLDivElement>({ handler: onClose, enabled: open });
+  const drawerRef = useOutsideClick<HTMLDivElement>({
+    handler: onClose,
+    enabled: open,
+  });
   const [mainImage, setMainImage] = useState<string>(thumbnail);
 
   const renderStars = () => {
@@ -65,17 +64,22 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
       <div
         ref={drawerRef}
         className={`
-  fixed inset-0 z-50 flex items-center justify-center
-  bg-white shadow-lg rounded-2xl
-  h-[80%] w-full max-w-5xl mx-auto
-  overflow-hidden
-  transition-transform duration-500 ease-in-out
-  ${open
-            ? "opacity-100 scale-100 pointer-events-auto"
-            : "opacity-0 scale-95 pointer-events-none"
+    fixed z-50
+    inset-0 sm:inset-auto
+    bottom-0 sm:bottom-auto
+    sm:top-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2
+    flex items-end sm:items-center justify-center
+    w-full sm:max-w-5xl
+    h-[100%] sm:h-auto
+    bg-white shadow-lg
+    rounded-none sm:rounded-2xl
+    overflow-hidden
+    transition-all duration-300 ease-in-out
+    ${open
+            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+            : "opacity-0 translate-y-full sm:translate-y-0 scale-95 pointer-events-none"
           }
-`}
-
+  `}
       >
         <div className="relative sm:px-2 px-0 flex overflow-y-auto flex-col sm:flex-row h-full sm:h-auto">
           <button
@@ -107,11 +111,17 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
           <div className="flex  sm:w-1/2 flex-col h-full">
             <div className="px-4 flex flex-col  flex-grow sm:py-10   sm:pb-0 sm:h-auto">
               <div>
-                <h3 className="text-lg font-semibold mt-6 sm:mt-0 line-clamp-2">{title}</h3>
-                <p className="text-sm text-gray-500 mb-2 line-clamp-4">{description}</p>
+                <h3 className="text-lg font-semibold mt-6 sm:mt-0 line-clamp-2">
+                  {title}
+                </h3>
+                <p className="text-sm text-gray-500 mb-2 line-clamp-4">
+                  {description}
+                </p>
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex flex-col">
-                    <p className="text-md font-semibold text-indigo-600">₹ {price}</p>
+                    <p className="text-md font-semibold text-indigo-600">
+                      ₹ {price}
+                    </p>
                     <span className="text-xs text-gray-500 line-through mt-1">
                       ₹ {(price / (1 - discountPercentage / 100)).toFixed(0)}
                     </span>
@@ -131,10 +141,18 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                 </div>
 
                 <div className="flex gap-4 flex-col text-sm text-gray-800 border-t border-gray-300 pt-4 mb-6">
-                  <p><strong>Shipping:</strong> {shippingInformation}</p>
-                  <p><strong>Warranty:</strong> {warrantyInformation}</p>
-                  <p><strong>Return Policy:</strong> {returnPolicy}</p>
-                  <p><strong>Min Order:</strong> {minimumOrderQuantity}</p>
+                  <p>
+                    <strong>Shipping:</strong> {shippingInformation}
+                  </p>
+                  <p>
+                    <strong>Warranty:</strong> {warrantyInformation}
+                  </p>
+                  <p>
+                    <strong>Return Policy:</strong> {returnPolicy}
+                  </p>
+                  <p>
+                    <strong>Min Order:</strong> {minimumOrderQuantity}
+                  </p>
                 </div>
               </div>
             </div>

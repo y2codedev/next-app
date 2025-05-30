@@ -15,7 +15,15 @@ import { useCartStore } from "@/store/cartStore";
 export default function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [isSupportOpen, setIsSupportOpen] = useState<boolean>(false);
-  const { cartOpen, setCartOpen, cartItems, handleIncrement, handleDecrement, note, setNote } = useCartStore();
+  const {
+    cartOpen,
+    setCartOpen,
+    cartItems,
+    handleIncrement,
+    handleDecrement,
+    note,
+    setNote,
+  } = useCartStore();
 
   return (
     <div>

@@ -9,13 +9,14 @@ import {
   FiArrowDown,
   FiChevronRight,
 } from "react-icons/fi";
-import Button from "./Button";
+import { Button } from "@/components";
 import { useFetchData } from "@/hooks/useFetchData";
 
 const sortFields = [{ value: "price", label: "Price" }];
 
 const Sidebar = () => {
-  const { data } = useFetchData("https://dummyjson.com/products/category-list");
+  const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/products/category-list`;
+  const { data } = useFetchData(baseUrl);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -56,8 +57,6 @@ const Sidebar = () => {
     setSelectedCategory("All");
   };
 
-
-
   useEffect(() => {
     if (!selectedCategory && data?.length) {
       setSelectedCategory(data[0]);
@@ -66,7 +65,6 @@ const Sidebar = () => {
       localStorage.setItem("selectedCategory", selectedCategory);
     }
   }, [selectedCategory, data]);
-
 
   const renderSidebar = () => (
     <div className="w-full min-h-screen rounded-md  p-4 bg-white shadow-sm animate-fade-in space-y-6">
@@ -115,7 +113,9 @@ const Sidebar = () => {
       </div>
 
       <div>
-        <h4 className="text-sm font-semibold text-gray-700 mb-2">All Categories</h4>
+        <h4 className="text-sm font-semibold text-gray-700 mb-2">
+          All Categories
+        </h4>
         <ul className="space-y-2">
           {data?.map((cat: string, index: number) => (
             <li

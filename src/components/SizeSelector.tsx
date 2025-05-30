@@ -19,8 +19,7 @@ const SizeSelector = () => {
   return (
     <div className="mb-4">
       <span className="block font-semibold text-sm mb-2 text-secondary">
-        Size:{" "}
-        <span>{sizes.find((s) => s.value === selectedSize)?.label}</span>
+        Size: <span>{sizes.find((s) => s.value === selectedSize)?.label}</span>
       </span>
 
       <ul className="flex flex-wrap gap-3">
@@ -30,13 +29,17 @@ const SizeSelector = () => {
               onClick={() => setSelectedSize(size.value)}
               role="button"
               tabIndex={0}
-              onKeyDown={(e) => e.key === "Enter" && setSelectedSize(size.value)}
+              onKeyDown={(e) =>
+                e.key === "Enter" && setSelectedSize(size.value)
+              }
               className={`
                 px-4 py-1  border-[1px] text-sm cursor-pointer 
                 transition-all 
-                ${selectedSize === size.value
-                  ? "bg-indigo-600 text-white border-indigo-600"
-                  : "text-gray-700 border-gray-300"}
+                ${
+                  selectedSize === size.value
+                    ? "bg-indigo-600 text-white border-indigo-600"
+                    : "text-gray-700 border-gray-300"
+                }
               `}
             >
               {size.label}

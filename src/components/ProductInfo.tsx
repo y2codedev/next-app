@@ -2,8 +2,7 @@
 
 import React from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
-import SizeSelector from "./SizeSelector";
-import ColorSelector from "./ColorSelector";
+import { SizeSelector, ColorSelector } from "@/components";
 
 interface Props {
   title: string;
@@ -83,7 +82,7 @@ const ProductInfo: React.FC<Props> = ({
       <div>
         <SizeSelector />
       </div>
-        <div>
+      <div>
         <ColorSelector />
       </div>
     </div>

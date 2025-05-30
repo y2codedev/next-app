@@ -32,7 +32,7 @@ const CartDrawer = ({
 
   const subtotal = cartItems?.reduce(
     (total, item) => total + item.product.price * item.quantity,
-    0
+    0,
   );
 
   return (

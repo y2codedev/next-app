@@ -84,7 +84,7 @@ export default async function ProductDetailPage({
   }
   console.log(product, "product");
   if (!product) {
-   return null
+    return null;
   }
 
   return (

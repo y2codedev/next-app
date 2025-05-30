@@ -13,7 +13,7 @@ const Home = () => {
       <div className="h-screen w-full snap-start">
         <Review />
       </div>
-       <div className="h-screen w-full snap-start">
+      <div className="h-screen w-full snap-start">
         <HeroSections />
       </div>
     </div>
