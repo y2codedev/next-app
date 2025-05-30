@@ -198,11 +198,11 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
             <div className="sticky bottom-0 bg-white sm:border-t border-none border-gray-300 sm:static sm:border-none">
               <div className="flex sm:hidden justify-between items-center bg-gray-100 px-4 py-3 rounded-xl text-sm text-secondary mb-2">
                 <div className="flex items-center gap-2">
-                  <button className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
+                  <button onClick={handleDecrement} className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
                     <FiMinus size={12} />
                   </button>
-                  <span>1</span>
-                  <button className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
+                  <span>{qty}</span>
+                  <button onClick={handleIncrement} className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
                     <FiPlus size={12} />
                   </button>
                 </div>
