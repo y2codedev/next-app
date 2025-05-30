@@ -53,7 +53,7 @@ const Sidebar = () => {
   const resetFilters = () => {
     router.push(`/products`);
     setSearch("");
-    setSelectedCategory("All");
+    setSelectedCategory("");
   };
 
   useEffect(() => {
