@@ -6,6 +6,7 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import { OptimizedImage, Button, SizeSelector, ColorSelector, ThumbnailSlider } from "@/components";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { ProductDetail } from "@/types/home";
+import useAddToCart from "@/hooks/useAddToCart";
 
 interface AddToCartModalProps {
   open: boolean;
@@ -19,6 +20,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
   product,
 }) => {
   const {
+    id,
     title,
     price,
     thumbnail,
@@ -37,6 +39,8 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
     enabled: open,
   });
   const [mainImage, setMainImage] = useState<string>(thumbnail);
+  const [qty, setQty] = useState<number>(1);
+  const { addToCart, loading } = useAddToCart()
 
   const renderStars = () => {
     const fullStars = Math.floor(Number(rating || 0));
@@ -51,6 +55,18 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
         ))}
       </>
     );
+  };
+
+  const handleIncrement = () => {
+    if (qty < stock) {
+      setQty((prevQty) => prevQty + 1);
+    }
+  };
+
+  const handleDecrement = () => {
+    if (qty > 1) {
+      setQty((prevQty) => prevQty - 1);
+    }
   };
 
   return (
@@ -158,7 +174,6 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
               </div>
             </div>
 
-            {/* Sticky Footer */}
             <div className="sticky bottom-0 bg-white sm:border-t border-none border-gray-300 sm:static sm:border-none">
               <div className="flex sm:hidden justify-between items-center bg-gray-100 px-4 py-3 rounded-xl text-sm text-secondary mb-2">
                 <div className="flex items-center gap-2">
@@ -171,22 +186,31 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                   </button>
                 </div>
                 <div className="flex flex-col items-end text-[12px] font-semibold">
-                  <span>${price.toFixed(2)}</span>
+                  <span>₹{(price * qty).toFixed(2)}</span>
                 </div>
               </div>
 
               <div className="flex items-center justify-between gap-2 sm:pb-6 pb-2">
                 <div className="hidden bg-gray-200  px-6 py-3 rounded-lg text-sm text-secondary sm:flex items-center gap-6">
-                  <button className="h-6 w-6 cursor-pointer flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
+                  <button
+                    onClick={handleDecrement}
+                    className={`h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition ${qty <= 1 ? "opacity-50 cursor-not-allowed" : ""}`}
+                  >
                     <FiMinus size={12} />
                   </button>
-                  <span>1</span>
-                  <button className="h-6 w-6 flex  cursor-pointer items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
+                  <span className="text-sm ">{qty}</span>
+                  <button
+                    onClick={handleIncrement}
+                    disabled={qty >= stock}
+                    className={`h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition ${qty >= stock ? "opacity-50 cursor-not-allowed" : ""}`}
+                  >
                     <FiPlus size={12} />
                   </button>
+
                 </div>
                 <Button
-                  onClick={() => console.log("Add to Cart Clicked")}
+                  loading={loading}
+                  onClick={() => addToCart(id, qty)}
                   label="Add to Cart"
                   variant="custom"
                   className="sm:w-1/2 w-full bg-indigo-600 text-white py-3 text-sm rounded-lg hover:bg-indigo-700 transition"

@@ -6,6 +6,8 @@ import { Suspense } from "react";
 import Loader from "@/components/Loader";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,6 +31,18 @@ export default function RootLayout({
       <body>
         <Navbar />
         <Suspense fallback={<Loader />}>{children}</Suspense>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </body>
     </html>
   );
