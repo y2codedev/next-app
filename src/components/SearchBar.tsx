@@ -25,13 +25,19 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/products/search?q=${debouncedValue}`;
+      if (!debouncedValue) {
+        setData({ products: [] });
+        return;
+      }
+
       setLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(
-          baseUrl,
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/search?q=${debouncedValue}`,
+          {
+            cache: "no-store",
+          },
         );
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status}`);

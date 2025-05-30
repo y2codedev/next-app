@@ -15,8 +15,7 @@ import { useFetchData } from "@/hooks/useFetchData";
 const sortFields = [{ value: "price", label: "Price" }];
 
 const Sidebar = () => {
-  const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/products/category-list`;
-  const { data } = useFetchData(baseUrl);
+  const { data } = useFetchData(`${process.env.NEXT_PUBLIC_BASE_URL}/products/category-list`);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
 
