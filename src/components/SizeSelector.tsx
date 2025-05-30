@@ -33,7 +33,7 @@ const SizeSelector = () => {
                 e.key === "Enter" && setSelectedSize(size.value)
               }
               className={`
-                px-4 py-1  border-[1px] text-sm cursor-pointer 
+                px-4 py-2  border-[1px] text-sm cursor-pointer 
                 transition-all 
                 ${
                   selectedSize === size.value

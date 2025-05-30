@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { FiMinus, FiPlus, FiX } from "react-icons/fi";
+import React, { useEffect, useState } from "react";
+import { FiMinus, FiPlus, FiShoppingCart, FiX } from "react-icons/fi";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { OptimizedImage, Button, SizeSelector, ColorSelector, ThumbnailSlider } from "@/components";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
@@ -68,6 +68,20 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
       setQty((prevQty) => prevQty - 1);
     }
   };
+
+  useEffect(() => {
+    const storedQty = localStorage.getItem("qty");
+    if (storedQty) {
+      const parsedQty = JSON.parse(storedQty);
+      if (typeof parsedQty === "number" && parsedQty > 0 && parsedQty <= stock) {
+        setQty(parsedQty);
+      }
+    }
+  }, [stock]);
+
+  useEffect(() => {
+    localStorage.setItem("qty", JSON.stringify(qty));
+  }, [qty]);
 
   return (
     <>
@@ -206,14 +220,14 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                   >
                     <FiPlus size={12} />
                   </button>
-
                 </div>
                 <Button
+                  icon={<FiShoppingCart size={16} />}
                   loading={loading}
                   onClick={() => addToCart(id, qty)}
                   label="Add to Cart"
                   variant="custom"
-                  className="sm:w-1/2 w-full bg-indigo-600 text-white py-3 text-sm rounded-lg hover:bg-indigo-700 transition"
+                  className="sm:w-1/2 w-full gap-2 bg-indigo-600 text-white py-3 text-sm rounded-lg hover:bg-indigo-700 transition"
                 />
               </div>
             </div>

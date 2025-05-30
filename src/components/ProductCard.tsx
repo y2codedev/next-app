@@ -19,6 +19,7 @@ const ProductCard = (product: ProductDetail) => {
     discountPercentage,
     stock,
   } = product;
+  
   const [modalOpen, setModalOpen] = useState(false);
 
   const renderStars = () => {
@@ -104,7 +105,6 @@ const ProductCard = (product: ProductDetail) => {
         </div>
       </div>
 
-      {/* Modal */}
       <AddToCartModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
