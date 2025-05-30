@@ -101,30 +101,29 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
       )}
       <div
         ref={drawerRef}
-        className={`
-    fixed z-50
-    inset-0 sm:inset-auto
-    bottom-0 sm:bottom-auto
-    sm:top-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2
-    flex items-end sm:items-center justify-center  
-    w-full sm:max-w-5xl
-    h-[100%] sm:h-[75%]
-    bg-white shadow-lg
-    rounded-none sm:rounded-2xl
-    overflow-y-auto
-    transition-all duration-300 ease-in-out
-    py-2
-    container
-    ${open
-            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
-            : "opacity-0 translate-y-full sm:translate-y-0 scale-95 pointer-events-none"
-          }
-  `}
+       className={`
+  fixed z-50 inset-0
+  flex items-end sm:items-center justify-center
+  w-full sm:max-w-5xl
+  h-full sm:h-[75%]
+  bg-white shadow-lg
+  rounded-none sm:rounded-2xl
+  overflow-y-auto
+  transition-all duration-300 ease-in-out
+  container
+  ${open
+    ? 'opacity-100 pointer-events-auto translate-y-0 scale-100'
+    : 'opacity-0 pointer-events-none translate-y-full sm:translate-y-0 sm:scale-95'
+  }
+  sm:inset-auto
+  sm:top-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2
+`}
+
       >
-        <div className="relative  flex overflow-y-auto flex-col sm:flex-row h-full">
+        <div className="relative  flex overflow-y-auto flex-col sm:gap-4 gap-0 sm:flex-row h-full">
           <button
             onClick={onClose}
-            className="absolute h-6 w-6 flex items-center justify-center rounded-full bg-indigo-600 top-2 cursor-pointer right-0 z-10 text-white hover:bg-indigo-700"
+            className="absolute h-6 w-6 flex items-center justify-center rounded-full bg-indigo-600 top-4 right-2 cursor-pointer  z-10 text-white hover:bg-indigo-700"
             aria-label="Close"
           >
             <FiX size={18} />
@@ -135,7 +134,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                 src={mainImage}
                 alt={title}
                 fill
-                className="object-cover"
+                className="object-cover rounded-sm "
               />
             </div>
             <div className="py-4  sm:px-0  ">
