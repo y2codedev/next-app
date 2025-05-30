@@ -114,8 +114,13 @@ html {
   transition: width 0.3s ease;
   overflow: hidden;
 }
-
-.slick-dots li button:before {
+/* globals.css or your component CSS file */
+.slick-dots li button::before {
   font-size: 15px !important;
-  color: blue;
+  color: rgb(149, 149, 221) !important;
+  opacity: 1 !important;
 }
+.slick-dots li.slick-active button::before {
+  color:blue !important;
+}
+
