@@ -92,7 +92,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
             <FiX size={18} />
           </button>
           <div className="w-full sm:w-1/2 relative flex flex-col ">
-            <div className="relative w-full mt-3 h-64 sm:h-[500px] overflow-hidden">
+            <div className="relative w-full mt-3 h-64 sm:h-[440px] overflow-hidden">
               <OptimizedImage
                 src={mainImage}
                 alt={title}
