@@ -137,7 +137,6 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
             <FiX size={18} />
           </button>
           <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto h-full">
-            {/* Left Grid Item: Images */}
             <div className="relative flex flex-col w-full">
               <div className="relative w-full mt-3 h-64 sm:h-[440px] overflow-hidden">
                 <OptimizedImage
@@ -147,7 +146,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                   className="object-cover rounded-sm "
                 />
               </div>
-              <div className="">
+              <div className="px-1">
                 <ThumbnailSlider
                   images={images}
                   activeImage={mainImage}
