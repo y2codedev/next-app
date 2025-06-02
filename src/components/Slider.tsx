@@ -15,8 +15,8 @@ const ThumbnailSlider: React.FC<ThumbnailSliderProps> = ({
   onImageClick,
 }) => {
   const settings = {
-    dots: true,
-    infinite: true,
+    dots: images.length > 1,
+    infinite: false,
     speed: 500,
     arrows: false,
     slidesToShow: 3,
@@ -40,33 +40,40 @@ const ThumbnailSlider: React.FC<ThumbnailSliderProps> = ({
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 3,
           slidesToScroll: 1,
-          centerMode: false,
+          centerMode: images.length > 1,
         },
       },
     ],
   };
 
   return (
-    <div className="">
+    <div className="mt-8 w-full ">
       <Slider {...settings}>
-        {images?.map((imgSrc, idx) => (
-          <div key={idx} className="px-0">
+        {images &&
+          images?.map((imgSrc, idx) => (
             <div
-              onClick={() => onImageClick?.(imgSrc)}
-              className={`relative w-16 sm:w-40 h-16 sm:h-40 cursor-pointer rounded overflow-hidden border ${activeImage === imgSrc ? "border-indigo-600" : "border-gray-200"
-                }`}
+              key={idx}
+              className={`px-0 
+              }`}
             >
-              <OptimizedImage
-                src={imgSrc}
-                alt={`Preview ${idx}`}
-                fill
-                className="object-cover"
-              />
+              <div
+                onClick={() => onImageClick?.(imgSrc.trim())}
+                className={`relative cursor-pointer rounded overflow-hidden border 
+      ${activeImage === imgSrc ? "border-indigo-600" : "border-gray-200"} 
+      w-14 sm:w-1/3 md:w-28 lg:w-36 
+      sm:h-28 md:h-32 lg:h-36 h-14  `}
+              >
+                <OptimizedImage
+                  src={imgSrc}
+                  alt={`Preview ${idx}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </Slider>
     </div>
   );

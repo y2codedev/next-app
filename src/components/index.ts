@@ -22,7 +22,7 @@ import ProductImageGallery from "./ProductImageGallery";
 import ProductActions from "./ProductActions";
 import ProductReviews from "./ProductReviews";
 import ProductInfo from "./ProductInfo";
-import  EmptyStateNotice  from "./EmptyStateNotice";
+import EmptyStateNotice from "./EmptyStateNotice";
 import Sidebar from "./Sidebar";
 import {
   MockJsonData,

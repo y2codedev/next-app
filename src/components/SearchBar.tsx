@@ -34,7 +34,8 @@ const SearchBar = ({ isOpen, onClose }: SearchProps) => {
       setError(null);
 
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/search?q=${debouncedValue}`,
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/products/search?q=${debouncedValue}`,
           {
             cache: "no-store",
           },

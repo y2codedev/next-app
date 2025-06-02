@@ -11,6 +11,8 @@ interface ProductListingProps {
 const ProductListing = ({ data }: ProductListingProps) => {
   const { products = [], total = 0 } = data || {};
 
+  console.log("ProductListing data:", data);
+
   return (
     <div className="p-0 m-0 flex flex-col lg:grid lg:grid-cols-12 gap-6">
       <div className="lg:col-span-3">
@@ -19,7 +21,7 @@ const ProductListing = ({ data }: ProductListingProps) => {
 
       <div className="lg:col-span-9">
         {products.length === 0 ? (
-          <EmptyStateNotice message="No products found." />
+          <EmptyStateNotice message="" />
         ) : (
           <>
             <h1 className="sm:text-xl text-xl font-bold sm:mb-8 mb-4">

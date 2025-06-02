@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { OptimizedImage,ThumbnailSlider } from "@/components";
+import { OptimizedImage, ThumbnailSlider } from "@/components";
 
 interface Props {
   thumbnail: string;

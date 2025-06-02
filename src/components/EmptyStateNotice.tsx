@@ -7,9 +7,7 @@ interface EmptyStateNoticeProps {
   message: string;
 }
 
-const EmptyStateNotice: React.FC<EmptyStateNoticeProps> = ({
-  message,
-}) => (
+const EmptyStateNotice: React.FC<EmptyStateNoticeProps> = ({ message }) => (
   <div className="flex flex-col items-center justify-center min-h-[70vh] text-center px-4">
     <div className="bg-white  rounded-lg  p-8 max-w-md w-full">
       <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mx-auto mb-4">

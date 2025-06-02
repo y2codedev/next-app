@@ -4,7 +4,13 @@ import React, { useState, useRef } from "react";
 import { ColorCode, VariantItem } from "@/types/home";
 import { productData } from "@/data/navData";
 import Slider from "react-slick";
-import { Button, AddToCartModal, PaymentMethods, SliderArrow, OptimizedImage } from "@/components";
+import {
+  Button,
+  AddToCartModal,
+  PaymentMethods,
+  SliderArrow,
+  OptimizedImage,
+} from "@/components";
 
 const HeroSections = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -22,7 +28,7 @@ const HeroSections = () => {
   const [selectedColor, setSelectedColor] = useState<ColorCode>(defaultColor);
   const [variantItem, setVariantItem] = useState<VariantItem>(defaultItem);
   const [selectedImage, setSelectedImage] = useState<string>(
-    defaultItem.images[0] || ""
+    defaultItem.images[0] || "",
   );
 
   const sliderRef = useRef<Slider>(null);
@@ -116,10 +122,11 @@ const HeroSections = () => {
                   lg:w-[60px] lg:h-[60px]
                   xl:w-[60px] xl:h-[60px]
                   2xl:w-[100px] 2xl:h-[100px]
-                  cursor-pointer flex items-center justify-center rounded border overflow-hidden transition ${img === selectedImage
+                  cursor-pointer flex items-center justify-center rounded border overflow-hidden transition ${
+                    img === selectedImage
                       ? "border-indigo-600"
                       : "border-gray-300"
-                    }`}
+                  }`}
                 >
                   <OptimizedImage
                     src={img}
@@ -139,10 +146,11 @@ const HeroSections = () => {
                 <div
                   key={color}
                   onClick={() => handleColorSelect(color)}
-                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full cursor-pointer border-2 transition duration-200 ${selectedColor === color
-                    ? "border-white"
-                    : "border-transparent"
-                    }`}
+                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full cursor-pointer border-2 transition duration-200 ${
+                    selectedColor === color
+                      ? "border-white"
+                      : "border-transparent"
+                  }`}
                   style={{ backgroundColor: color }}
                   aria-label={`Color ${color}`}
                   title={`Color: ${color}`}

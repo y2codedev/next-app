@@ -1,7 +1,12 @@
 "use client";
 import React from "react";
 import { ProductDetail as ProductDetailType } from "@/types/home";
-import { ProductInfo, ProductImageGallery, ProductActions, ProductReviews } from "@/components";
+import {
+  ProductInfo,
+  ProductImageGallery,
+  ProductActions,
+  ProductReviews,
+} from "@/components";
 
 const ProductDetail: React.FC<ProductDetailType> = ({
   title,
@@ -20,7 +25,7 @@ const ProductDetail: React.FC<ProductDetailType> = ({
 }) => {
   return (
     <>
-      <div className="flex flex-col  sm:py-6 py-0 sm:flex-row">
+      <div className="flex flex-col  sm:py-6 py-0 sm:flex-row gap-4">
         <div className="w-full sm:w-1/2 mb-6">
           <ProductImageGallery
             thumbnail={thumbnail}

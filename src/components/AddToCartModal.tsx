@@ -3,7 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { FiMinus, FiPlus, FiShoppingCart, FiX } from "react-icons/fi";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import { OptimizedImage, Button, SizeSelector, ColorSelector, ThumbnailSlider } from "@/components";
+import {
+  OptimizedImage,
+  Button,
+  SizeSelector,
+  ColorSelector,
+  ThumbnailSlider,
+} from "@/components";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { ProductDetail } from "@/types/home";
 import useAddToCart from "@/hooks/useAddToCart";
@@ -41,7 +47,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
   });
   const [mainImage, setMainImage] = useState<string>(thumbnail);
   const [qty, setQty] = useState<number>(1);
-  const { addToCart, loading } = useAddToCart()
+  const { addToCart, loading } = useAddToCart();
 
   const renderStars = () => {
     const fullStars = Math.floor(Number(rating || 0));
@@ -79,7 +85,11 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
     if (storedQty) {
       const parsedQty = JSON.parse(storedQty);
       console.log("Parsed qty:", parsedQty);
-      if (typeof parsedQty === "number" && parsedQty > 0 && parsedQty <= stock) {
+      if (
+        typeof parsedQty === "number" &&
+        parsedQty > 0 &&
+        parsedQty <= stock
+      ) {
         setQty(parsedQty);
       } else {
         setQty(1);
@@ -101,7 +111,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
       )}
       <div
         ref={drawerRef}
-       className={`
+        className={`
   fixed z-50 inset-0
   flex items-end sm:items-center justify-center
   w-full sm:max-w-5xl
@@ -111,14 +121,14 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
   overflow-y-auto
   transition-all duration-300 ease-in-out
   container
-  ${open
-    ? 'opacity-100 pointer-events-auto translate-y-0 scale-100'
-    : 'opacity-0 pointer-events-none translate-y-full sm:translate-y-0 sm:scale-95'
+  ${
+    open
+      ? "opacity-100 pointer-events-auto translate-y-0 scale-100"
+      : "opacity-0 pointer-events-none translate-y-full sm:translate-y-0 sm:scale-95"
   }
   sm:inset-auto
   sm:top-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2
 `}
-
       >
         <div className="relative  flex overflow-y-auto flex-col sm:gap-4 gap-0 sm:flex-row h-full">
           <button
@@ -139,7 +149,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
             </div>
             <div className="py-4  sm:px-0  ">
               <ThumbnailSlider
-                images={[thumbnail, ...images]}
+                images={images}
                 activeImage={mainImage}
                 onImageClick={setMainImage}
               />
@@ -198,11 +208,17 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
             <div className="sticky bottom-0 bg-white sm:border-t border-none border-gray-300 sm:static sm:border-none">
               <div className="flex sm:hidden justify-between items-center bg-gray-100 px-4 py-3 rounded-xl text-sm text-secondary mb-2">
                 <div className="flex items-center gap-2">
-                  <button onClick={handleDecrement} className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
+                  <button
+                    onClick={handleDecrement}
+                    className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition"
+                  >
                     <FiMinus size={12} />
                   </button>
                   <span>{qty}</span>
-                  <button onClick={handleIncrement} className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition">
+                  <button
+                    onClick={handleIncrement}
+                    className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition"
+                  >
                     <FiPlus size={12} />
                   </button>
                 </div>

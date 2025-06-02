@@ -19,7 +19,7 @@ const ProductCard = (product: ProductDetail) => {
     discountPercentage,
     stock,
   } = product;
-  
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const renderStars = () => {
