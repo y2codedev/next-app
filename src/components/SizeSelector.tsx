@@ -18,7 +18,7 @@ const SizeSelector = () => {
 
   return (
     <div className="mb-4">
-      <span className="block font-semibold text-sm mb-2 text-secondary">
+      <span className="block font-semibold text-sm mb-2 text-gray-700">
         Size: <span>{sizes.find((s) => s.value === selectedSize)?.label}</span>
       </span>
 

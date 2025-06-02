@@ -28,7 +28,7 @@ export default function NavbarHeader({
               className="text-2xl cursor-pointer text-secondary"
               aria-label="Toggle menu"
             >
-              <FiMenu />
+              <FiMenu color="black" />
             </button>
             <button className="text-xl">EN</button>
           </div>
@@ -46,21 +46,21 @@ export default function NavbarHeader({
               className="text-2xl text-secondary cursor-pointer"
               aria-label="Search"
             >
-              <FiSearch />
+              <FiSearch color="black" />
             </button>
             <button
               onClick={() => router.push("/login")}
               className="text-2xl text-secondary hidden cursor-pointer sm:block"
               aria-label="Account"
             >
-              <FiUser />
+              <FiUser color="black" />
             </button>
             <button
               onClick={onCartClick}
               className="text-2xl text-secondary cursor-pointer"
               aria-label="Cart"
             >
-              <FiShoppingBag />
+              <FiShoppingBag color="black" />
             </button>
           </div>
         </div>

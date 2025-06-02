@@ -45,7 +45,7 @@ const ThumbnailSlider: React.FC<ThumbnailSliderProps> = ({
           centerMode: images.length > 1,
         },
       },
-       {
+      {
         breakpoint: 320,
         settings: {
           slidesToShow: 2,
@@ -57,16 +57,16 @@ const ThumbnailSlider: React.FC<ThumbnailSliderProps> = ({
   };
 
   return (
-    <div className="sm:mt-8 mt-4 w-full ">
+    <div className="sm:mt-8 mt-4 w-full  ">
       <Slider {...settings}>
         {images &&
           images?.map((imgSrc, idx) => (
-            <div key={idx} className="flex gap-2 px-2 items-center justify-center">
+            <div key={idx} className="flex gap-2  items-center justify-center">
               <div
                 onClick={() => onImageClick?.(imgSrc.trim())}
                 className={`relative cursor-pointer rounded overflow-hidden border 
                 ${activeImage === imgSrc ? "border-indigo-600" : "border-gray-200"} 
-                w-14 sm:w-1/3 md:w-28 lg:w-36 
+                w-14 sm:w-28 md:w-28 lg:w-36 
                 sm:h-28 md:h-32 lg:h-36 h-14  `}
               >
                 <OptimizedImage

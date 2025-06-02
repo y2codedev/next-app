@@ -165,7 +165,7 @@ const HeroSections = () => {
             label="Add to Cart"
             price={`₹ ${variantItem.price}`}
             onClick={() => setModalOpen(true)}
-            className="flex items-center gap-2 font-semibold py-3 w-full text-2xlsm bg-gray-200 text-secondary rounded hover:bg-gray-300"
+            className="flex items-center gap-2 font-semibold py-3 w-full text-2xlsm bg-gray-200 text-black rounded hover:bg-gray-300"
           />
         </div>
         <PaymentMethods />

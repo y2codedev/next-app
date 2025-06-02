@@ -12,8 +12,8 @@ import {
 } from "@/components";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { ProductDetail } from "@/types/home";
-import useAddToCart from "@/hooks/useAddToCart";
 import showToast from "@/lib/toast";
+import { useCartStoreApi } from "@/store/cartStoreApi";
 
 interface AddToCartModalProps {
   open: boolean;
@@ -47,7 +47,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
   });
   const [mainImage, setMainImage] = useState<string>(thumbnail);
   const [qty, setQty] = useState<number>(1);
-  const { addToCart, loading } = useAddToCart();
+  const { loading, error, addCart, } = useCartStoreApi();
 
   const renderStars = () => {
     const fullStars = Math.floor(Number(rating || 0));
@@ -65,18 +65,16 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
   };
 
   const handleIncrement = () => {
-    if (qty < stock) {
-      if (qty >= Number(minimumOrderQuantity)) {
-        showToast.error(`You are reach the minimum order quantity`);
-        return;
-      }
-      setQty((prevQty) => prevQty + 1);
+    if (qty <= stock) {
+      setQty((prev) => prev + 1);
+    } else {
+      showToast.error("Not enough stock");
     }
   };
 
   const handleDecrement = () => {
-    if (qty > 1) {
-      setQty((prevQty) => prevQty - 1);
+    if (qty >= 1) {
+      setQty((prev) => prev - 1);
     }
   };
 
@@ -97,9 +95,21 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
     }
   }, [stock]);
 
+
   useEffect(() => {
-    localStorage.setItem("qty", JSON.stringify(qty));
-  }, [qty]);
+    const storedQty = localStorage.getItem(`qty-${id}`);
+    if (storedQty) {
+      const parsedQty = Number(storedQty);
+      if (parsedQty > 0 && parsedQty <= stock) {
+        setQty(parsedQty);
+      }
+    }
+  }, [id]);
+
+  useEffect(() => {
+    localStorage.setItem(`qty-${id}`, qty.toString());
+  }, [qty, id]);
+
 
   return (
     <>
@@ -117,10 +127,10 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
     w-full sm:max-w-5xl
     h-full sm:h-[75%]
     bg-white shadow-lg
+    px-4 sm:px-6
     rounded-none sm:rounded-2xl
     overflow-y-auto
     transition-all duration-300 ease-in-out
-    container
     ${open
             ? "opacity-100 pointer-events-auto translate-y-0 scale-100"
             : "opacity-0 pointer-events-none translate-y-full sm:translate-y-0 sm:scale-95"}
@@ -131,7 +141,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
         <div className="relative  flex overflow-y-auto flex-col sm:gap-4 gap-0 sm:flex-row h-full">
           <button
             onClick={onClose}
-            className="absolute h-6 w-6 flex items-center justify-center rounded-full bg-indigo-600 top-4 right-2 cursor-pointer  z-10 text-white hover:bg-indigo-700"
+            className="absolute h-6 w-6 flex items-center justify-center rounded-full bg-indigo-600 top-4 right-0 cursor-pointer  z-10 text-white hover:bg-indigo-700"
             aria-label="Close"
           >
             <FiX size={18} />
@@ -146,7 +156,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                   className="object-cover rounded-sm "
                 />
               </div>
-              <div className="px-1">
+              <div className="">
                 <ThumbnailSlider
                   images={images}
                   activeImage={mainImage}
@@ -232,21 +242,21 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
                       onClick={handleDecrement}
                       className={`h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition ${qty <= 1 ? "opacity-50 cursor-not-allowed" : ""}`}
                     >
-                      <FiMinus size={12} />
+                      <FiMinus size={12} className="text-black" />
                     </button>
-                    <span className="text-sm ">{qty}</span>
+                    <span className="text-sm text-black ">{qty}</span>
                     <button
                       onClick={handleIncrement}
                       disabled={qty >= stock}
                       className={`h-6 w-6 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition ${qty >= stock ? "opacity-50 cursor-not-allowed" : ""}`}
                     >
-                      <FiPlus size={12} />
+                      <FiPlus size={12} className="text-black" />
                     </button>
                   </div>
                   <Button
                     icon={<FiShoppingCart size={16} />}
                     loading={loading}
-                    onClick={() => addToCart(id, qty)}
+                    onClick={() => addCart(id, qty)}
                     label="Add to Cart"
                     variant="custom"
                     className="sm:w-1/2 w-full gap-2 bg-indigo-600 text-white py-3 text-sm rounded-lg hover:bg-indigo-700 transition"
@@ -257,7 +267,6 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
           </div>
         </div>
       </div>
-
     </>
   );
 };

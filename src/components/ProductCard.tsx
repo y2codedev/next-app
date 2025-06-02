@@ -59,7 +59,7 @@ const ProductCard = (product: ProductDetail) => {
               <CiHeart
                 strokeWidth={0.5}
                 size={20}
-                className="text-secondary transition-colors duration-300 hover:text-white"
+                className="text-blake transition-colors duration-300 hover:text-white"
               />
             }
             className="absolute top-2 right-2 bg-white p-2 rounded-full cursor-pointer shadow hover:bg-red-500 transition-colors duration-300"
@@ -104,7 +104,6 @@ const ProductCard = (product: ProductDetail) => {
           </div>
         </div>
       </div>
-
       <AddToCartModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}

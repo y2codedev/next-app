@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const poppins = Poppins({
   subsets: ["latin"],
