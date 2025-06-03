@@ -11,8 +11,6 @@ interface ProductListingProps {
 const ProductListing = ({ data }: ProductListingProps) => {
   const { products = [], total = 0 } = data || {};
 
-  console.log("ProductListing data:", data);
-
   return (
     <div className="p-0 m-0 flex flex-col lg:grid lg:grid-cols-12 gap-6">
       <div className="lg:col-span-3">
