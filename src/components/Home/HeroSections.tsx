@@ -101,7 +101,8 @@ const HeroSections = () => {
             <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-4">
               <h2 className="text-2xl md:text-4xl text-white font-bold">
                 {variantItem.title}
-              </h2>
+              </h2> 
+            
               <p className="mt-2 md:mt-4 text-base text-white md:text-lg max-w-2xl">
                 {variantItem.description}
               </p>
