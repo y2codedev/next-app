@@ -93,8 +93,11 @@ const HeroSections = () => {
               src={img}
               alt={`${variantItem.title} image ${idx + 1}`}
               fill
+              loading={idx === 0 ? "eager" : "lazy"}
+              priority={idx === 0}
               className="object-cover"
             />
+
             <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-4">
               <h2 className="text-2xl md:text-4xl text-white font-bold">
                 {variantItem.title}
@@ -132,6 +135,7 @@ const HeroSections = () => {
                     alt={`Thumbnail ${idx + 1}`}
                     width={60}
                     height={60}
+                    loading="lazy"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -146,8 +150,8 @@ const HeroSections = () => {
                   key={color}
                   onClick={() => handleColorSelect(color)}
                   className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full cursor-pointer border-2 transition duration-200 ${selectedColor === color
-                      ? "border-white"
-                      : "border-transparent"
+                    ? "border-white"
+                    : "border-transparent"
                     }`}
                   style={{ backgroundColor: color }}
                   aria-label={`Color ${color}`}

@@ -8,7 +8,7 @@ interface OptimizedImageProps extends Omit<ImageProps, "src" | "alt"> {
   width?: number;
   height?: number;
   priority?: boolean;
-  loading?: "lazy";
+  loading?: "lazy" | "eager";
   fill?: boolean;
 }
 
