@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { MdError } from "react-icons/md";
 
 export default function GlobalError({
     error,
