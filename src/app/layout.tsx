@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
 import { Suspense } from "react";
+
+import "@/styles";
+import Navbar from "@/components/Navbar/Navbar";
 import Loader from "@/components/Loader";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import 'sweetalert2/dist/sweetalert2.min.css';
 
 const poppins = Poppins({
   subsets: ["latin"],

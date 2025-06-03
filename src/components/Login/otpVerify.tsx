@@ -1,11 +1,8 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
-import { FiX } from 'react-icons/fi';
-import Button from '../Button';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-import showToast from '@/lib/toast';
+import { CloseButton, useAlert, Button, showToast } from '@/components'
+
 interface OtpVerifyProps {
     email: string;
     isOpen: boolean;
@@ -13,13 +10,17 @@ interface OtpVerifyProps {
 }
 
 const OtpVerify: React.FC<OtpVerifyProps> = ({ email, isOpen, onClose }) => {
-    const MySwal = withReactContent(Swal)
+    const { showSuccess, showError } = useAlert();
     const modalRef = useRef<HTMLDialogElement | null>(null);
     const [otp, setOtp] = useState(['', '', '', '']);
 
     useEffect(() => {
         if (isOpen && modalRef.current) {
             modalRef.current.showModal();
+            setTimeout(() => {
+                const firstInput = document.getElementById('otp-0') as HTMLInputElement;
+                firstInput?.focus();
+            }, 100);
         } else if (!isOpen && modalRef.current?.open) {
             modalRef.current.close();
         }
@@ -46,22 +47,12 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ email, isOpen, onClose }) => {
         }
 
         if (code === '1234') {
-            MySwal.fire({
-                title: 'Success!',
-                text: 'OTP verified successfully.',
-                icon: 'success',
-                confirmButtonText: 'Continue'
-            })
+            showSuccess('Success!', 'OTP verified successfully.');
             onClose();
             setOtp(['', '', '', '']);
         } else {
-            MySwal.fire({
-                title: 'error!',
-                text: 'Invalid OTP. Please try again.',
-                icon: 'error',
-                confirmButtonText: 'Try Again'
-            })
-             onClose();
+            showError('Invalid OTP', 'The OTP you entered is incorrect.');
+            onClose();
         }
     };
 
@@ -69,14 +60,7 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ email, isOpen, onClose }) => {
     return (
         <dialog ref={modalRef} className="modal" id="otp_modal">
             <div className="modal-box max-w-md rounded-lg p-6 text-center relative">
-                <div
-                    onClick={onClose}
-                    className="absolute h-6 w-6 flex items-center justify-center rounded-full top-2 right-2 cursor-pointer z-10 text-white hover:bg-gray-200"
-                    aria-label="Close"
-                >
-                    <FiX size={18} color="#000" />
-                </div>
-
+                <CloseButton onClick={onClose} />
                 <div className="flex justify-center mb-4">
                     <FaUserCircle className="text-gray-400" size={64} />
                 </div>
@@ -93,6 +77,7 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ email, isOpen, onClose }) => {
                 <div className="flex justify-center gap-2 mb-6">
                     {otp.map((digit, index) => (
                         <input
+                            aria-label={`otp-${index}`}
                             key={index}
                             id={`otp-${index}`}
                             type="text"

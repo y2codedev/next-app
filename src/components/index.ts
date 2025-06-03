@@ -10,7 +10,6 @@ import DrawerMenu from "./Navbar/DrawerMenu";
 import CartDrawer from "./CartDrawer";
 import SearchBar from "./SearchBar";
 import HeroSections from "./Home/HeroSections";
-import BottomNav from "./BottomNav/BottomNav";
 import AddToCartModal from "./AddToCartModal";
 import SliderArrow from "./SliderArrow";
 import PaymentMethods from "./BottomNav/PaymentMethods";
@@ -24,6 +23,10 @@ import ProductReviews from "./ProductReviews";
 import ProductInfo from "./ProductInfo";
 import EmptyStateNotice from "./EmptyStateNotice";
 import Sidebar from "./Sidebar";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
+import CloseButton from "./CloseButton";
+import showToast from "@/lib/toast";
+import useAlert from "@/hooks/useAlert";
 import {
   MockJsonData,
   searchData,
@@ -44,7 +47,6 @@ export {
   CartDrawer,
   SearchBar,
   HeroSections,
-  BottomNav,
   MockJsonData,
   searchData,
   navLinks,
@@ -64,4 +66,8 @@ export {
   ProductInfo,
   EmptyStateNotice,
   Sidebar,
+  useOutsideClick,
+  CloseButton,
+  showToast,
+  useAlert,
 };

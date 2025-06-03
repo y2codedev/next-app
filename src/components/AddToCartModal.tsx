@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { FiMinus, FiPlus, FiShoppingCart, FiX } from "react-icons/fi";
+import { FiMinus, FiPlus, FiShoppingCart } from "react-icons/fi";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import {
   OptimizedImage,
@@ -9,10 +9,11 @@ import {
   SizeSelector,
   ColorSelector,
   ThumbnailSlider,
+  useOutsideClick,
+  CloseButton,
+  showToast,
 } from "@/components";
-import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { ProductDetail } from "@/types/home";
-import showToast from "@/lib/toast";
 import { useCartStoreApi } from "@/store/cartStoreApi";
 
 interface AddToCartModalProps {
@@ -139,13 +140,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
   `}
       >
         <div className="relative  flex overflow-y-auto flex-col sm:gap-4 gap-0 sm:flex-row h-full">
-          <button
-            onClick={onClose}
-            className="absolute h-6 w-6 flex items-center justify-center rounded-full bg-indigo-600 top-4 right-0 cursor-pointer  z-10 text-white hover:bg-indigo-700"
-            aria-label="Close"
-          >
-            <FiX size={18} />
-          </button>
+          <CloseButton iconColor="#fff" className="bg-indigo-600 hover:bg-indigo-700" onClick={onClose} />
           <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto h-full">
             <div className="relative flex flex-col w-full">
               <div className="relative w-full mt-3 h-64 sm:h-[440px] overflow-hidden">

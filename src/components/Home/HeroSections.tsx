@@ -122,11 +122,10 @@ const HeroSections = () => {
                   lg:w-[60px] lg:h-[60px]
                   xl:w-[60px] xl:h-[60px]
                   2xl:w-[100px] 2xl:h-[100px]
-                  cursor-pointer flex items-center justify-center rounded border overflow-hidden transition ${
-                    img === selectedImage
+                  cursor-pointer flex items-center justify-center rounded border overflow-hidden transition ${img === selectedImage
                       ? "border-indigo-600"
                       : "border-gray-300"
-                  }`}
+                    }`}
                 >
                   <OptimizedImage
                     src={img}
@@ -146,11 +145,10 @@ const HeroSections = () => {
                 <div
                   key={color}
                   onClick={() => handleColorSelect(color)}
-                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full cursor-pointer border-2 transition duration-200 ${
-                    selectedColor === color
+                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full cursor-pointer border-2 transition duration-200 ${selectedColor === color
                       ? "border-white"
                       : "border-transparent"
-                  }`}
+                    }`}
                   style={{ backgroundColor: color }}
                   aria-label={`Color ${color}`}
                   title={`Color: ${color}`}
@@ -170,6 +168,7 @@ const HeroSections = () => {
         </div>
         <PaymentMethods />
       </nav>
+
       <AddToCartModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}

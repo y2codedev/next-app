@@ -10,10 +10,8 @@ const Login = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Optionally, validate or send a request here before opening the modal
     if (email) {
-      setShowOtpModal(true); // show modal
+      setShowOtpModal(true); 
     }
   };
 

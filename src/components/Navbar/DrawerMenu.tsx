@@ -1,10 +1,9 @@
 "use client";
 
-import { IoClose } from "react-icons/io5";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Link from "next/link";
 import { DrawerMenuProps } from "@/types/type";
-import { useOutsideClick } from "@/hooks/useOutsideClick";
+import { useOutsideClick, CloseButton } from "@/components";
 
 export default function DrawerMenu({
   isOpen,
@@ -28,10 +27,8 @@ export default function DrawerMenu({
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
         `}
     >
-      <div className="flex justify-end p-4 sticky top-0 bg-white z-10 border-b border-gray-200">
-        <div onClick={onClose} aria-label="Close menu">
-          <IoClose size={28} className="text-gray-700 cursor-pointer" />
-        </div>
+      <div className="flex justify-end p-6 sticky top-0 bg-white z-10 border-b border-gray-200">
+        <CloseButton onClick={onClose} />
       </div>
 
       <div className="flex flex-col h-[calc(100%-64px)]">

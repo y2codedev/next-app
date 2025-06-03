@@ -1,13 +1,15 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* Box sizing reset */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-@theme {
-  /* Colors */
+/* Custom Theme Variables (scoped under :root) */
+:root {
   --color-primary: #ff3e00;
   --color-black: #000;
   --color-btn: #d7e2da;
@@ -15,7 +17,6 @@
   --color-accent: #9333ea;
   --color-red: #bb1f2a;
 
-  /* Font sizes */
   --font-size-h1: 2.25rem;
   --font-size-h2: 1.875rem;
   --font-size-h3: 1.5rem;
@@ -23,60 +24,34 @@
   --font-size-h5: 1rem;
   --font-size-h6: 0.875rem;
 
-  /* Gaps */
   --gap-sm: 0.5rem;
   --gap-md: 1rem;
   --gap-lg: 2rem;
   --gap-xl: 4rem;
 
-  /* Tracking */
   --tracking-1: 0em;
   --tracking-2: 0.15em;
   --tracking-3: 0.2em;
   --tracking-4: 0.25em;
 
-  /* Container */
   --container-max-width: 1280px;
 }
 
+/* Typography base styles */
 @layer base {
-  h1 {
-    font-size: var(--font-size-h1);
-  }
-
-  h2 {
-    font-size: var(--font-size-h2);
-  }
-
-  h3 {
-    font-size: var(--font-size-h3);
-  }
-
-  h4 {
-    font-size: var(--font-size-h4);
-  }
-
-  h5 {
-    font-size: var(--font-size-h5);
-  }
-
-  h6 {
-    font-size: var(--font-size-h6);
-  }
+  h1 { font-size: var(--font-size-h1); }
+  h2 { font-size: var(--font-size-h2); }
+  h3 { font-size: var(--font-size-h3); }
+  h4 { font-size: var(--font-size-h4); }
+  h5 { font-size: var(--font-size-h5); }
+  h6 { font-size: var(--font-size-h6); }
 }
 
+/* Custom utility classes */
 @layer utilities {
-  .gap-sm {
-    gap: var(--gap-sm);
-  }
-
-  .gap-md {
-    gap: var(--gap-md);
-  }
-
-  .gap-lg {
-    gap: var(--gap-lg);
-  }
+  .gap-sm { gap: var(--gap-sm); }
+  .gap-md { gap: var(--gap-md); }
+  .gap-lg { gap: var(--gap-lg); }
 
   .container {
     max-width: var(--container-max-width);
@@ -87,12 +62,12 @@
   }
 }
 
+/* Custom animations */
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translateY(0px);
+    transform: translateY(10px);
   }
-
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -103,18 +78,18 @@
   animation: fadeIn 1s ease-in forwards;
 }
 
+/* Global behavior */
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
 }
 
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 2px;
-  transition: width 0.3s ease;
-  overflow: hidden;
 }
 
+/* Slick carousel dots */
 .slick-dots li button::before {
   font-size: 15px !important;
   color: rgb(149, 149, 221) !important;

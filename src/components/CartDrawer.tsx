@@ -1,9 +1,8 @@
 "use client";
 
 import React from "react";
-import { FiX, FiPlus, FiMinus } from "react-icons/fi";
-import { Button, OptimizedImage } from "@/components";
-import { useOutsideClick } from "@/hooks/useOutsideClick";
+import { FiPlus, FiMinus } from "react-icons/fi";
+import { Button, OptimizedImage, CloseButton, useOutsideClick } from "@/components";
 import { CartItem } from "@/types/cartStoreType";
 import { useRouter } from "next/navigation";
 
@@ -40,16 +39,12 @@ const CartDrawer = ({
   return (
     <div
       ref={drawerRef}
-      className={`fixed bottom-0 right-0 z-50 bg-white shadow-sm h-full w-full sm:w-[28%] transition-transform duration-300 ${isOpen
-        ? "translate-y-0 sm:translate-x-0"
-        : "translate-y-full sm:translate-x-full"
-        }`}
+      className={`fixed bottom-0 right-0 z-50 bg-white shadow-sm h-full w-full sm:w-[28%] sm:rounded-l-lg transition-transform duration-300 ease-in-out 
+      ${isOpen ? 'translate-y-0 sm:translate-x-0' : 'translate-y-full sm:translate-x-full'}`}
     >
       <div className="flex justify-between items-center p-4 border-b border-gray-200 sticky top-0 bg-white z-10 rounded-t-2xl sm:rounded-none">
         <h2 className="text-sm font-semibold text-gray-800">Your Cart</h2>
-        <button onClick={onClose} aria-label="Close cart">
-          <FiX size={18} className="text-sm cursor-pointer" />
-        </button>
+        <CloseButton onClick={onClose} />
       </div>
 
       <div className="flex flex-col h-full">
