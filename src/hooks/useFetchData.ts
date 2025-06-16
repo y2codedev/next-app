@@ -7,6 +7,7 @@ export const useFetchData = (url: string) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!url) return;
     const fetchData = async () => {
       try {
         const res = await fetch(url, { cache: "no-store" });
@@ -21,7 +22,7 @@ export const useFetchData = (url: string) => {
     };
 
     fetchData();
-  }, []);
+  }, [url]);
 
   return { data, loading, error };
 };
