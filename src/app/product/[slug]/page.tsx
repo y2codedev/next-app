@@ -52,8 +52,15 @@ export async function generateMetadata({
 }
 
 async function getProduct(id: string): Promise<ProductDetailType | null> {
+  if (!process.env.NEXT_PUBLIC_BASE_URL) {
+    return null;
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const url = `${baseUrl}/products/${id}`;
+
   try {
-    const response = await fetch(`https://dummyjson.com/products/${id}`, {
+    const response = await fetch(url, {
       next: { revalidate: 36000 },
     });
 
