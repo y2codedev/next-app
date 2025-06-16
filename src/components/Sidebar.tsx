@@ -35,21 +35,21 @@ const Sidebar = () => {
   };
 
   const applyFliters = () => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams();
 
-    if (search.trim()) {
-      params.set("q", search.trim());
+    if (search.trim()) params.set('q', search.trim());
+    if (selectedCategory && selectedCategory !== 'All') {
+      params.set('category', selectedCategory);
+      localStorage.setItem("selectedCategory", selectedCategory);
     } else {
-      params.delete("q");
+      localStorage.removeItem("selectedCategory");
     }
 
-    if (selectedCategory && selectedCategory !== "All") {
-      params.set("category", selectedCategory);
-    } else {
-      params.delete("category", selectedCategory);
-    }
+    params.set('page', '1');
+    params.set('sortBy', sortBy);
+    params.set('order', order);
 
-    router.push(`?${params.toString()}`);
+    router.push(`/products?${params.toString()}`);
   };
 
   const resetFilters = () => {
@@ -106,9 +106,8 @@ const Sidebar = () => {
             title={`Order: ${order.toUpperCase()}`}
           >
             <FiArrowDown
-              className={`transform transition-transform ${
-                order === "desc" ? "rotate-180" : "rotate-0"
-              }`}
+              className={`transform transition-transform ${order === "desc" ? "rotate-180" : "rotate-0"
+                }`}
             />
           </button>
         </div>
@@ -123,11 +122,10 @@ const Sidebar = () => {
             <li
               key={index}
               onClick={() => setSelectedCategory(cat)}
-              className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${
-                selectedCategory === cat
+              className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${selectedCategory === cat
                   ? "bg-blue-100 text-indigo-600 font-medium"
                   : "hover:bg-gray-100 text-gray-800"
-              }`}
+                }`}
             >
               {cat}
               {selectedCategory === cat && (
