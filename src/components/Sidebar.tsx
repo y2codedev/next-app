@@ -15,9 +15,15 @@ import { useFetchData } from "@/hooks/useFetchData";
 const sortFields = [{ value: "price", label: "Price" }];
 
 const Sidebar = () => {
-  const { data } = useFetchData(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/products/category-list`,
-  );
+
+  if (!process.env.NEXT_PUBLIC_BASE_URL) {
+    return null;
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const url = `${baseUrl}/products/category-list`;
+
+  const { data } = useFetchData(url);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -106,9 +112,8 @@ const Sidebar = () => {
             title={`Order: ${order.toUpperCase()}`}
           >
             <FiArrowDown
-              className={`transform transition-transform ${
-                order === "desc" ? "rotate-180" : "rotate-0"
-              }`}
+              className={`transform transition-transform ${order === "desc" ? "rotate-180" : "rotate-0"
+                }`}
             />
           </button>
         </div>
@@ -123,11 +128,10 @@ const Sidebar = () => {
             <li
               key={index}
               onClick={() => setSelectedCategory(cat)}
-              className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${
-                selectedCategory === cat
-                  ? "bg-blue-100 text-indigo-600 font-medium"
-                  : "hover:bg-gray-100 text-gray-800"
-              }`}
+              className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${selectedCategory === cat
+                ? "bg-blue-100 text-indigo-600 font-medium"
+                : "hover:bg-gray-100 text-gray-800"
+                }`}
             >
               {cat}
               {selectedCategory === cat && (
