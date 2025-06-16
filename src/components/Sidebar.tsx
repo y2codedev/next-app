@@ -60,7 +60,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (!selectedCategory && data?.length) {
-      setSelectedCategory(data[0]);
+      setSelectedCategory("All");
     }
     if (selectedCategory) {
       localStorage.setItem("selectedCategory", selectedCategory);
