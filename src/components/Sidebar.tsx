@@ -35,7 +35,7 @@ const Sidebar = () => {
   };
 
   const applyFliters = () => {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams || "");
 
     if (search.trim()) params.set('q', search.trim());
     if (selectedCategory && selectedCategory !== 'All') {
