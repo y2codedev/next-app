@@ -123,24 +123,24 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
       <div
         ref={drawerRef}
         className={`
-    fixed z-50 inset-0
-    flex items-end sm:items-center justify-center
-    w-full sm:max-w-5xl
-    h-full sm:h-[75%]
-    bg-white shadow-lg
-    px-4 sm:px-6
-    rounded-none sm:rounded-2xl
-    overflow-y-auto
-    transition-all duration-300 ease-in-out
-    ${open
+            fixed z-50 inset-0
+            flex items-end sm:items-center justify-center
+            w-full sm:max-w-5xl
+            h-full sm:h-[75%]
+            bg-white shadow-lg
+            px-4 sm:px-6
+            rounded-none sm:rounded-2xl
+            overflow-y-auto
+            transition-all duration-300 ease-in-out
+            ${open
             ? "opacity-100 pointer-events-auto translate-y-0 scale-100"
             : "opacity-0 pointer-events-none translate-y-full sm:translate-y-0 sm:scale-95"}
-    sm:inset-auto
-    sm:top-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2
-  `}
+            sm:inset-auto
+            sm:top-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2
+          `}
       >
+         <CloseButton iconColor="#fff" className="bg-indigo-600 hover:bg-indigo-700" onClick={onClose} />
         <div className="relative  flex overflow-y-auto flex-col sm:gap-4 gap-0 sm:flex-row h-full">
-          <CloseButton iconColor="#fff" className="bg-indigo-600 hover:bg-indigo-700" onClick={onClose} />
           <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto h-full">
             <div className="relative flex flex-col w-full">
               <div className="relative w-full mt-3 h-64 sm:h-[440px] overflow-hidden">

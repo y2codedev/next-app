@@ -20,7 +20,7 @@ const CloseButton: React.FC<CloseButtonProps> = ({
     <button
       onClick={onClick}
       aria-label="Close"
-      className={`absolute top-2 right-2 z-10 h-6 cursor-pointer w-6 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300 transition duration-150 ${className}`}
+      className={`absolute top-1 right-1 z-10 h-6 cursor-pointer w-6 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300 transition duration-150 ${className}`}
     >
       <FiX size={size} color={iconColor} />
     </button>

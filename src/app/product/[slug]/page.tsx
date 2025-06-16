@@ -90,20 +90,7 @@ export default async function ProductDetailPage({
   return (
     <div className="min-h-screen container py-20">
       <ProductDetail
-        title={product?.title}
-        id={product?.id}
-        description={product?.description}
-        price={product?.price}
-        thumbnail={product?.thumbnail}
-        rating={product?.rating}
-        discountPercentage={product?.discountPercentage}
-        stock={product?.stock}
-        warrantyInformation={product?.warrantyInformation}
-        shippingInformation={product?.shippingInformation}
-        returnPolicy={product?.returnPolicy}
-        minimumOrderQuantity={product?.minimumOrderQuantity}
-        reviews={product?.reviews}
-        images={product?.images || []}
+        {...product}
       />
     </div>
   );
