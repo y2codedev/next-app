@@ -79,7 +79,7 @@ const Sidebar = () => {
     if (selectedCategory) {
       localStorage.setItem("selectedCategory", selectedCategory);
     }
-  }, [selectedCategory,searchParams]);
+  }, [selectedCategory]);
 
   const renderSidebar = () => (
     <div className="w-full min-h-screen rounded-md  p-4 bg-white shadow-sm animate-fade-in space-y-6">
