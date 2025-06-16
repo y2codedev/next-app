@@ -15,13 +15,17 @@ import { useFetchData } from "@/hooks/useFetchData";
 const sortFields = [{ value: "price", label: "Price" }];
 
 const Sidebar = () => {
-  const searchParams = useSearchParams();
-  const [sortBy, setSortBy] = useState(searchParams.get('sortBy') || "price");
-  const [order, setOrder] = useState<"asc" | "desc">(
-    (searchParams.get('order') as "asc" | "desc") || "asc"
-  );
-
+   const searchParams = useSearchParams();
   const router = useRouter();
+  const [sortBy, setSortBy] = useState(searchParams.get('sortBy') || "price");
+  const [order, setOrder] = useState<'asc' | 'desc'>(
+    (searchParams.get('order') as 'asc' | 'desc') || 'asc'
+  );
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => {
+    return searchParams.get('category') || localStorage.getItem("selectedCategory") || "";
+  });
 
   if (!process.env.NEXT_PUBLIC_BASE_URL) {
     return null;
@@ -29,39 +33,26 @@ const Sidebar = () => {
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const url = `${baseUrl}/products/category-list`;
-
   const { data } = useFetchData(url);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [search, setSearch] = useState("");
-
-  const [selectedCategory, setSelectedCategory] = useState<string>(() => {
-    return searchParams.get('category') || localStorage.getItem("selectedCategory") || "";
-  });
 
   const toggleOrder = () => {
-    setOrder((prev) => {
-      const newOrder = prev === "asc" ? "desc" : "asc";
-      return newOrder;
-    });
+    setOrder(prev => prev === 'asc' ? 'desc' : 'asc');
   };
 
   const applyFliters = () => {
     const params = new URLSearchParams();
 
-    if (search.trim()) {
-      params.set("q", search.trim());
-    }
-
-    if (selectedCategory && selectedCategory !== "All") {
-      params.set("category", selectedCategory);
+    if (search.trim()) params.set('q', search.trim());
+    if (selectedCategory && selectedCategory !== 'All') {
+      params.set('category', selectedCategory);
       localStorage.setItem("selectedCategory", selectedCategory);
     } else {
       localStorage.removeItem("selectedCategory");
     }
 
-    params.set("page", "1");
-    params.set("sortBy", sortBy);
-    params.set("order", order);
+    params.set('page', '1');
+    params.set('sortBy', sortBy);
+    params.set('order', order);
 
     router.push(`/products?${params.toString()}`);
   };
@@ -79,7 +70,8 @@ const Sidebar = () => {
     if (selectedCategory) {
       localStorage.setItem("selectedCategory", selectedCategory);
     }
-  }, [selectedCategory]);
+  }, [selectedCategory, data?.length]); 
+
 
   const renderSidebar = () => (
     <div className="w-full min-h-screen rounded-md  p-4 bg-white shadow-sm animate-fade-in space-y-6">
