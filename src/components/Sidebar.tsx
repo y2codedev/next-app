@@ -118,13 +118,13 @@ const Sidebar = () => {
           All Categories
         </h4>
         <ul className="space-y-2">
-          {data?.map((cat: string, index: number) => (
+          {["All", ...(data || [])].map((cat: string, index: number) => (
             <li
               key={index}
               onClick={() => setSelectedCategory(cat)}
               className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${selectedCategory === cat
-                  ? "bg-blue-100 text-indigo-600 font-medium"
-                  : "hover:bg-gray-100 text-gray-800"
+                ? "bg-blue-100 text-indigo-600 font-medium"
+                : "hover:bg-gray-100 text-gray-800"
                 }`}
             >
               {cat}
