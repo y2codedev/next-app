@@ -15,47 +15,41 @@ import { useFetchData } from "@/hooks/useFetchData";
 const sortFields = [{ value: "price", label: "Price" }];
 
 const Sidebar = () => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const [sortBy, setSortBy] = useState(searchParams.get('sortBy') || "price");
-  const [order, setOrder] = useState<'asc' | 'desc'>(
-    (searchParams.get('order') as 'asc' | 'desc') || 'asc'
+  const { data } = useFetchData(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/products/category-list`,
   );
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
+
   const [selectedCategory, setSelectedCategory] = useState<string>(() => {
-    return searchParams.get('category') || localStorage.getItem("selectedCategory") || "";
+    return localStorage.getItem("selectedCategory") || "";
   });
 
-  if (!process.env.NEXT_PUBLIC_BASE_URL) {
-    return null;
-  }
-
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const url = `${baseUrl}/products/category-list`;
-  const { data } = useFetchData(url); 
-
+  const [sortBy, setSortBy] = useState("price");
+  const [order, setOrder] = useState<"asc" | "desc">("asc");
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const toggleOrder = () => {
-    setOrder(prev => prev === 'asc' ? 'desc' : 'asc');
+    setOrder((prev) => (prev === "asc" ? "desc" : "asc"));
   };
 
   const applyFliters = () => {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams.toString());
 
-    if (search.trim()) params.set('q', search.trim());
-    if (selectedCategory && selectedCategory !== 'All') {
-      params.set('category', selectedCategory);
-      localStorage.setItem("selectedCategory", selectedCategory);
+    if (search.trim()) {
+      params.set("q", search.trim());
     } else {
-      localStorage.removeItem("selectedCategory");
+      params.delete("q");
     }
 
-    params.set('page', '1');
-    params.set('sortBy', sortBy);
-    params.set('order', order);
+    if (selectedCategory && selectedCategory !== "All") {
+      params.set("category", selectedCategory);
+    } else {
+      params.delete("category", selectedCategory);
+    }
 
-    router.push(`/products?${params.toString()}`);
+    router.push(`?${params.toString()}`);
   };
 
   const resetFilters = () => {
@@ -64,16 +58,14 @@ const Sidebar = () => {
     setSelectedCategory("");
   };
 
- useEffect(() => {
+  useEffect(() => {
     if (!selectedCategory && data?.length) {
-      setSelectedCategory("All");
+      setSelectedCategory(data[0]);
     }
     if (selectedCategory) {
       localStorage.setItem("selectedCategory", selectedCategory);
     }
-  }, [selectedCategory, data?.length]); 
-
-  if (!baseUrl) return null;
+  }, [selectedCategory]);
 
   const renderSidebar = () => (
     <div className="w-full min-h-screen rounded-md  p-4 bg-white shadow-sm animate-fade-in space-y-6">
@@ -114,9 +106,9 @@ const Sidebar = () => {
             title={`Order: ${order.toUpperCase()}`}
           >
             <FiArrowDown
-              className={`transform transition-transform ${order === "desc" ? "rotate-180" : "rotate-0"
-                }`}
-              color={order === "desc" ? "#4f46e5" : "currentColor"}
+              className={`transform transition-transform ${
+                order === "desc" ? "rotate-180" : "rotate-0"
+              }`}
             />
           </button>
         </div>
@@ -127,14 +119,15 @@ const Sidebar = () => {
           All Categories
         </h4>
         <ul className="space-y-2">
-          {["All", ...(data || [])].map((cat: string, index: number) => (
+          {data?.map((cat: string, index: number) => (
             <li
               key={index}
               onClick={() => setSelectedCategory(cat)}
-              className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${selectedCategory === cat
-                ? "bg-blue-100 text-indigo-600 font-medium"
-                : "hover:bg-gray-100 text-gray-800"
-                }`}
+              className={`cursor-pointer px-3 py-2 rounded capitalize transition flex items-center justify-between ${
+                selectedCategory === cat
+                  ? "bg-blue-100 text-indigo-600 font-medium"
+                  : "hover:bg-gray-100 text-gray-800"
+              }`}
             >
               {cat}
               {selectedCategory === cat && (
