@@ -15,6 +15,13 @@ import { useFetchData } from "@/hooks/useFetchData";
 const sortFields = [{ value: "price", label: "Price" }];
 
 const Sidebar = () => {
+  const searchParams = useSearchParams();
+  const [sortBy, setSortBy] = useState(searchParams.get('sortBy') || "price");
+  const [order, setOrder] = useState<"asc" | "desc">(
+    (searchParams.get('order') as "asc" | "desc") || "asc"
+  );
+
+  const router = useRouter();
 
   if (!process.env.NEXT_PUBLIC_BASE_URL) {
     return null;
@@ -28,34 +35,35 @@ const Sidebar = () => {
   const [search, setSearch] = useState("");
 
   const [selectedCategory, setSelectedCategory] = useState<string>(() => {
-    return localStorage.getItem("selectedCategory") || "";
+    return searchParams.get('category') || localStorage.getItem("selectedCategory") || "";
   });
 
-  const [sortBy, setSortBy] = useState("price");
-  const [order, setOrder] = useState<"asc" | "desc">("asc");
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
   const toggleOrder = () => {
-    setOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+    setOrder((prev) => {
+      const newOrder = prev === "asc" ? "desc" : "asc";
+      return newOrder;
+    });
   };
 
   const applyFliters = () => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams();
 
     if (search.trim()) {
       params.set("q", search.trim());
-    } else {
-      params.delete("q");
     }
 
     if (selectedCategory && selectedCategory !== "All") {
       params.set("category", selectedCategory);
+      localStorage.setItem("selectedCategory", selectedCategory);
     } else {
-      params.delete("category", selectedCategory);
+      localStorage.removeItem("selectedCategory");
     }
 
-    router.push(`?${params.toString()}`);
+    params.set("page", "1");
+    params.set("sortBy", sortBy);
+    params.set("order", order);
+
+    router.push(`/products?${params.toString()}`);
   };
 
   const resetFilters = () => {
@@ -66,12 +74,12 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (!selectedCategory && data?.length) {
-      setSelectedCategory(data[0]);
+      setSelectedCategory("All");
     }
     if (selectedCategory) {
       localStorage.setItem("selectedCategory", selectedCategory);
     }
-  }, [selectedCategory]);
+  }, [selectedCategory, data]);
 
   const renderSidebar = () => (
     <div className="w-full min-h-screen rounded-md  p-4 bg-white shadow-sm animate-fade-in space-y-6">
@@ -114,6 +122,7 @@ const Sidebar = () => {
             <FiArrowDown
               className={`transform transition-transform ${order === "desc" ? "rotate-180" : "rotate-0"
                 }`}
+              color={order === "desc" ? "#4f46e5" : "currentColor"}
             />
           </button>
         </div>
@@ -124,7 +133,7 @@ const Sidebar = () => {
           All Categories
         </h4>
         <ul className="space-y-2">
-          {data?.map((cat: string, index: number) => (
+          {["All", ...(data || [])].map((cat: string, index: number) => (
             <li
               key={index}
               onClick={() => setSelectedCategory(cat)}
