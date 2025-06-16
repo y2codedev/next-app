@@ -32,9 +32,9 @@ const Sidebar = () => {
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const url = baseUrl ? `${baseUrl}/products/category-list` : null;
-  const { data } = useFetchData(url || "");
-  if (!baseUrl) return null;
+  const url = `${baseUrl}/products/category-list`;
+  const { data } = useFetchData(url); 
+
 
   const toggleOrder = () => {
     setOrder(prev => prev === 'asc' ? 'desc' : 'asc');
@@ -64,14 +64,16 @@ const Sidebar = () => {
     setSelectedCategory("");
   };
 
-  useEffect(() => {
+ useEffect(() => {
     if (!selectedCategory && data?.length) {
       setSelectedCategory("All");
     }
     if (selectedCategory) {
       localStorage.setItem("selectedCategory", selectedCategory);
     }
-  }, [selectedCategory, data?.length]);
+  }, [selectedCategory, data?.length]); 
+
+  if (!baseUrl) return null;
 
   const renderSidebar = () => (
     <div className="w-full min-h-screen rounded-md  p-4 bg-white shadow-sm animate-fade-in space-y-6">
